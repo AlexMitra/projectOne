@@ -1,0 +1,13 @@
+.full-screen {
+    display: block;
+    max-width: auto;
+    height: 500px;
+    margin: 0 auto;
+}
+
+.navbar-fixed-bottom {
+    position: fixed; /* Фиксированное положение */
+    left: 0; bottom: 0; /* Левый нижний угол */
+    padding: 10px; /* Поля вокруг текста */    
+    width: 100%; /* Ширина слоя */
+}
