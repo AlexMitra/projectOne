@@ -5,10 +5,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
 import by.kalilaska.beans.Account;
+
 
 @Controller
 public class HomeController {
+	
 	@RequestMapping(value = {"/", "/home"}, method = RequestMethod.GET)
 	public String Home() {
 		return "home";
@@ -38,5 +41,6 @@ public class HomeController {
 	@ModelAttribute
 	private Account getAccount(){
 		return new Account();
-	}
+	}	
+
 }

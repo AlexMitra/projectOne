@@ -22,6 +22,12 @@
 		</dependency>
 		
 		<dependency>
+			<groupId>by.kalilaska</groupId>
+			<artifactId>project-one-entities</artifactId>
+			<version>${app.version}</version>
+		</dependency>
+		
+		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
 			<version>${servlet.api.version}</version>
