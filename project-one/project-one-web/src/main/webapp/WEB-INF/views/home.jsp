@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -8,12 +9,12 @@
     <meta name="description" content="Сайт для бесплатного обмена вещами">
     <meta name="keywords" content="Калиласка, Kalilaska">
     <meta http-equiv="content-type" content="text/html;" charset="utf-8">
-    <title>KALILASKA</title>
+    <title>ZABIRAI</title>
 
     <!-- Bootstrap -->
-    <link href="<c:url value="/resources/home/css/bootstrap.css"/>"  rel="stylesheet">
-    <link href="<c:url value="/resources/home/css/font-awesome.css"/>" rel="stylesheet">
-    <link href="<c:url value="/resources/home/css/syle.css"/>" rel="stylesheet">
+    <link href="<c:url value="/resources/otherViews/css/bootstrap.css"/>"  rel="stylesheet">
+    <link href="<c:url value="/resources/otherViews/css/font-awesome.css"/>" rel="stylesheet">
+    <link href="<c:url value="/resources/otherViews/css/syle.css"/>" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -27,13 +28,13 @@
 
     <div class="container">
         <div class="row" align="center">
-            <h1>KALILASKA</h1>
+            <h1><spring:message code="homePage.menu.header" /></h1>
         </div>
         <div class="row">
             <div class="navbar navbar-inverse">
                 <div class="container">
                     <div class="navbar-header">
-                        <p><a class="navbar-brand" href="#">K<i class="fa fa-heart-o"></i></a>
+                        <p><a class="navbar-brand" href="/project-one-web/home">Z<i class="fa fa-heart-o"></i></a>
                         </p>
 
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#responsive-menu">
@@ -46,15 +47,33 @@
 
                     <div class="collapse navbar-collapse" id="responsive-menu" align="center">
                         <ul class="nav navbar-nav">
-                            <li><a href="#">О нас</a> 
+                            <li><a href="#"><spring:message code="homePage.menu.aboutUs" /></a> 
                             </li>
-                            <li><a href="#">Kаталог</a> 
+                            <li><a href="#"><spring:message code="homePage.menu.posts" /></a> 
                             </li>
-                            <li><a href="#">Мероприятия</a> 
+                            <li><a href="#"><spring:message code="homePage.menu.actions" /></a> 
                             </li>
-                            <li><a href="#">Личный кабинет</a> 
+                            <li><a href="/project-one-web/logIn"><spring:message code="homePage.menu.personalArea" /></a> 
                             </li>
-                        </ul>
+                            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-language"></i><b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li align="center"><b>
+                                    	<a class="language-text-color" href="?language=en">
+                                    		<spring:message code="application.language.en" />
+                                    	EN</a></b> 
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li align="center"><b>
+                                    	<a class="language-text-color" href="?language=ru">
+                                    		<spring:message code="application.language.ru" />
+                                    	RU</a></b> 
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li align="center"><b><a class="language-text-color" href="#">BLR</a></b> 
+                                    </li>
+                                </ul>
+                            </li> 
+                        </ul>          
 
                     </div>
                 </div>
@@ -75,7 +94,7 @@
                         <div class="carousel-inner">
                             <div class="item active" align="center">
                                 <div class="full-screen">
-                                    <img class="full-screen" src="<c:url value="resources/home/images/simple1.jpg"/>" alt="">
+                                    <img class="full-screen" src="<c:url value="resources/otherViews/images/simple1.jpg"/>" alt="">
                                 </div>
                                 <div class="carousel-caption">
                                     <h3>Slide1</h3>
@@ -84,7 +103,7 @@
                             </div>
                             <div class="item" align="center">
                                 <div class="full-screen">
-                                    <img class="full-screen" src=<c:url value="resources/home/images/simple.jpg"/> alt="">
+                                    <img class="full-screen" src=<c:url value="resources/otherViews/images/simple.jpg"/> alt="">
                                 </div>
                                 <div class="carousel-caption">
                                     <h3>Slide2</h3>
@@ -93,7 +112,7 @@
                             </div>
                             <div class="item" align="center">
                                 <div class="full-screen">
-                                    <img class="full-screen" src=<c:url value="resources/home/images/simple.jpg"/> alt="">
+                                    <img class="full-screen" src=<c:url value="resources/otherViews/images/simple.jpg"/> alt="">
                                 </div>
                                 <div class="carousel-caption">
                                     <h3>Slide3</h3>
@@ -117,7 +136,7 @@
         <div class="navbar navbar-btn">
             <div class="row">
                 <br>
-                <h4 align="center">Сделано в Беларуси</h4>
+                <h4 align="center"><spring:message code="homePage.menu.footer" /></h4>
             </div>
         </div>
     </div>
@@ -127,7 +146,7 @@
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src=<c:url value="resources/home/js/bootstrap.js"/>></script>
+    <script src=<c:url value="resources/otherViews/js/bootstrap.js"/>></script>
 </body>
 
 </html>

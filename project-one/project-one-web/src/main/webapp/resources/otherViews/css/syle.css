@@ -4,10 +4,24 @@
     height: 500px;
     margin: 0 auto;
 }
-
+.form-login-screen {
+    display: block;
+    max-width: 50%;
+    height: 100%;
+    margin: 0 auto;
+    vertical-align: middle;
+}
 .navbar-fixed-bottom {
-    position: fixed; /* Фиксированное положение */
-    left: 0; bottom: 0; /* Левый нижний угол */
-    padding: 10px; /* Поля вокруг текста */    
-    width: 100%; /* Ширина слоя */
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    padding: 10px;
+    width: 100%;
+}
+.link-text-color {
+    color: black;
+}
+
+.language-text-color {
+    color: black;
 }
