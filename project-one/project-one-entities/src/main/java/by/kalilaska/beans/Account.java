@@ -1,6 +1,8 @@
 package by.kalilaska.beans;
 
-public class Account {
+import by.kalilaska.interfaces.Entity;
+
+class Account implements Entity{
 	
 	private int id;
 	private String accountLogin;
