@@ -65,6 +65,24 @@
     		<artifactId>spring-webmvc</artifactId>
     		<version>${spring.version}</version>
 		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/org.apache.tiles/tiles-extras -->
+		<dependency>
+   			<groupId>org.apache.tiles</groupId>
+    		<artifactId>tiles-extras</artifactId>
+    		<version>${tiles.version}</version>
+		</dependency>		
+		
+		<dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+            <version>${validation-api.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>${hibernate-validator.version}</version>
+        </dependency> 
 	</dependencies>
 
 	<build>

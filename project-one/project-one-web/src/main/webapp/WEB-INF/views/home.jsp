@@ -26,7 +26,7 @@
 
 <body>
 
-    <div class="container">
+    
         <div class="row" align="center">
             <h1><spring:message code="homePage.menu.header" /></h1>
         </div>
@@ -139,7 +139,7 @@
                 <h4 align="center"><spring:message code="homePage.menu.footer" /></h4>
             </div>
         </div>
-    </div>
+    
 
 
 

@@ -1,12 +1,26 @@
 package by.kalilaska.beans;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Email;
+
 import by.kalilaska.interfaces.Entity;
 
-class Account implements Entity{
+public class Account implements Entity{
 	
 	private int id;
+	
+	@NotNull
+	@Size(min=5, max=20, message="login have to have more than 5 symbols and less than 21 symbol")
 	private String accountLogin;
+	
+	@NotNull
+	@Size(min=5, max=20, message="email have to be correct")	
 	private String accountEmail;
+	
+	@NotNull
+	@Size(min=5, max=20, message="login have to have more than 5 symbols and less than 21 symbol")
 	private String accountPassword;
 	
 	public Account() {

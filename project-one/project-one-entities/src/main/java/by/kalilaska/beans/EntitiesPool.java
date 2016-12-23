@@ -1,10 +1,18 @@
 package by.kalilaska.beans;
 
-import by.kalilaska.interfaces.Entity;
+import org.springframework.stereotype.Component;
 
-public class EntitiesPool {
+import by.kalilaska.interfaces.Entity;
+import by.kalilaska.interfaces.Pool;
+
+@Component
+public class EntitiesPool implements Pool{
 	
-	public static Entity getAccount(){
+	/*public static Account getAccount(){
+		return new Account();
+	}*/
+	
+	public Entity getAccount(){
 		return new Account();
 	}
 
