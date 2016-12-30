@@ -19,7 +19,7 @@
                         <div class="carousel-inner">
                             <div class="item active" align="center">
                                 <div class="full-screen">
-                                    <img class="full-screen" src="<c:url value="resources/otherViews/images/simple1.jpg"/>" alt="">
+                                    <img class="full-screen" src="<c:url value="resources/forViews/images/simple1.jpg"/>" alt="">
                                 </div>
                                 <div class="carousel-caption">
                                     <h3>Slide1</h3>
@@ -28,7 +28,7 @@
                             </div>
                             <div class="item" align="center">
                                 <div class="full-screen">
-                                    <img class="full-screen" src=<c:url value="resources/otherViews/images/simple.jpg"/> alt="">
+                                    <img class="full-screen" src=<c:url value="resources/forViews/images/simple.jpg"/> alt="">
                                 </div>
                                 <div class="carousel-caption">
                                     <h3>Slide2</h3>
@@ -37,7 +37,7 @@
                             </div>
                             <div class="item" align="center">
                                 <div class="full-screen">
-                                    <img class="full-screen" src=<c:url value="resources/otherViews/images/simple.jpg"/> alt="">
+                                    <img class="full-screen" src=<c:url value="resources/forViews/images/simple.jpg"/> alt="">
                                 </div>
                                 <div class="carousel-caption">
                                     <h3>Slide3</h3>

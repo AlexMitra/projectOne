@@ -15,7 +15,9 @@
 		<jstl.version>1.2</jstl.version>
 		<validation-api.version>1.1.0.Final</validation-api.version>
 		<hibernate-validator.version>5.2.4.Final</hibernate-validator.version>
+		<mysql-connector-version>5.1.38</mysql-connector-version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<jackson.version>2.8.5</jackson.version>
 	</properties>
 
 	<build>
@@ -38,5 +40,6 @@
 		<module>project-one-dao-jdbc</module>
 		<module>project-one-service</module>
     <module>project-one-entities</module>
+    <module>project-one-restControllers</module>
   </modules>
 </project>

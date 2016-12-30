@@ -1,0 +1,48 @@
+.full-screen {
+    display: block;
+    max-width: auto;
+    height: 500px;
+    margin: 0 auto;
+}
+.form-login-screen {
+    display: block;
+    max-width: 50%;
+    height: 100%;
+    margin: 0 auto;
+    vertical-align: middle;
+}
+.navbar-fixed-bottom {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    padding: 10px;
+    width: 100%;
+}
+.link-text-color {
+    color: black;
+}
+
+.language-text-color {
+    color: black;
+}
+
+.error-text-color {
+    color: red;
+}
+
+#menu-band {      
+    height: 100%;
+    margin-bottom: 0px;
+}
+
+.personal-area-name {
+    color: brown;
+}
+
+.personal-area-greatings {
+    text-align: center;
+}
+
+#image-logo{
+    color: brown;
+}

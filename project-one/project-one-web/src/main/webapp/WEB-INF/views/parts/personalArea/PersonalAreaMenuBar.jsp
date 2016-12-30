@@ -7,7 +7,7 @@
     
 
         <div class="row">
-            <div class="navbar navbar-inverse">
+            <div id="menu-band" class="navbar navbar-inverse">
                 <div class="container">
                     <div class="navbar-header">
                         <p><a class="navbar-brand" href="/project-one-web/home">Z<i  id="image-logo" class="fa fa-heart-o"></i></a>
