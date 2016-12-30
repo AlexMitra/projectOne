@@ -2,10 +2,10 @@ package by.kalilaska.entities;
 
 import org.springframework.stereotype.Component;
 
-import by.kalilaska.Pool;
+import by.kalilaska.EntitiesPool;
 
 @Component
-public class EntitiesPool implements Pool{
+public class EntitiesPoolImpl implements EntitiesPool{
 	
 	/*public static Account getAccount(){
 		return new Account();

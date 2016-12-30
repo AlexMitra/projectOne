@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import by.kalilaska.Pool;
+import by.kalilaska.EntitiesPool;
 import by.kalilaska.daoJDBC.ZabiraiJDBC;
 import by.kalilaska.daoJDBC.ZabiraiJDBCPool;
 import by.kalilaska.entities.Account;
@@ -19,7 +19,7 @@ import by.kalilaska.entities.Account;
 public class MenuBarController {
 	
 	@Autowired
-	private Pool entitiesPool;
+	private EntitiesPool entitiesPool;
 	
 	@Autowired
 	private ZabiraiJDBC zabiraiJDBC;

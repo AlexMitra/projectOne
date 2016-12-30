@@ -9,8 +9,8 @@
   </parent>
   
   
-  <artifactId>project-one-entities</artifactId>  
-  <name>project-one-entities</name>
+  <artifactId>project-one-beans</artifactId> 
+  <name>project-one-beans</name>
   <url>http://maven.apache.org</url>
   
   <properties>
@@ -18,7 +18,7 @@
   </properties>
   
   <dependencies>
-  	<!-- https://mvnrepository.com/artifact/org.springframework -->
+    <!-- https://mvnrepository.com/artifact/org.springframework -->
 	<dependency>
 		 <groupId>org.springframework</groupId>
 		 <artifactId>spring-beans</artifactId>
@@ -37,20 +37,9 @@
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
-    
-    <dependency>
-            <groupId>javax.validation</groupId>
-            <artifactId>validation-api</artifactId>
-            <version>${validation-api.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-validator</artifactId>
-            <version>${hibernate-validator.version}</version>
-        </dependency> 
   </dependencies>
   
   <build>
-		<finalName>project-one-entities</finalName>
+		<finalName>project-one-beans</finalName>
   </build>
 </project>

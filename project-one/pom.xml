@@ -41,5 +41,6 @@
 		<module>project-one-service</module>
     <module>project-one-entities</module>
     <module>project-one-restControllers</module>
+    <module>project-one-beans</module>
   </modules>
 </project>
