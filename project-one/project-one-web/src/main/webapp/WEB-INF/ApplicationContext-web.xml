@@ -9,10 +9,9 @@
 	<context:component-scan base-package="by.kalilaska.controllers"/>
 	<import resource="classpath:ApplicationContext-restControllers.xml"/>
 	<import resource="classpath:ApplicationContext-beans.xml"/>
-	<import resource="classpath:ApplicationContext-entities.xml"/>
 	<import resource="classpath:ApplicationContext-services.xml"/>
 	<import resource="classpath:ApplicationContext-jdbc.xml"/>
-	
+	<import resource="classpath:ApplicationContext-entities.xml"/>
 	
 <!-- 	<bean id="entitiesPool" class="by.kalilaska.beans.EntitiesPool"/> -->
 	

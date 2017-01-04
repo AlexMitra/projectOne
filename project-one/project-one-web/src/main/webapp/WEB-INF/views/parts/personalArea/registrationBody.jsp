@@ -21,7 +21,7 @@
 
                 <div class="form-login-screen">   
 
-    				<form:form method="post" modelAttribute="account" class="form-horizontal" >                        
+    				<form:form method="post" modelAttribute="newAccount" class="form-horizontal" >                        
                         
                         <div class="form-group">
                             <label for="inputLogin" class="col-sm-2 control-label">Логин</label>
@@ -30,6 +30,7 @@
                             </div>
                             <div class="col-sm-10">
                                 <form:errors type="text" class="error-text-color" path="accountLogin"/>
+                                <p type="text" class="error-text-color">${newAccount.loginCheck}<p>
                             </div>
                         </div>
 
@@ -40,6 +41,7 @@
                             </div>
                             <div class="col-sm-10">
                                 <form:errors type="text" class="error-text-color" path="accountEmail"/>
+                                <p type="text" class="error-text-color">${newAccount.emailCheck}<p>
                             </div>
                         </div>
 

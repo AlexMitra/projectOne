@@ -13,13 +13,10 @@
                     <div id="sidebar-wrapper">
                         <ul class="sidebar-nav">
                             <li class="sidebar-brand">
-                                <p class="personal-area-name">Личный кабинет</p>
+                                <p class="personal-area-name">Личный кабинет(User)</p>
                             </li>
                             <li>
                                 <a href="#">Сообщения</a>
-                            </li>
-                            <li>
-                                <a href="/project-one-web/personalArea/api/users">Пользователи</a>
                             </li>
                             <li>
                                 <a href="#">Объявления</a>

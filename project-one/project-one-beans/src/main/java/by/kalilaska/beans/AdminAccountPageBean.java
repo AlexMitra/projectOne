@@ -1,21 +1,22 @@
 package by.kalilaska.beans;
 
-public class AccountBean{
+public class AdminAccountPageBean extends UserAccountPageBean{
 	
-	private int id;
-	
-	private String accountLogin;
-	
-	private String accountEmail;
-	
+	private long id;
+
+	private String accountLogin;	
+
+	private String accountEmail;	
+
 	private String accountPassword;
 	
-	public AccountBean() {
-		super();
-		// TODO Auto-generated constructor stub
+	private String status;
+	
+	public AdminAccountPageBean() {
+		super();		
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
@@ -30,8 +31,12 @@ public class AccountBean{
 	public String getAccountPassword() {
 		return accountPassword;
 	}
+	
+	public String getStatus() {
+		return status;
+	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -46,11 +51,15 @@ public class AccountBean{
 	public void setAccountPassword(String accountPassword) {
 		this.accountPassword = accountPassword;
 	}
+	
+	public void setStatus(String status) {
+		this.status = status;
+	}
 
 	@Override
 	public String toString() {
-		return "Account [id=" + id + ", accountLogin=" + accountLogin + ", accountEmail=" + accountEmail
-				+ ", accountPassword=" + accountPassword + "]";
-	}	
-	
+		return "AdminPageBean [id=" + id + ", accountLogin=" + accountLogin + ", accountEmail=" + accountEmail
+				+ ", accountPassword=" + accountPassword + ", status=" + status + "]";
+	}
+
 }

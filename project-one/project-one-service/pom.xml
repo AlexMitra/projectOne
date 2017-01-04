@@ -21,7 +21,19 @@
 		
 		<dependency>
 			<groupId>by.kalilaska</groupId>
+			<artifactId>project-one-dao-jdbc</artifactId>
+			<version>${app.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>by.kalilaska</groupId>
 			<artifactId>project-one-entities</artifactId>
+			<version>${app.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>by.kalilaska</groupId>
+			<artifactId>project-one-beans</artifactId>
 			<version>${app.version}</version>
 		</dependency>
 		

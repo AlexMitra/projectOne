@@ -40,7 +40,7 @@ public class ZabiraiJDBC {
 	@Autowired
 	public void setNamedJdbcTemplate(NamedParameterJdbcTemplate namedJdbcTemplate) {
 		this.namedJdbcTemplate = namedJdbcTemplate;
-		System.out.println("namedJdbcTemplate:" + namedJdbcTemplate);
+		//System.out.println("namedJdbcTemplate:" + namedJdbcTemplate);
 	}
 
 	public void insertAccount() {		
@@ -121,12 +121,12 @@ public class ZabiraiJDBC {
 
 		public Account mapRow(ResultSet rs, int rowNum) throws SQLException {
 			Account account = new Account();
-			account.setId(rs.getInt("id"));
+			account.setId(rs.getLong("id"));
 			account.setAccountLogin(rs.getString("Login"));
 			account.setAccountEmail(rs.getString("email"));
 			account.setAccountPassword(rs.getString("password"));
 			
-			System.out.println("in AccountMapper\n" + account);
+			//System.out.println("in AccountMapper\n" + account);
 			return account;
 
 		}

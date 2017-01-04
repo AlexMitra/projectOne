@@ -1,14 +1,9 @@
-package by.kalilaska.entities;
+package by.kalilaska.beans;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import org.hibernate.validator.constraints.Email;
-
-
-public class Account{
-	
-	private long id;
+public class AccountForRegistrationBean{	
 	
 	@NotNull
 	@Size(min=5, max=20, message="login have to have more than 5 symbols and less than 21 symbol")
@@ -22,13 +17,28 @@ public class Account{
 	@Size(min=5, max=20, message="login have to have more than 5 symbols and less than 21 symbol")
 	private String accountPassword;
 	
-	public Account() {
-		super();
-		// TODO Auto-generated constructor stub
+	private String loginCheck;
+	
+	private String emailCheck;
+	
+	public String getLoginCheck() {
+		return loginCheck;
 	}
 
-	public long getId() {
-		return id;
+	public String getEmailCheck() {
+		return emailCheck;
+	}
+
+	public void setLoginCheck(String loginCheck) {
+		this.loginCheck = loginCheck;
+	}
+
+	public void setEmailCheck(String emailCheck) {
+		this.emailCheck = emailCheck;
+	}
+
+	public AccountForRegistrationBean() {
+		super();		
 	}
 
 	public String getAccountLogin() {
@@ -41,10 +51,6 @@ public class Account{
 
 	public String getAccountPassword() {
 		return accountPassword;
-	}
-
-	public void setId(long id) {
-		this.id = id;
 	}
 
 	public void setAccountLogin(String accountLogin) {
@@ -61,8 +67,11 @@ public class Account{
 
 	@Override
 	public String toString() {
-		return "Account [id=" + id + ", accountLogin=" + accountLogin + ", accountEmail=" + accountEmail
-				+ ", accountPassword=" + accountPassword + "]";
-	}	
+		return "AccountForRegistrationBean [accountLogin=" + accountLogin + ", accountEmail=" + accountEmail
+				+ ", accountPassword=" + accountPassword + ", loginCheck=" + loginCheck + ", emailCheck="
+				+ emailCheck + "]";
+	}
+
+
 	
 }

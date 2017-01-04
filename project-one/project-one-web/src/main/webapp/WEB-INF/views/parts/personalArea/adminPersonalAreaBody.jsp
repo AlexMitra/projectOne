@@ -13,7 +13,7 @@
                     <div id="sidebar-wrapper">
                         <ul class="sidebar-nav">
                             <li class="sidebar-brand">
-                                <p class="personal-area-name">Личный кабинет</p>
+                                <p class="personal-area-name">Личный кабинет(Admin)</p>
                             </li>
                             <li>
                                 <a href="#">Сообщения</a>
@@ -39,7 +39,7 @@
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-lg-12">
-                                <h3 align="center">Glad to see you, ${userPage.accountLogin}!</h3>
+                                <h3 align="center">Glad to see you, ${adminPage.accountLogin}!</h3>
                                 
                                 </div>
                             </div>

@@ -1,34 +1,21 @@
 package by.kalilaska.entities;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
-import org.hibernate.validator.constraints.Email;
-
-
-public class Account{
+public class AccountEntity{
 	
-	private long id;
+	private long accountId;
 	
-	@NotNull
-	@Size(min=5, max=20, message="login have to have more than 5 symbols and less than 21 symbol")
 	private String accountLogin;
 	
-	@NotNull
-	@Size(min=5, max=20, message="email have to be correct")	
 	private String accountEmail;
 	
-	@NotNull
-	@Size(min=5, max=20, message="login have to have more than 5 symbols and less than 21 symbol")
 	private String accountPassword;
 	
-	public Account() {
-		super();
-		// TODO Auto-generated constructor stub
+	public AccountEntity() {
+		super();		
 	}
 
-	public long getId() {
-		return id;
+	public long getAccountId() {
+		return accountId;
 	}
 
 	public String getAccountLogin() {
@@ -43,8 +30,8 @@ public class Account{
 		return accountPassword;
 	}
 
-	public void setId(long id) {
-		this.id = id;
+	public void setAccountId(long id) {
+		this.accountId = id;
 	}
 
 	public void setAccountLogin(String accountLogin) {
@@ -61,7 +48,7 @@ public class Account{
 
 	@Override
 	public String toString() {
-		return "Account [id=" + id + ", accountLogin=" + accountLogin + ", accountEmail=" + accountEmail
+		return "AccountEntity [accountId=" + accountId + ", accountLogin=" + accountLogin + ", accountEmail=" + accountEmail
 				+ ", accountPassword=" + accountPassword + "]";
 	}	
 	

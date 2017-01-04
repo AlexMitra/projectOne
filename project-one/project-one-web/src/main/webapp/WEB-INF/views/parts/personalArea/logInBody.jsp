@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
         <div class="row">
@@ -18,19 +19,26 @@
                 </div>
 
                 <div class="form-login-screen">
-                    <form class="form-horizontal">
+                
+                    <form:form method="post" modelAttribute="logInAccount" class="form-horizontal" >
 
                         <div class="form-group">
                             <label for="exampleInputName2" class="col-sm-2 control-label">Логин</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="exampleInputName2" placeholder="Login">
+                            	<form:input type="text" class="form-control" id="inputLogin" placeholder="Login" path="accountLogin"/>                                
+                            </div>
+                            <div class="col-sm-10">                               
+                                <p type="text" class="error-text-color">${logInAccount.loginCheck}<p>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="inputPassword3" class="col-sm-2 control-label">Пароль</label>
-                            <div class="col-sm-10">
-                                <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+                            <div class="col-sm-10">                                
+                                <form:input type="password" class="form-control" id="inputPassword" placeholder="Password" path="accountPassword"/>
+                            </div>
+                            <div class="col-sm-10">                               
+                                <p type="text" class="error-text-color">${logInAccount.passwordCheck}<p>
                             </div>
                         </div>
 
@@ -44,11 +52,11 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-10">
-                                <button type="submit" class="btn btn-default">Войти</button>
+                            <div class="col-sm-offset-2 col-sm-10">                                
+                                <button type="submit" name="logIn" class="btn btn-default">Войти</button>
                             </div>
                         </div>
-                    </form>
+                    </form:form>
                 </div>
 
             </div>

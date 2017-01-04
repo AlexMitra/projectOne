@@ -14,19 +14,26 @@
     </definition>
     
     <definition name="personalArea" extends="home">    	
-    	<put-attribute name="body" value="/WEB-INF/views/parts/personalArea/logInBody.jsp"/>
+    	<put-attribute name="body" value="/WEB-INF/views/parts/personalArea/logInBody.jsp"/>    	
     	<put-attribute name="footer" value="/WEB-INF/views/parts/personalArea/logInFooter.jsp"/>
     </definition>
     
+    <definition name="registration" extends="personalArea">    	
+    	<put-attribute name="body" value="/WEB-INF/views/parts/personalArea/registrationBody.jsp"/>    	
+    </definition>    
+        
     <definition name="personalAreaIn" extends="personalArea">
-    	<put-attribute name="head" value="/WEB-INF/views/parts/personalArea/PersonalAreaHead.jsp"/>
-    	<put-attribute name="menuBar" value="/WEB-INF/views/parts/personalArea/PersonalAreaMenuBar.jsp"/>
-    	<put-attribute name="body" value="/WEB-INF/views/parts/personalArea/PersonalAreaBody.jsp"/>    	
+    	<put-attribute name="head" value="/WEB-INF/views/parts/personalArea/personalAreaHead.jsp"/>
+    	<put-attribute name="menuBar" value="/WEB-INF/views/parts/personalArea/personalAreaMenuBar.jsp"/>
+    	<put-attribute name="body" value="/WEB-INF/views/parts/personalArea/personalAreaBody.jsp"/>
     </definition>
     
-    <definition name="registration" extends="home">    	
-    	<put-attribute name="body" value="/WEB-INF/views/parts/personalArea/registrationBody.jsp"/>
-    	<put-attribute name="footer" value="/WEB-INF/views/parts/personalArea/logInFooter.jsp"/>
+    <definition name="adminPersonalAreaIn" extends="personalAreaIn">
+    	<put-attribute name="body" value="/WEB-INF/views/parts/personalArea/adminPersonalAreaBody.jsp"/>
+    </definition>
+    
+    <definition name="userPersonalAreaIn" extends="personalAreaIn">
+    	<put-attribute name="body" value="/WEB-INF/views/parts/personalArea/userPersonalAreaBody.jsp"/>
     </definition>
 
 </tiles-definitions>
