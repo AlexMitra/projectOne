@@ -39,7 +39,7 @@
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-lg-12">
-                                <h3 align="center">Glad to see you, ${userPage.accountLogin}!</h3>
+                                <h3 align="center">Glad to see you, ${accountPageBean.accountLogin}!</h3>
                                 
                                 </div>
                             </div>

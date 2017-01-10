@@ -27,14 +27,14 @@ public class AccountsToRolesJDBC {
 	
 	//INSERT
 	public void insertRole(int roleId, long accoundId) {		
-		String sql = "insert into `Project_one`.`Accounts_to_roles`"
+		String sql = "insert into `Accounts_to_roles`"
 				+ " (`FK_Role_id`, `FK_Account_id`) VALUES (?, ?)";		
 		jdbcTemplate.update(sql, new Object[]{roleId, accoundId});
 	}
 	
 	//DELETE
 	public void deleteAccount(int accountId){
-		String sql = "delete from `Project_one`.`Accounts_to_roles` where"
+		String sql = "delete from `Accounts_to_roles` where"
 				+ " `Accounts_to_roles`.`FK_Account_id`= ? ";
 		jdbcTemplate.update(sql, accountId);		
 	}

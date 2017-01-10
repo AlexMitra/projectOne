@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import by.kalilaska.BeansPool;
-import by.kalilaska.beans.AccountForLogInBean;
-import by.kalilaska.beans.AccountForRegistrationBean;
 import by.kalilaska.beans.UserAccountPageBean;
 import by.kalilaska.daoJDBC.AccountsJDBC;
 import by.kalilaska.daoJDBC.AccountsToRolesJDBC;
@@ -33,13 +31,24 @@ public class ZabiraiService {
 	@Autowired
 	private RolesJDBC rolesJdbc;
 	
-	public boolean insertNewAccount(AccountForRegistrationBean account){
+	//TRUE
+	public boolean insertNewAccount(UserAccountPageBean account){
 		String check = getAccountsByLoginAndEmail(account);
 		System.out.println(check);
 		
 		if(check.equals("login and email are unique")){
-			accountsJdbc.insertAccount(account.getAccountLogin(),
-					account.getAccountEmail(), account.getAccountPassword());			
+			/*accountsJdbc.insertAccount(account.getAccountLogin(),
+					account.getAccountEmail(), account.getAccountPassword());
+			AccountEntity accountEntity = accountsJdbc.getAccountByLogin(account.getAccountLogin());*/
+			
+			AccountEntity accountEntity = accountsJdbc.insertAccountWithReturn(
+					account.getAccountLogin(), account.getAccountEmail(),
+					account.getAccountPassword());
+			account.setId(accountEntity.getAccountId());
+			
+			accountsToRolesJdbc.insertRole(3, accountEntity.getAccountId());
+			AccountRoleEntity accountRoleEntity = 
+					rolesJdbc.getAccountRoleByAccountId(accountEntity.getAccountId());			
 			return true;
 		}else if(check.equals("this login already exist")){
 			account.setLoginCheck(check);
@@ -51,12 +60,13 @@ public class ZabiraiService {
 		return false;
 	}
 	
-	public String getAccountsByLoginAndEmail(AccountForRegistrationBean account){
+	//TRUE
+	public String getAccountsByLoginAndEmail(UserAccountPageBean account){
 		
-		/*List<AccountEntity> accounts= accountsJdbc.getAccountsByLoginAndEmail(
-				account.getAccountLogin(), account.getAccountEmail());*/
+		List<AccountEntity> accounts= accountsJdbc.getAccountsByLoginAndEmail(
+				account.getAccountLogin(), account.getAccountEmail());
 		
-		List<AccountEntity> accounts= accountsJdbc.getAllAccounts();
+		//List<AccountEntity> accounts= accountsJdbc.getAllAccounts();
 		
 		System.out.println("in service getAccountsByLoginAndEmail() accounts:" + accounts);
 		
@@ -73,65 +83,8 @@ public class ZabiraiService {
 		return "login and email are unique";		
 	}
 	
-	public UserAccountPageBean getUserAccountPageBean(AccountForRegistrationBean account){
-		UserAccountPageBean userAccountPageBean  = beansPool.getUserAccountPageBean();
-		
-		AccountEntity accountEntity = accountsJdbc.getAccountByLogin(account.getAccountLogin());
-		
-		//System.out.println("in service getUserAccountPageBean() accountEntity: " + accountEntity);
-		
-		userAccountPageBean.setId(accountEntity.getAccountId());
-		userAccountPageBean.setAccountLogin(accountEntity.getAccountLogin());
-		userAccountPageBean.setAccountEmail(accountEntity.getAccountEmail());
-		userAccountPageBean.setAccountPassword(accountEntity.getAccountPassword());
-		
-		accountsToRolesJdbc.insertRole(3, accountEntity.getAccountId());
-		
-		AccountToRoleEntity accountToRoleEntity = 
-				accountsToRolesJdbc.getAccountToRoleByAccountId(accountEntity.getAccountId());	
-//		AccountToRoleEntity accountToRoleEntity = 
-//		accountsToRolesJdbc.getAccountToRoleByAccountId(1);
-		//System.out.println("in service getUserAccountPageBean() accountToRoleEntity: " + accountToRoleEntity);
-		
-		AccountRoleEntity accountRoleEntity = rolesJdbc.getAccountRoleById(accountToRoleEntity.getFkRoleId());
-		
-		//System.out.println("in service getUserAccountPageBean() accountRoleEntity: " + accountRoleEntity);
-		
-		userAccountPageBean.setStatus(accountRoleEntity.getRoleRole());
-		
-		return userAccountPageBean;
-		
-	}
-	
-	public UserAccountPageBean getUserAccountPageBean(AccountForLogInBean account){
-		UserAccountPageBean userAccountPageBean  = beansPool.getUserAccountPageBean();
-		
-		AccountEntity accountEntity = accountsJdbc.getAccountByLogin(account.getAccountLogin());
-		
-		//System.out.println("in service getUserAccountPageBean() accountEntity: " + accountEntity);
-		
-		userAccountPageBean.setId(accountEntity.getAccountId());
-		userAccountPageBean.setAccountLogin(accountEntity.getAccountLogin());
-		userAccountPageBean.setAccountEmail(accountEntity.getAccountEmail());
-		userAccountPageBean.setAccountPassword(accountEntity.getAccountPassword());
-		
-		AccountToRoleEntity accountToRoleEntity = 
-				accountsToRolesJdbc.getAccountToRoleByAccountId(accountEntity.getAccountId());	
-//		AccountToRoleEntity accountToRoleEntity = 
-//		accountsToRolesJdbc.getAccountToRoleByAccountId(1);
-		//System.out.println("in service getUserAccountPageBean() accountToRoleEntity: " + accountToRoleEntity);
-		
-		AccountRoleEntity accountRoleEntity = rolesJdbc.getAccountRoleById(accountToRoleEntity.getFkRoleId());
-		
-		//System.out.println("in service getUserAccountPageBean() accountRoleEntity: " + accountRoleEntity);
-		
-		userAccountPageBean.setStatus(accountRoleEntity.getRoleRole());
-		
-		return userAccountPageBean;
-		
-	}
-	
-	public boolean checkAccount(AccountForLogInBean account){
+	//TRUE
+	public boolean checkAccount(UserAccountPageBean account){
 		
 		System.out.println("in ZabiraiService checkAccount() account for check: " + account);
 		
@@ -152,6 +105,27 @@ public class ZabiraiService {
 			System.out.println("in ZabiraiService checkAccount() account after check: " + account);
 			return true;
 		}		
+	}
+	
+	public void test(){
+		/*try{
+			System.out.println(accountsJdbc.getAccountByLogin("Megathrone"));
+		}catch(Exception e){
+			System.out.println("Exception in getAccountByLogin()");
+		}
+		
+		try{
+			System.out.println(accountsJdbc.getAccountByEmail("Optimus@tut.by"));
+		}catch(Exception e){
+			System.out.println("Exception in getAccountByEmail()");
+		}
+		
+		try{
+			System.out.println(accountsJdbc.getAccountById(3));
+		}catch(Exception e){
+			System.out.println("Exception in getAccountById()");
+		}*/		
+		
 	}
 	
 

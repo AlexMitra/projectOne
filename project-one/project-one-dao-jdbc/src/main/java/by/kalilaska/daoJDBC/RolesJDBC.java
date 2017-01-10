@@ -2,6 +2,7 @@ package by.kalilaska.daoJDBC;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Repository;
 
 import by.kalilaska.EntitiesPool;
 import by.kalilaska.entities.AccountRoleEntity;
+import by.kalilaska.utils.SqlRequestUpdater;
 
 @Repository
 public class RolesJDBC {
@@ -55,10 +57,36 @@ public class RolesJDBC {
 		return null;
 	}
 	
+	public AccountRoleEntity getAccountRoleByAccountId(long id) {		
+		String sql = "select `roles`.`Id`, `roles`.`Role` from"
++ " project_one.`roles`, project_one.`accounts_to_roles`, project_one.`accounts`"
++ " where `accounts`.`id`=:Id and `accounts`.`Id` = `accounts_to_roles`.`FK_Account_id` and"
++ " `accounts_to_roles`.`FK_Role_id` = `roles`.`Id`";
+		
+		
+		String sql2 = "select roles.`Id`, roles.`Role` from roles, accounts_to_roles, accounts where accounts.`id` =:Id and accounts.`Id` = accounts_to_roles.`FK_Account_id` and accounts_to_roles.`FK_Role_id` = roles.`Id`";
+		MapSqlParameterSource params = new MapSqlParameterSource();
+		params.addValue("Id", id);
+
+		try {
+			//Object obj = namedJdbcTemplate.queryForObject(sql, params, new AccountMapper());
+			List<AccountRoleEntity> list = namedJdbcTemplate.query(
+					SqlRequestUpdater.getCompleteSql(sql, String.valueOf(id)), new AccountRoleMapper());
+			System.out.println(list);
+			//AccountRoleEntity accountRoleEntity = queryForObject(sql2, params);
+			//System.out.println("obj type: " + accountRoleEntity.getClass().getSimpleName());
+			//System.out.println("in getAccountRoleByAccountId() accountRoleEntity: " + accountRoleEntity);
+			return list.get(0);
+		} catch (Exception e) {
+			System.out.println("exception within return in getAccountRoleByAccountId()");
+		}
+		return null;
+	}
+	
 	private AccountRoleEntity queryForObject(String sql, MapSqlParameterSource params){
 		Object obj = namedJdbcTemplate.queryForObject(sql, params, new AccountRoleMapper());
 		return (AccountRoleEntity) obj;
-	}
+	}	
 	
 	//RowMapper
 	private static class AccountRoleMapper implements RowMapper<AccountRoleEntity> {

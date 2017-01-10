@@ -12,6 +12,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import by.kalilaska.entities.AccountEntity;
+import by.kalilaska.utils.SqlRequestUpdater;
 
 
 @Repository
@@ -29,13 +30,21 @@ public class AccountsJDBC {
 	
 	//INSERT
 	public void insertAccount(String login, String email, String password) {		
-		String sql = "insert into project_one.accounts (`Login`, `Email`, `Password`) VALUES (?, ?, ?)";		
+		String sql = "insert into accounts (`Login`, `Email`, `Password`) VALUES (?, ?, ?)";		
 		jdbcTemplate.update(sql, new Object[]{login, email, password});
+	}
+	
+	//INSERT WITH RETURN
+	public AccountEntity insertAccountWithReturn(String login, String email, String password) {		
+		String sql = "insert into accounts (`Login`, `Email`, `Password`) VALUES (?, ?, ?)";		
+		jdbcTemplate.update(sql, new Object[]{login, email, password});
+		
+		return getAccountByLogin(login);
 	}
 	
 	//DELETE
 	public void deleteAccount(String login){
-		String sql = "delete from project_one.accounts where accounts.Login= ? ";
+		String sql = "delete from accounts where accounts.Login= ? ";
 		jdbcTemplate.update(sql, login);
 		//deleteAccount(account.getAccountLogin());
 	}
@@ -75,7 +84,7 @@ public class AccountsJDBC {
 		return null;
 	}
 	
-	public AccountEntity getAccountById(int id) {
+	public AccountEntity getAccountById(long id) {
 		String sql = "select * from accounts where accounts.Id=:Id";
 		MapSqlParameterSource params = new MapSqlParameterSource();
 		params.addValue("Id", id);
@@ -118,15 +127,24 @@ public class AccountsJDBC {
 	}
 	
 	//TEST METHOD
-	public List<AccountEntity> getAccountsByLoginAndEmail(String login, String email) {		
-		String sql = "select * from accounts where accounts.`Login`=:login and"
+	public List<AccountEntity> getAccountsByLoginAndEmail(String login, String email) {
+		//login = "'" + login + "'";
+		//email = "'" + email + "'";
+		//System.out.println("login: " + login);
+		//System.out.println("email: " + email);
+		//System.out.println("login name of type: " + login.getClass().getSimpleName());
+		String sql = "select * from accounts where accounts.`Login`=:login or"
 				+ " accounts.`Email`=:email";
-		MapSqlParameterSource params = new MapSqlParameterSource();
-		params.addValue("login", login);
-		params.addValue("Email", email);
+		//System.out.println(SqlRequestUpdater.getCompleteSql(sql, login, email));
+		//String sql2 = "select * from accounts where accounts.`Login`='Megathrone' or"
+		//		+ " accounts.`Email`='Optimus@tut.by'";
+		//MapSqlParameterSource params = new MapSqlParameterSource();
+		//params.addValue("login", login);
+		//params.addValue("Email", email);
 
 		try {
-			Object obj = namedJdbcTemplate.query(sql, params, new AccountMapper());
+			Object obj = namedJdbcTemplate.query(
+					SqlRequestUpdater.getCompleteSql(sql, login, email), new AccountMapper());
 			//obj type: ArrayList
 			System.out.println("in getAccountsByLoginAndEmail obj type: " + obj.getClass().getSimpleName());
 			return (List<AccountEntity>) obj;

@@ -7,11 +7,6 @@ import by.kalilaska.BeansPool;
 public class BeansPoolImpl implements BeansPool{
 
 	@Override
-	public AccountForRegistrationBean getAccountForRegistration() {		
-		return new AccountForRegistrationBean();
-	}
-
-	@Override
 	public AdminAccountPageBean getAdminAccountPageBean() {
 		return new AdminAccountPageBean();
 	}
@@ -20,11 +15,5 @@ public class BeansPoolImpl implements BeansPool{
 	public UserAccountPageBean getUserAccountPageBean() {
 		return new UserAccountPageBean();
 	}
-
-	@Override
-	public AccountForLogInBean getAccountForLogInBean() {
-		return new AccountForLogInBean();
-	}
-
 
 }

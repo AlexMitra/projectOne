@@ -1,4 +1,4 @@
-package by.kalilaska.beans;
+package by.kalilaska.hlam;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -10,7 +10,7 @@ public class AccountForRegistrationBean{
 	private String accountLogin;
 	
 	@NotNull
-	@Size(min=5, max=20, message="email have to be correct")	
+	@Size(min=5, max=20, message="email have to be correct")
 	private String accountEmail;
 	
 	@NotNull

@@ -1,4 +1,4 @@
-package by.kalilaska.beans;
+package by.kalilaska.hlam;
 
 public class AccountForLogInBean{
 	

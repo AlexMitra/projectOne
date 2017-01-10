@@ -12,7 +12,7 @@
                             <h3 align="center">Вход</h3>
                         </div>
                         <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
-                            <h3 align="center"><a class="link-text-color" href="/project-one-web/registration">Регистрация</a></h3>
+                            <h3 align="center"><a class="link-text-color" href="/project-one-web/registration.html">Регистрация</a></h3>
                         </div>
                         <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5"></div>
                     </div>
@@ -20,7 +20,7 @@
 
                 <div class="form-login-screen">
                 
-                    <form:form method="post" modelAttribute="logInAccount" class="form-horizontal" >
+                    <form:form method="post" modelAttribute="accountPageBean" class="form-horizontal" >
 
                         <div class="form-group">
                             <label for="exampleInputName2" class="col-sm-2 control-label">Логин</label>
@@ -28,7 +28,7 @@
                             	<form:input type="text" class="form-control" id="inputLogin" placeholder="Login" path="accountLogin"/>                                
                             </div>
                             <div class="col-sm-10">                               
-                                <p type="text" class="error-text-color">${logInAccount.loginCheck}<p>
+                                <p type="text" class="error-text-color">${accountPageBean.loginCheck}<p>
                             </div>
                         </div>
 
@@ -38,7 +38,7 @@
                                 <form:input type="password" class="form-control" id="inputPassword" placeholder="Password" path="accountPassword"/>
                             </div>
                             <div class="col-sm-10">                               
-                                <p type="text" class="error-text-color">${logInAccount.passwordCheck}<p>
+                                <p type="text" class="error-text-color">${accountPageBean.passwordCheck}<p>
                             </div>
                         </div>
 
