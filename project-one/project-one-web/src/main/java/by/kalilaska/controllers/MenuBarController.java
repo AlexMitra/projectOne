@@ -4,8 +4,10 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -27,53 +29,64 @@ public class MenuBarController {
 
 	
 	@RequestMapping(value = {"/personalArea.html"}, method = RequestMethod.GET)
-	public ModelAndView showLogIn(@ModelAttribute(name="userAccountPageBean") UserAccountPageBean account) {
+	public ModelAndView persinalArea(@ModelAttribute(name="userAccountPageBean") UserAccountPageBean account) {
 		
-		zabiraiService.test();
+		//zabiraiService.test();
 		
 		if(account==null || account.getAccountLogin() == null){
-//!!!		redirect:/personalArea/login.html
-			return new ModelAndView("personalArea", "accountPageBean", beansPool.getUserAccountPageBean());
+			return new ModelAndView("redirect:/personalArea/login.html", "accountPageBean", beansPool.getUserAccountPageBean());
+		}else if(account.getStatus().equals("Administrator")){
+			String redirect = "redirect:/personalArea/admin/" + account.getAccountLogin() + ".html";				
+			ModelAndView modelAndView = new ModelAndView(redirect, "accountPageBean", account);
+			return modelAndView;
+		}else{
+			String redirect = "redirect:/personalArea/user/" + account.getAccountLogin() + ".html";
+			ModelAndView modelAndView = new ModelAndView(redirect, "accountPageBean", account);
+			return modelAndView;
 		}
-//!!!		redirect:/personalArea/userPage.html		
-		return new ModelAndView("userPersonalAreaIn", "accountPageBean", account);
 	}
 	
+	@RequestMapping(value = {"/personalArea/login.html"}, method = RequestMethod.GET)
+	public ModelAndView showLogIn(@ModelAttribute(name="userAccountPageBean") UserAccountPageBean account) {
+
+		return new ModelAndView("login", "accountPageBean", account);
+	}	
 	
-	
-	@RequestMapping(value = {"/personalArea.html"}, method = RequestMethod.POST)
-	public ModelAndView LogIn(@ModelAttribute(name="accountPageBean") UserAccountPageBean account) {
+	@RequestMapping(value = {"/personalArea/login.html"}, method = RequestMethod.POST)
+	public ModelAndView LogIn(@ModelAttribute(name="accountPageBean") UserAccountPageBean account, Model model) {
 		if(zabiraiService.checkAccount(account)){
+			model.addAttribute("accountLogin", account.getAccountLogin());
+			
 			if(account.getStatus().equals("Administrator")){
-//!!!		redirect:/personalArea/AdminPage.html
-				ModelAndView modelAndView = new ModelAndView("adminPersonalAreaIn", "adminPage", account);
+				String redirect = "redirect:/personalArea/admin/" + account.getAccountLogin() + ".html";				
+				ModelAndView modelAndView = new ModelAndView(redirect, "accountPageBean", account);
 				return modelAndView;
 			}else{
-//!!!		redirect:/personalArea/userPage.html
-				ModelAndView modelAndView = new ModelAndView("userPersonalAreaIn", "userPage", account);
+				String redirect = "redirect:/personalArea/user/" + account.getAccountLogin() + ".html";
+				ModelAndView modelAndView = new ModelAndView(redirect, "accountPageBean", account);
 				return modelAndView;
 			}			
 			
 		}
 
-		ModelAndView modelAndView = new ModelAndView("personalArea", "accountPageBean", account);
+		ModelAndView modelAndView = new ModelAndView("login", "accountPageBean", account);
 		return modelAndView;
 	}
 	
-	@RequestMapping(value = {"/registration.html"}, method = RequestMethod.GET)
+	@RequestMapping(value = {"/personalArea/registration.html"}, method = RequestMethod.GET)
 	public ModelAndView showRegistration() {
 		return new ModelAndView("registration", "accountPageBean", beansPool.getUserAccountPageBean());
 	}
 	
-	@RequestMapping(value = {"/registration.html"}, method = RequestMethod.POST)
-	public ModelAndView registrationOn(@Valid @ModelAttribute(name="accountPageBean") UserAccountPageBean account, BindingResult bindingResult) {
+	@RequestMapping(value = {"/personalArea/registration.html"}, method = RequestMethod.POST)
+	public ModelAndView registrationOn(@Valid @ModelAttribute(name="accountPageBean") UserAccountPageBean account, BindingResult bindingResult, Model model) {
 		if(bindingResult.hasErrors()){
 			return new ModelAndView("registration", "accountPageBean", account);
 		}
 		if(zabiraiService.insertNewAccount(account)){
-//!!!		redirect:/personalArea/userPage.html
-			ModelAndView modelAndView = new ModelAndView("userPersonalAreaIn", "accountPageBean", account);
-			System.out.println("after registration: " + account);
+			
+			String redirect = "redirect:/personalArea/user/" + account.getAccountLogin() + ".html";				
+			ModelAndView modelAndView = new ModelAndView(redirect, "accountPageBean", account);
 			return modelAndView;
 		}
 		
@@ -81,6 +94,20 @@ public class MenuBarController {
 		ModelAndView modelAndView = new ModelAndView("registration", "accountPageBean", account);
 		return modelAndView;
 		
+	}
+	
+	@RequestMapping(value = {"/personalArea/admin/{accountLogin}.html"}, method = RequestMethod.GET)
+	public ModelAndView showAdminPage(@PathVariable String accountLogin, @ModelAttribute(name="accountPageBean") UserAccountPageBean account) {
+
+		ModelAndView modelAndView = new ModelAndView("adminPersonalAreaIn", "accountPageBean", account);
+		return modelAndView;
+	}
+	
+	@RequestMapping(value = {"/personalArea/user/{accountLogin}.html"}, method = RequestMethod.GET)
+	public ModelAndView showUserPage(@PathVariable String accountLogin, @ModelAttribute(name="accountPageBean") UserAccountPageBean account) {
+
+		ModelAndView modelAndView = new ModelAndView("userPersonalAreaIn", "accountPageBean", account);
+		return modelAndView;
 	}
 	
 	/*@ModelAttribute

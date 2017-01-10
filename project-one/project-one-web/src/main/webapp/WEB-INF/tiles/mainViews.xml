@@ -13,16 +13,16 @@
     	<put-attribute name="footer" value="/WEB-INF/views/parts/home/homeViewFooter.jsp"/>
     </definition>
     
-    <definition name="personalArea" extends="home">    	
+    <definition name="login" extends="home">    	
     	<put-attribute name="body" value="/WEB-INF/views/parts/personalArea/logInBody.jsp"/>    	
     	<put-attribute name="footer" value="/WEB-INF/views/parts/personalArea/logInFooter.jsp"/>
     </definition>
     
-    <definition name="registration" extends="personalArea">    	
+    <definition name="registration" extends="login">    	
     	<put-attribute name="body" value="/WEB-INF/views/parts/personalArea/registrationBody.jsp"/>    	
     </definition>    
         
-    <definition name="personalAreaIn" extends="personalArea">
+    <definition name="personalAreaIn" extends="login">
     	<put-attribute name="head" value="/WEB-INF/views/parts/personalArea/personalAreaHead.jsp"/>
     	<put-attribute name="menuBar" value="/WEB-INF/views/parts/personalArea/personalAreaMenuBar.jsp"/>
     	<put-attribute name="body" value="/WEB-INF/views/parts/personalArea/personalAreaBody.jsp"/>

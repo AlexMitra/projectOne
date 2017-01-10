@@ -12,7 +12,7 @@
                             <h3 align="center">Вход</h3>
                         </div>
                         <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
-                            <h3 align="center"><a class="link-text-color" href="/project-one-web/registration.html">Регистрация</a></h3>
+                            <h3 align="center"><a class="link-text-color" href="/project-one-web/personalArea/registration.html">Регистрация</a></h3>
                         </div>
                         <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5"></div>
                     </div>
