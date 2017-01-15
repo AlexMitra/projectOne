@@ -26,10 +26,10 @@ public class AccountsToRolesJDBC {
 	}
 	
 	//INSERT
-	public void insertRole(int roleId, long accoundId) {		
+	public void insertRole(long accoundId, int roleId) {		
 		String sql = "insert into `Accounts_to_roles`"
-				+ " (`FK_Role_id`, `FK_Account_id`) VALUES (?, ?)";		
-		jdbcTemplate.update(sql, new Object[]{roleId, accoundId});
+				+ " (`FK_Account_id`, `FK_Role_id`) VALUES (?, ?)";		
+		jdbcTemplate.update(sql, new Object[]{accoundId, roleId});
 	}
 	
 	//DELETE
@@ -44,7 +44,7 @@ public class AccountsToRolesJDBC {
 		/*String sql = "select * from `Project_one`.`Accounts_to_roles` where"
 				+ " `Accounts_to_roles`.`FK_Account_id`=:AccountId";*/
 		
-		String sql = "select * from Project_one.Accounts_to_roles where"
+		String sql = "select * from Accounts_to_roles where"
 				+ " Accounts_to_roles.FK_Account_id=:AccountId";
 		//String sql = "select * from accounts where accounts.Login=:login";
 		MapSqlParameterSource params = new MapSqlParameterSource();
@@ -71,9 +71,8 @@ public class AccountsToRolesJDBC {
 
 		public AccountToRoleEntity mapRow(ResultSet rs, int rowNum) throws SQLException {
 			AccountToRoleEntity accountToRole = new AccountToRoleEntity();
-			accountToRole.setId(rs.getLong("id"));
-			accountToRole.setFkRoleId(rs.getInt("FK_Role_id"));
 			accountToRole.setFkAccountId(rs.getLong("FK_Account_id"));
+			accountToRole.setFkRoleId(rs.getInt("FK_Role_id"));
 			
 			//System.out.println("in AccountToRoleMapper\n" + accountToRole);
 			return accountToRole;

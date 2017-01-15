@@ -17,6 +17,7 @@ import by.kalilaska.beans.AdminAccountPageBean;
 import by.kalilaska.beans.UserAccountPageBean;
 
 import by.kalilaska.services.ZabiraiService;
+import by.kalilaska.services.impls.ZabiraiServiceHibernate;
 
 @Controller
 public class MenuBarController {
@@ -24,14 +25,17 @@ public class MenuBarController {
 	@Autowired
 	private ZabiraiService zabiraiService;
 	
+	/*@Autowired
+	private ZabiraiServiceHibernate zabiraiServiceHibernate;*/
+	
 	@Autowired
 	private BeansPool beansPool;	
 
 	
-	@RequestMapping(value = {"/personalArea.html"}, method = RequestMethod.GET)
+	/*@RequestMapping(value = {"/personalArea.html"}, method = RequestMethod.GET)
 	public ModelAndView persinalArea(@ModelAttribute(name="userAccountPageBean") UserAccountPageBean account) {
 		
-		//zabiraiService.test();
+		zabiraiServiceHibernate.test();
 		
 		if(account==null || account.getAccountLogin() == null){
 			return new ModelAndView("redirect:/personalArea/login.html", "accountPageBean", beansPool.getUserAccountPageBean());

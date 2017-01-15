@@ -10,6 +10,7 @@
 	<import resource="classpath:ApplicationContext-restControllers.xml"/>
 	<import resource="classpath:ApplicationContext-beans.xml"/>
 	<import resource="classpath:ApplicationContext-services.xml"/>
+<!-- 	<import resource="classpath:ApplicationContext-hibernate.xml"/> -->
 	<import resource="classpath:ApplicationContext-jdbc.xml"/>
 	<import resource="classpath:ApplicationContext-entities.xml"/>
 	

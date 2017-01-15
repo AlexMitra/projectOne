@@ -36,7 +36,7 @@ public class RolesJDBC {
 	
 	//DELETE
 	public void deleteAccount(String role){
-		String sql = "delete from `Project_one`.`Roles` where `Roles`.`Role`= ? ";
+		String sql = "delete from `Roles` where `Roles`.`Role`= ? ";
 		jdbcTemplate.update(sql, role);		
 	}
 	
@@ -94,7 +94,7 @@ public class RolesJDBC {
 		public AccountRoleEntity mapRow(ResultSet rs, int rowNum) throws SQLException {
 			AccountRoleEntity role = new AccountRoleEntity();
 			role.setRoleId(rs.getInt("id"));
-			role.setRoleRole(rs.getString("Role"));	
+			role.setRoleStatus(rs.getString("Role"));	
 			
 			//System.out.println("in AccountRoleMapper\n" + role);
 			return role;

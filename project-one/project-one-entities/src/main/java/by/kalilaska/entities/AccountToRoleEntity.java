@@ -2,19 +2,12 @@ package by.kalilaska.entities;
 
 public class AccountToRoleEntity {
 	
-	private long id;
-	
-	private int fkRoleId;
-	
 	private long fkAccountId;
+	
+	private int fkRoleId;	
 
 	public AccountToRoleEntity() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	public long getId() {
-		return id;
+		
 	}
 
 	public int getFkRoleId() {
@@ -23,10 +16,6 @@ public class AccountToRoleEntity {
 
 	public long getFkAccountId() {
 		return fkAccountId;
-	}
-
-	public void setId(long id) {
-		this.id = id;
 	}
 
 	public void setFkRoleId(int fkRoleId) {
@@ -39,7 +28,7 @@ public class AccountToRoleEntity {
 
 	@Override
 	public String toString() {
-		return "AccountToRoleEntity [id=" + id + ", fkRoleId=" + fkRoleId + ", fkAccountId=" + fkAccountId + "]";
+		return "AccountToRoleEntity [fkAccountId=" + fkAccountId + ", fkRoleId=" + fkRoleId + "]";
 	}	
 
 }

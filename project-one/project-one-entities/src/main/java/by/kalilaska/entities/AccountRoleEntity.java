@@ -14,7 +14,7 @@ public class AccountRoleEntity {
 		return roleId;
 	}
 
-	public String getRoleRole() {
+	public String getRoleStatus() {
 		return roleRole;
 	}
 
@@ -22,7 +22,7 @@ public class AccountRoleEntity {
 		this.roleId = roleId;
 	}
 
-	public void setRoleRole(String roleRole) {
+	public void setRoleStatus(String roleRole) {
 		this.roleRole = roleRole;
 	}
 

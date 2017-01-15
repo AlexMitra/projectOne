@@ -1,4 +1,4 @@
-package by.kalilaska.services;
+package by.kalilaska.services.impls;
 
 import java.util.List;
 
@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import by.kalilaska.BeansPool;
 import by.kalilaska.beans.UserAccountPageBean;
+//import by.kalilaska.daoHibernateImpl.AccountsHibernateImpl;
+//import by.kalilaska.daoHibernateImpl.RolesHibernateImpl;
 import by.kalilaska.daoJDBC.AccountsJDBC;
 import by.kalilaska.daoJDBC.AccountsToRolesJDBC;
 import by.kalilaska.daoJDBC.RolesJDBC;
@@ -14,32 +16,29 @@ import by.kalilaska.entities.Account;
 import by.kalilaska.entities.AccountEntity;
 import by.kalilaska.entities.AccountRoleEntity;
 import by.kalilaska.entities.AccountToRoleEntity;
+//import by.kalilaska.entitiesHibernate.AccountEntityHibernate;
+import by.kalilaska.services.ServiceOne;
 import by.kalilaska.entities.AccountEntity;
 
 @Service
-public class ZabiraiService {
+public class ZabiraiServiceHibernate implements ServiceOne{
 	
 	@Autowired
 	private BeansPool beansPool;
 	
-	@Autowired
-	private AccountsJDBC accountsJdbc;
+	/*@Autowired
+	private AccountsHibernateImpl accountsHibernate;
 	
 	@Autowired
-	private AccountsToRolesJDBC accountsToRolesJdbc;
-	
-	@Autowired
-	private RolesJDBC rolesJdbc;
+	private RolesHibernateImpl rolesHibernate;*/
 	
 	//TRUE
+	@Override
 	public boolean insertNewAccount(UserAccountPageBean account){
-		String check = getAccountsByLoginAndEmail(account);
+		/*String check = getAccountsByLoginAndEmail(account);
 		System.out.println(check);
 		
 		if(check.equals("login and email are unique")){
-			/*accountsJdbc.insertAccount(account.getAccountLogin(),
-					account.getAccountEmail(), account.getAccountPassword());
-			AccountEntity accountEntity = accountsJdbc.getAccountByLogin(account.getAccountLogin());*/
 			
 			AccountEntity accountEntity = accountsJdbc.insertAccountWithReturn(
 					account.getAccountLogin(), account.getAccountEmail(),
@@ -55,15 +54,16 @@ public class ZabiraiService {
 			return false;
 		}else if(check.equals("this email already exist")){
 			account.setEmailCheck(check);
-		}
+		}*/
 
 		return false;
 	}
 	
 	//TRUE
+	@Override
 	public String getAccountsByLoginAndEmail(UserAccountPageBean account){
 		
-		List<AccountEntity> accounts= accountsJdbc.getAccountsByLoginAndEmail(
+		/*List<AccountEntity> accounts= accountsJdbc.getAccountsByLoginAndEmail(
 				account.getAccountLogin(), account.getAccountEmail());
 		
 		//List<AccountEntity> accounts= accountsJdbc.getAllAccounts();
@@ -79,14 +79,15 @@ public class ZabiraiService {
 					return "this email already exist";
 				}
 			}			
-		}
+		}*/
 		return "login and email are unique";		
 	}
 	
 	//TRUE
+	@Override
 	public boolean checkAccount(UserAccountPageBean account){
 		
-		System.out.println("in ZabiraiService checkAccount() account for check: " + account);
+		/*System.out.println("in ZabiraiService checkAccount() account for check: " + account);
 		
 		AccountEntity accountEntity = accountsJdbc.getAccountByLogin(account.getAccountLogin());
 		//System.out.println("in ZabiraiService checkAccount() accountEntity: " + accountEntity);
@@ -106,27 +107,32 @@ public class ZabiraiService {
 			account.setStatus(accountRoleEntity.getRoleStatus());
 			System.out.println("in ZabiraiService checkAccount() account after check: " + account);
 			return true;
-		}		
-	}
+		}	*/
+		return false;
+	}	
 	
 	public void test(){
+		
 		/*try{
-			System.out.println(accountsJdbc.getAccountByLogin("Megathrone"));
+			AccountEntityHibernate account = accountsHibernate.getAccountById(4);
+			
 		}catch(Exception e){
-			System.out.println("Exception in getAccountByLogin()");
+			System.out.println("Exception in AccountsHibernateImpl.getAccountById()");
 		}
 		
 		try{
-			System.out.println(accountsJdbc.getAccountByEmail("Optimus@tut.by"));
+			AccountEntityHibernate account = accountsHibernate.getAccountByLogin("Jakubik");
+			
 		}catch(Exception e){
-			System.out.println("Exception in getAccountByEmail()");
+			System.out.println("Exception in AccountsHibernateImpl.getAccountByLogin()");
 		}
 		
 		try{
-			System.out.println(accountsJdbc.getAccountById(3));
+			AccountEntityHibernate account = accountsHibernate.getAccountByEmail("Jakubik@v.tubik");
+			
 		}catch(Exception e){
-			System.out.println("Exception in getAccountById()");
-		}*/		
+			System.out.println("Exception in AccountsHibernateImpl.getAccountByEmail()");
+		}*/
 		
 	}
 	
