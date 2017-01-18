@@ -1,6 +1,4 @@
-package by.kalilaska.daoHibernateImpl;
-
-import java.util.List;
+package by.kalilaska.daoHibernate.impls.repositories;
 
 import javax.persistence.TypedQuery;
 
@@ -9,11 +7,11 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import by.kalilaska.entitiesHibernate.AccountEntityHibernate;
-import by.kalilaska.entitiesHibernate.AccountRoleEntityHibernate;
+import by.kalilaska.daoHibernate.impls.entities.AccountRoleEntityHibernate;
 
-//@Repository
+@Repository
 public class RolesHibernateImpl {
+
 	
 	private SessionFactory sessionFactory;
 
@@ -24,8 +22,12 @@ public class RolesHibernateImpl {
 	
 	private Session currentSession(){
 		return sessionFactory.getCurrentSession();
-	}
+	}	
 	
+	public RolesHibernateImpl() {
+		super();
+	}
+
 	//INSERT
 	public void insertRole(String role) {
 		currentSession().persist(new AccountRoleEntityHibernate(role));

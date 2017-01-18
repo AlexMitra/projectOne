@@ -6,11 +6,11 @@
     <groupId>by.kalilaska</groupId>
     <artifactId>project-one</artifactId>
     <version>${app.version}</version>
-  </parent>  
+  </parent>
+  
 
   <artifactId>project-one-dao-hibernate</artifactId>
-   <name>project-one-dao-hibernate</name>
-  <url>http://maven.apache.org</url>
+  <name>project-one-dao-hibernate</name>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -18,7 +18,7 @@
   
   <dependencies>
   
-  	<dependency>
+  <dependency>
 		<groupId>by.kalilaska</groupId>
 		<artifactId>project-one-dao</artifactId>
 		<version>${app.version}</version>
@@ -55,6 +55,13 @@
 		<artifactId>spring-tx</artifactId>
 		<version>${spring.version}</version>
 	</dependency>
+	
+	<!-- https://mvnrepository.com/artifact/org.springframework/spring-orm -->
+	<dependency>
+    	<groupId>org.springframework</groupId>
+   	 	<artifactId>spring-orm</artifactId>
+   	 	<version>${spring.version}</version>
+	</dependency>	
 		
 	<!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
 	<dependency>
@@ -78,13 +85,11 @@
 	</dependency>
 	
 	<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-entitymanager -->
-	<dependency>
- 	   <groupId>org.hibernate</groupId>
- 	   <artifactId>hibernate-entitymanager</artifactId>
- 	   <version>${hibernate.version}</version>
-	</dependency>
-	
-	
+<!-- 	<dependency> -->
+<!--  	   <groupId>org.hibernate</groupId> -->
+<!--  	   <artifactId>hibernate-entitymanager</artifactId> -->
+<!--  	   <version>${hibernate.version}</version> -->
+<!-- 	</dependency> -->
 	
     <dependency>
       <groupId>junit</groupId>
@@ -92,5 +97,6 @@
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
+    
   </dependencies>
 </project>

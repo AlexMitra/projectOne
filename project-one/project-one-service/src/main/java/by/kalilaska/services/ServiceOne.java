@@ -8,6 +8,8 @@ public interface ServiceOne {
 	
 	public String getAccountsByLoginAndEmail(UserAccountPageBean account);	
 	
-	public boolean checkAccount(UserAccountPageBean account);	
+	public boolean checkAccount(UserAccountPageBean account);
+	
+	public void test();
 
 }

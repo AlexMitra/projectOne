@@ -1,24 +1,17 @@
 package by.kalilaska.services.impls;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import by.kalilaska.BeansPool;
 import by.kalilaska.beans.UserAccountPageBean;
-//import by.kalilaska.daoHibernateImpl.AccountsHibernateImpl;
-//import by.kalilaska.daoHibernateImpl.RolesHibernateImpl;
-import by.kalilaska.daoJDBC.AccountsJDBC;
-import by.kalilaska.daoJDBC.AccountsToRolesJDBC;
-import by.kalilaska.daoJDBC.RolesJDBC;
-import by.kalilaska.entities.Account;
-import by.kalilaska.entities.AccountEntity;
-import by.kalilaska.entities.AccountRoleEntity;
-import by.kalilaska.entities.AccountToRoleEntity;
-//import by.kalilaska.entitiesHibernate.AccountEntityHibernate;
+import by.kalilaska.daoHibernate.impls.entities.AccountEntityHibernate;
+import by.kalilaska.daoHibernate.impls.entities.AccountEntityHibernate2;
+import by.kalilaska.daoHibernate.impls.repositories.AccountsHibernateImpl;
+import by.kalilaska.daoHibernate.impls.repositories.AccountsHibernateImpl2;
+import by.kalilaska.daoHibernate.impls.repositories.RolesHibernateImpl;
 import by.kalilaska.services.ServiceOne;
-import by.kalilaska.entities.AccountEntity;
 
 @Service
 public class ZabiraiServiceHibernate implements ServiceOne{
@@ -26,11 +19,11 @@ public class ZabiraiServiceHibernate implements ServiceOne{
 	@Autowired
 	private BeansPool beansPool;
 	
-	/*@Autowired
+	@Autowired
 	private AccountsHibernateImpl accountsHibernate;
 	
 	@Autowired
-	private RolesHibernateImpl rolesHibernate;*/
+	private RolesHibernateImpl rolesHibernate;
 	
 	//TRUE
 	@Override
@@ -111,28 +104,33 @@ public class ZabiraiServiceHibernate implements ServiceOne{
 		return false;
 	}	
 	
+	@Transactional
 	public void test(){
 		
-		/*try{
-			AccountEntityHibernate account = accountsHibernate.getAccountById(4);
-			
-		}catch(Exception e){
-			System.out.println("Exception in AccountsHibernateImpl.getAccountById()");
-		}
+//		try{
+//			AccountEntityHibernate account = accountsHibernate.getAccountById(4);
+//			
+//		}catch(Exception e){
+//			System.out.println("Exception in AccountsHibernateImpl.getAccountById()");
+//		}
 		
 		try{
-			AccountEntityHibernate account = accountsHibernate.getAccountByLogin("Jakubik");
+			//AccountEntityHibernate2 account = accountsHibernate.getAccountByLogin("Jakubik");
+			AccountEntityHibernate account = accountsHibernate.getAccountByLogin("Jakubik");			
+			System.out.println("status: " + account.getAccountRole());
 			
 		}catch(Exception e){
 			System.out.println("Exception in AccountsHibernateImpl.getAccountByLogin()");
+			System.out.println(e.getMessage());
+			System.out.println(e.getClass().getName());
 		}
 		
-		try{
-			AccountEntityHibernate account = accountsHibernate.getAccountByEmail("Jakubik@v.tubik");
-			
-		}catch(Exception e){
-			System.out.println("Exception in AccountsHibernateImpl.getAccountByEmail()");
-		}*/
+//		try{
+//			AccountEntityHibernate account = accountsHibernate.getAccountByEmail("Jakubik@v.tubik");
+//			
+//		}catch(Exception e){
+//			System.out.println("Exception in AccountsHibernateImpl.getAccountByEmail()");
+//		}
 		
 	}
 	

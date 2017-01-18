@@ -1,11 +1,8 @@
 package by.kalilaska.controllers;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,14 +10,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import by.kalilaska.BeansPool;
-import by.kalilaska.beans.AdminAccountPageBean;
 import by.kalilaska.beans.UserAccountPageBean;
 import by.kalilaska.services.ServiceOne;
 import by.kalilaska.services.ZabiraiService;
-import by.kalilaska.services.impls.ZabiraiServiceHibernate;
 
 @Controller
-public class MenuBarController {
+public class LogInController {
 	
 	@Autowired
 	private ZabiraiService zabiraiService;
@@ -29,26 +24,7 @@ public class MenuBarController {
 	private ServiceOne zabiraiServiceHibernate;
 	
 	@Autowired
-	private BeansPool beansPool;	
-
-	
-	@RequestMapping(value = {"/personalArea.html"}, method = RequestMethod.GET)
-	public ModelAndView persinalArea(@ModelAttribute(name="userAccountPageBean") UserAccountPageBean account) {
-		
-		zabiraiServiceHibernate.test();
-		
-		if(account==null || account.getAccountLogin() == null){
-			return new ModelAndView("redirect:/personalArea/login.html", "accountPageBean", beansPool.getUserAccountPageBean());
-		}else if(account.getStatus().equals("Administrator")){
-			String redirect = "redirect:/personalArea/admin/" + account.getAccountLogin() + ".html";				
-			ModelAndView modelAndView = new ModelAndView(redirect, "accountPageBean", account);
-			return modelAndView;
-		}else{
-			String redirect = "redirect:/personalArea/user/" + account.getAccountLogin() + ".html";
-			ModelAndView modelAndView = new ModelAndView(redirect, "accountPageBean", account);
-			return modelAndView;
-		}
-	}
+	private BeansPool beansPool;
 	
 	@RequestMapping(value = {"/personalArea/login.html"}, method = RequestMethod.GET)
 	public ModelAndView showLogIn(@ModelAttribute(name="userAccountPageBean") UserAccountPageBean account) {
@@ -77,29 +53,6 @@ public class MenuBarController {
 		return modelAndView;
 	}
 	
-	@RequestMapping(value = {"/personalArea/registration.html"}, method = RequestMethod.GET)
-	public ModelAndView showRegistration() {
-		return new ModelAndView("registration", "accountPageBean", beansPool.getUserAccountPageBean());
-	}
-	
-	@RequestMapping(value = {"/personalArea/registration.html"}, method = RequestMethod.POST)
-	public ModelAndView registrationOn(@Valid @ModelAttribute(name="accountPageBean") UserAccountPageBean account, BindingResult bindingResult, Model model) {
-		if(bindingResult.hasErrors()){
-			return new ModelAndView("registration", "accountPageBean", account);
-		}
-		if(zabiraiService.insertNewAccount(account)){
-			
-			String redirect = "redirect:/personalArea/user/" + account.getAccountLogin() + ".html";				
-			ModelAndView modelAndView = new ModelAndView(redirect, "accountPageBean", account);
-			return modelAndView;
-		}
-		
-		//System.out.println(account);
-		ModelAndView modelAndView = new ModelAndView("registration", "accountPageBean", account);
-		return modelAndView;
-		
-	}
-	
 	@RequestMapping(value = {"/personalArea/admin/{accountLogin}.html"}, method = RequestMethod.GET)
 	public ModelAndView showAdminPage(@PathVariable String accountLogin, @ModelAttribute(name="accountPageBean") UserAccountPageBean account) {
 
@@ -113,10 +66,5 @@ public class MenuBarController {
 		ModelAndView modelAndView = new ModelAndView("userPersonalAreaIn", "accountPageBean", account);
 		return modelAndView;
 	}
-	
-	/*@ModelAttribute
-	private Entity getAccount(){
-		//return EntitiesPool.getAccount();
-		return new Account();
-	}*/
+
 }

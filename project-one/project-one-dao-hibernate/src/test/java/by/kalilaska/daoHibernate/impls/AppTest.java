@@ -1,4 +1,4 @@
-package org.project.one.dao.hibernate;
+package by.kalilaska.daoHibernate.impls;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

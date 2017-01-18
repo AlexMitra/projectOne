@@ -44,5 +44,5 @@
     	<module>project-one-restControllers</module>
     	<module>project-one-beans</module>
     	<module>project-one-dao-hibernate</module>
-  </modules>
+	</modules>
 </project>
