@@ -3,6 +3,7 @@ package by.kalilaska.services.impls;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import by.kalilaska.BeansPool;
@@ -14,10 +15,12 @@ import by.kalilaska.entities.Account;
 import by.kalilaska.entities.AccountEntity;
 import by.kalilaska.entities.AccountRoleEntity;
 import by.kalilaska.entities.AccountToRoleEntity;
+import by.kalilaska.services.ServiceOne;
 import by.kalilaska.entities.AccountEntity;
 
 @Service
-public class ZabiraiServiceJDBC {
+@Qualifier(value = "ZabiraiServiceJDBC")
+public class ZabiraiServiceJDBC implements ServiceOne{
 	
 	@Autowired
 	private BeansPool beansPool;
@@ -32,6 +35,7 @@ public class ZabiraiServiceJDBC {
 	private RolesJDBC rolesJdbc;
 	
 	//TRUE
+	@Override
 	public boolean insertNewAccount(UserAccountPageBean account){
 		String check = getAccountsByLoginAndEmail(account);
 		System.out.println(check);
@@ -61,6 +65,7 @@ public class ZabiraiServiceJDBC {
 	}
 	
 	//TRUE
+	@Override
 	public String getAccountsByLoginAndEmail(UserAccountPageBean account){
 		
 		List<AccountEntity> accounts= accountsJdbc.getAccountsByLoginAndEmail(
@@ -84,6 +89,7 @@ public class ZabiraiServiceJDBC {
 	}
 	
 	//TRUE
+	@Override
 	public boolean checkAccount(UserAccountPageBean account){
 		
 		System.out.println("in ZabiraiService checkAccount() account for check: " + account);
@@ -109,6 +115,7 @@ public class ZabiraiServiceJDBC {
 		}		
 	}
 	
+	@Override
 	public void test(){
 		/*try{
 			System.out.println(accountsJdbc.getAccountByLogin("Megathrone"));
