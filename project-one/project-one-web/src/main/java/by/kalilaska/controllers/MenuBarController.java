@@ -35,7 +35,7 @@ public class MenuBarController {
 	@RequestMapping(value = {"/personalArea.html"}, method = RequestMethod.GET)
 	public ModelAndView persinalArea(@ModelAttribute(name="userAccountPageBean") UserAccountPageBean account) {
 		
-		zabiraiServiceHibernate.test();
+		//zabiraiServiceHibernate.test();
 		
 		if(account==null || account.getAccountLogin() == null){
 			return new ModelAndView("redirect:/personalArea/login.html", "accountPageBean", beansPool.getUserAccountPageBean());
@@ -50,7 +50,7 @@ public class MenuBarController {
 		}
 	}
 	
-	@RequestMapping(value = {"/personalArea/login.html"}, method = RequestMethod.GET)
+	/*@RequestMapping(value = {"/personalArea/login.html"}, method = RequestMethod.GET)
 	public ModelAndView showLogIn(@ModelAttribute(name="userAccountPageBean") UserAccountPageBean account) {
 
 		return new ModelAndView("login", "accountPageBean", account);
@@ -112,7 +112,7 @@ public class MenuBarController {
 
 		ModelAndView modelAndView = new ModelAndView("userPersonalAreaIn", "accountPageBean", account);
 		return modelAndView;
-	}
+	}*/
 	
 	/*@ModelAttribute
 	private Entity getAccount(){
