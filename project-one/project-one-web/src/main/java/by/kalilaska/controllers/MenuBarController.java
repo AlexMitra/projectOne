@@ -16,14 +16,14 @@ import by.kalilaska.BeansPool;
 import by.kalilaska.beans.AdminAccountPageBean;
 import by.kalilaska.beans.UserAccountPageBean;
 import by.kalilaska.services.ServiceOne;
-import by.kalilaska.services.ZabiraiService;
+import by.kalilaska.services.impls.ZabiraiServiceJDBC;
 import by.kalilaska.services.impls.ZabiraiServiceHibernate;
 
 @Controller
 public class MenuBarController {
 	
 	@Autowired
-	private ZabiraiService zabiraiService;
+	private ZabiraiServiceJDBC zabiraiService;
 	
 	@Autowired
 	private ServiceOne zabiraiServiceHibernate;

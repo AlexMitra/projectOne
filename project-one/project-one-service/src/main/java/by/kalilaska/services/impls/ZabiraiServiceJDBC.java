@@ -1,4 +1,4 @@
-package by.kalilaska.services;
+package by.kalilaska.services.impls;
 
 import java.util.List;
 
@@ -17,7 +17,7 @@ import by.kalilaska.entities.AccountToRoleEntity;
 import by.kalilaska.entities.AccountEntity;
 
 @Service
-public class ZabiraiService {
+public class ZabiraiServiceJDBC {
 	
 	@Autowired
 	private BeansPool beansPool;

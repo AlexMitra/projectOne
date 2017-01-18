@@ -14,13 +14,13 @@ import org.springframework.web.servlet.ModelAndView;
 import by.kalilaska.BeansPool;
 import by.kalilaska.beans.UserAccountPageBean;
 import by.kalilaska.services.ServiceOne;
-import by.kalilaska.services.ZabiraiService;
+import by.kalilaska.services.impls.ZabiraiServiceJDBC;
 
 @Controller
 public class RegistrationController {
 	
 	@Autowired
-	private ZabiraiService zabiraiService;
+	private ZabiraiServiceJDBC zabiraiService;
 	
 	@Autowired
 	private ServiceOne zabiraiServiceHibernate;
