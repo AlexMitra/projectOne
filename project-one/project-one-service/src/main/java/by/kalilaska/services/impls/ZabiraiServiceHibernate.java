@@ -107,16 +107,15 @@ public class ZabiraiServiceHibernate implements ServiceOne{
 	
 	@Transactional
 	public void test(){		
-		try{
-			//AccountEntityHibernate2 account = accountsHibernate.getAccountByLogin("Jakubik");
+		try{			
 			AccountEntityHibernate account = accountsHibernate.getAccountByLogin("Jakubik");	
 			
 			System.out.println("account: " + account);
-			//System.out.println("account role: " + account.getAccountRole().getRoleStatus());
+			System.out.println("account role: " + account.getAccountRole().getRoleStatus());
 			
-			/*AccountRoleEntityHibernate role = rolesHibernate.getAccountRoleById(3);
+			AccountRoleEntityHibernate role = rolesHibernate.getAccountRoleById(3);
 			System.out.println("role: " + role);
-			System.out.println("accounts with this role: " + role.getAccountEntities());*/
+			System.out.println("accounts with this role: " + role.getAccountEntities());
 			
 		}catch(Exception e){
 			System.out.println("Exception info");

@@ -2,6 +2,7 @@ package by.kalilaska.daoHibernate.impls.repositories;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import org.hibernate.Session;
@@ -12,26 +13,10 @@ import org.springframework.stereotype.Repository;
 import by.kalilaska.daoHibernate.impls.entities.AccountRoleEntityHibernate;
 
 @Repository
-public class RolesHibernateImpl {
-
+public class RolesHibernateImpl {	
 	
-	/*private SessionFactory sessionFactory;	
-
-	@Autowired
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
-	}
-	
-	private Session currentSession(){
-		return sessionFactory.getCurrentSession();
-	}*/
-	
-	/*@Autowired
-	private EntityManagerFactory factory;
-	
-	private EntityManager currentEntityManager(){
-		return factory.createEntityManager();
-	}*/
+	@PersistenceContext
+	private EntityManager manager;
 	
 	public RolesHibernateImpl() {
 		super();
@@ -39,41 +24,34 @@ public class RolesHibernateImpl {
 
 	//INSERT
 	public void insertRole(String role) {
-		//currentSession().persist(new AccountRoleEntityHibernate(role));
+		manager.persist(new AccountRoleEntityHibernate(role));
 
 	}
 	
 	//DELETE
-	public void deleteAccount(String role){
-		/*Session session = currentSession();
+	public void deleteAccount(String role){		
 		AccountRoleEntityHibernate accountRoleEntity = getAccountRoleByRoleStatus(role);
 		
 		if(accountRoleEntity != null){
-			session.delete(accountRoleEntity);
-		}*/
-
+			manager.remove(accountRoleEntity);
+		}
 	}
 	
 	//SELECT
 	public AccountRoleEntityHibernate getAccountRoleById(int id) {		
-		/*Session session = currentSession();
-		
-		AccountRoleEntityHibernate accountRoleEntity = session.load(
+		AccountRoleEntityHibernate accountRoleEntity = manager.find(
 						AccountRoleEntityHibernate.class, Integer.valueOf(id));
 
-		return accountRoleEntity;*/
-		return null;
+		return accountRoleEntity;		
 	}
 	
 	public AccountRoleEntityHibernate getAccountRoleByRoleStatus(String	role) {		
-		/*Session session = currentSession();
 		TypedQuery<AccountRoleEntityHibernate> query = 
-				session.createNamedQuery("getAccountRoleByRoleStatus", AccountRoleEntityHibernate.class);
+				manager.createNamedQuery("getAccountRoleByRoleStatus", AccountRoleEntityHibernate.class);
 		query.setParameter("role", role);
 		AccountRoleEntityHibernate accountRoleEntity = query.getSingleResult();	
 
-		return accountRoleEntity;*/
-		return null;
+		return accountRoleEntity;		
 	}
 	
 	public AccountRoleEntityHibernate getAccountRoleByAccountId(long id) {		
