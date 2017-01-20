@@ -14,6 +14,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -60,10 +61,14 @@ public class AccountEntityHibernate implements Serializable{
 	
 	//@ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
 	//@ManyToOne(targetEntity = AccountRoleEntityHibernate.class, fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinTable(name = "Accounts_to_roles",
+	//@ManyToOne(fetch = FetchType.LAZY)
+	/*@JoinTable(name = "Accounts_to_roles",
 				joinColumns = @JoinColumn(name = "FK_Account_id", referencedColumnName = "Account_Id"),
-				inverseJoinColumns = @JoinColumn(name = "FK_Role_id", referencedColumnName = "Role_Id"))
+				inverseJoinColumns = @JoinColumn(name = "FK_Role_id", referencedColumnName = "Role_Id"))*/
+	@ManyToOne
+	@JoinTable(name = "Accounts_to_roles",
+	joinColumns = @JoinColumn(name = "FK_Account_id", referencedColumnName = "Account_Id"),
+	inverseJoinColumns = @JoinColumn(name = "FK_Role_id", referencedColumnName = "Role_Id"))
 	private AccountRoleEntityHibernate accountRole;
 
 	public AccountEntityHibernate() {
@@ -109,12 +114,13 @@ public class AccountEntityHibernate implements Serializable{
 		this.accountPassword = accountPassword;
 	}
 	
-	public String getAccountRole() {
-		return accountRole.getRoleStatus();
+
+	public AccountRoleEntityHibernate getAccountRole() {
+		return accountRole;
 	}
 
-	public void setAccountRole(Object accountRole) {
-		System.out.println("accountRole: " + accountRole.getClass().getSimpleName());
+	public void setAccountRole(AccountRoleEntityHibernate accountRole) {
+		//System.out.println("accountRole: " + accountRole.getClass().getSimpleName());
 		this.accountRole = (AccountRoleEntityHibernate)accountRole;
 	}
 

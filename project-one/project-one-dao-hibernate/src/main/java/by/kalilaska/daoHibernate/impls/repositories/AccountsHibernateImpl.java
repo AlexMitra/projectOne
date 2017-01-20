@@ -2,6 +2,8 @@ package by.kalilaska.daoHibernate.impls.repositories;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
@@ -17,7 +19,7 @@ import by.kalilaska.daoHibernate.impls.entities.AccountRoleEntityHibernate;
 @Repository
 public class AccountsHibernateImpl {
 	
-	private SessionFactory sessionFactory;
+	//private SessionFactory sessionFactory;
 	
 	@Autowired
 	private RolesHibernateImpl rolesHibernateImpl;
@@ -26,12 +28,15 @@ public class AccountsHibernateImpl {
 	
 	private AccountRoleEntityHibernate accountRoleAdmin;
 
-	@Autowired
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
-	}
+//	@Autowired
+//	public void setSessionFactory(SessionFactory sessionFactory) {
+//		this.sessionFactory = sessionFactory;
+//	}
 	
-	private Session currentSession(){		
+	@PersistenceContext
+	EntityManager manger;
+	
+	/*private Session currentSession(){		
 		//System.out.println("sessionFactory: " + sessionFactory);
 		Session session;
 		try{
@@ -43,7 +48,7 @@ public class AccountsHibernateImpl {
 		}		
 		//System.out.println("session: " + session);
 		return session;
-	}	
+	}	*/
 
 	public AccountsHibernateImpl() {		
 		super();		
@@ -56,7 +61,7 @@ public class AccountsHibernateImpl {
 		//accountRoleAdmin = rolesHibernateImpl.getAccountRoleByRoleStatus("Administrator");
 		accountEntity.setAccountRole(accountRoleUser);
 		
-		currentSession().persist(accountEntity);
+		//currentSession().persist(accountEntity);
 
 	}
 	
@@ -65,28 +70,40 @@ public class AccountsHibernateImpl {
 		AccountEntityHibernate accountEntity = new AccountEntityHibernate(login, email, password);
 		accountRoleUser = rolesHibernateImpl.getAccountRoleByRoleStatus("User");
 		accountEntity.setAccountRole(accountRoleUser);
-		currentSession().persist(accountEntity);	
+		//currentSession().persist(accountEntity);	
 		
 		return getAccountByLogin(login);
 	}
 	
 	//DELETE
 	public void deleteAccount(String login){
-		Session session = currentSession();		
+		/*Session session = currentSession();		
 		AccountEntityHibernate accountEntity = getAccountByLogin(login);
 		
 		if(accountEntity != null){
 			session.delete(accountEntity);
-		}
+		}*/
 
 	}
 	
 	//SELECT
 //	@Transactional
-	public AccountEntityHibernate getAccountByLogin(String login) {
+	/*public AccountEntityHibernate getAccountByLogin(String login) {
 		Session session = currentSession();
 		TypedQuery<AccountEntityHibernate> query =
 				session.createNamedQuery("getAccountByLogin", AccountEntityHibernate.class);
+		query.setParameter("login", login);	
+
+		AccountEntityHibernate accountEntity = query.getSingleResult();
+		System.out.println("getAccountByLogin() accountEntity: " + accountEntity);
+		return accountEntity;
+	}*/
+	
+	//By EntityManager
+	public AccountEntityHibernate getAccountByLogin(String login) {
+		//Session session = currentSession();
+		TypedQuery<AccountEntityHibernate> query =
+				manger.createNamedQuery("getAccountByLogin", AccountEntityHibernate.class);
 		query.setParameter("login", login);	
 
 		AccountEntityHibernate accountEntity = query.getSingleResult();
@@ -96,46 +113,50 @@ public class AccountsHibernateImpl {
 	
 	//SELECT
 	public AccountEntityHibernate getAccountByEmail(String email) {
-		Session session = currentSession();
+		/*Session session = currentSession();
 		TypedQuery<AccountEntityHibernate> query = 
 				session.createNamedQuery("getAccountByEmail", AccountEntityHibernate.class);
 		query.setParameter("email", email);
 		
 		AccountEntityHibernate accountEntity = query.getSingleResult();
 		System.out.println("getAccountByEmail() accountEntity: " + accountEntity);
-		return accountEntity;
+		return accountEntity;*/
+		return null;
 	}
 	
 	public AccountEntityHibernate getAccountById(long id) {
-		Session session = currentSession();
+		/*Session session = currentSession();
 		
 		AccountEntityHibernate accountEntity = 
 				session.load(AccountEntityHibernate.class, Long.valueOf(id));
 		System.out.println("getAccountById() accountEntity: " + accountEntity);
 
-		return accountEntity;
+		return accountEntity;*/
+		return null;
 	}	
 
 	////SELECT BY LOGIN AND EMAIL
 	public List<AccountEntityHibernate> getAccountsByLoginAndEmail(String login, String email) {
-		Session session = currentSession();
+		/*Session session = currentSession();
 		TypedQuery<AccountEntityHibernate> query = 
 				session.createNamedQuery("getAccountsByLoginAndEmail", AccountEntityHibernate.class);
 		query.setParameter("login", login);
 		query.setParameter("email", email);
 		
 		List<AccountEntityHibernate> accountEntityList = query.getResultList();
-		return accountEntityList;
+		return accountEntityList;*/
+		return null;
 	}
 	
 	//SELECT ALL
 	public List<AccountEntityHibernate> getAllAccounts() {
-		Session session = currentSession();
+		/*Session session = currentSession();
 		TypedQuery<AccountEntityHibernate> query = 
 				session.createNamedQuery("getAllAccounts", AccountEntityHibernate.class);
 		List<AccountEntityHibernate> accountEntityList = query.getResultList();
 
-		return accountEntityList;
+		return accountEntityList;*/
+		return null;
 	}
 
 }

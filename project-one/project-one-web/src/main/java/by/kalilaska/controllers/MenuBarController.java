@@ -28,6 +28,7 @@ public class MenuBarController {
 	private ServiceOne zabiraiService;
 	
 	@Autowired
+	@Qualifier(value = "ZabiraiServiceHibernate")
 	private ServiceOne zabiraiServiceHibernate;
 	
 	@Autowired
@@ -37,7 +38,7 @@ public class MenuBarController {
 	@RequestMapping(value = {"/personalArea.html"}, method = RequestMethod.GET)
 	public ModelAndView persinalArea(@ModelAttribute(name="userAccountPageBean") UserAccountPageBean account) {
 		
-		//zabiraiServiceHibernate.test();
+		zabiraiServiceHibernate.test();
 		
 		if(account==null || account.getAccountLogin() == null){
 			return new ModelAndView("redirect:/personalArea/login.html", "accountPageBean", beansPool.getUserAccountPageBean());

@@ -23,6 +23,7 @@ public class LogInController {
 	private ServiceOne zabiraiService;
 	
 	@Autowired
+	@Qualifier(value = "ZabiraiServiceHibernate")
 	private ServiceOne zabiraiServiceHibernate;
 	
 	@Autowired

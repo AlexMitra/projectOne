@@ -41,15 +41,18 @@ public class AccountRoleEntityHibernate implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int roleId;
 	
-	@Column(name = "Roles")
+	@Column(name = "Role")
 	private String roleStatus;
 	
 	//@OneToMany(mappedBy = "accountRole", fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
 	//@OneToMany(mappedBy = "accountRole", targetEntity = AccountEntityHibernate.class, fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
-	@OneToMany(mappedBy = "accountRole", fetch = FetchType.LAZY)
+	//@OneToMany(mappedBy = "accountRole", fetch = FetchType.LAZY)
 	/*@JoinTable(name = "Accounts_to_roles",
 				joinColumns = @JoinColumn(name = "FK_Account_id", referencedColumnName = "Id"),
 				inverseJoinColumns = @JoinColumn(name = "FK_Role_id", referencedColumnName = "Id"))*/
+	
+	@OneToMany(targetEntity = AccountEntityHibernate.class, mappedBy = "accountRole",
+			fetch = FetchType.LAZY)
 	private List<AccountEntityHibernate> accountEntities;
 
 	public AccountRoleEntityHibernate() {
@@ -77,12 +80,13 @@ public class AccountRoleEntityHibernate implements Serializable{
 		this.roleStatus = roleRole;
 	}
 	
+
 	public List<AccountEntityHibernate> getAccountEntities() {
 		return accountEntities;
 	}
 
-	public void setAccountEntities(Object accountEntities) {
-		System.out.println("accountEntities: " + accountEntities.getClass().getSimpleName());
+	public void setAccountEntities(List<AccountEntityHibernate> accountEntities) {
+		//System.out.println("accountEntities: " + accountEntities.getClass().getSimpleName());
 		
 		this.accountEntities = (List<AccountEntityHibernate>)accountEntities;
 	}

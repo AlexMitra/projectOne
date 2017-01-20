@@ -1,19 +1,20 @@
 package by.kalilaska.services.impls;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import by.kalilaska.BeansPool;
 import by.kalilaska.beans.UserAccountPageBean;
 import by.kalilaska.daoHibernate.impls.entities.AccountEntityHibernate;
-import by.kalilaska.daoHibernate.impls.entities.AccountEntityHibernate2;
+import by.kalilaska.daoHibernate.impls.entities.AccountRoleEntityHibernate;
 import by.kalilaska.daoHibernate.impls.repositories.AccountsHibernateImpl;
-import by.kalilaska.daoHibernate.impls.repositories.AccountsHibernateImpl2;
 import by.kalilaska.daoHibernate.impls.repositories.RolesHibernateImpl;
 import by.kalilaska.services.ServiceOne;
 
 @Service
+@Qualifier(value = "ZabiraiServiceHibernate")
 public class ZabiraiServiceHibernate implements ServiceOne{
 	
 	@Autowired
@@ -105,32 +106,25 @@ public class ZabiraiServiceHibernate implements ServiceOne{
 	}	
 	
 	@Transactional
-	public void test(){
-		
-//		try{
-//			AccountEntityHibernate account = accountsHibernate.getAccountById(4);
-//			
-//		}catch(Exception e){
-//			System.out.println("Exception in AccountsHibernateImpl.getAccountById()");
-//		}
-		
+	public void test(){		
 		try{
 			//AccountEntityHibernate2 account = accountsHibernate.getAccountByLogin("Jakubik");
-			AccountEntityHibernate account = accountsHibernate.getAccountByLogin("Jakubik");			
-			System.out.println("status: " + account.getAccountRole());
+			AccountEntityHibernate account = accountsHibernate.getAccountByLogin("Jakubik");	
+			
+			System.out.println("account: " + account);
+			//System.out.println("account role: " + account.getAccountRole().getRoleStatus());
+			
+			/*AccountRoleEntityHibernate role = rolesHibernate.getAccountRoleById(3);
+			System.out.println("role: " + role);
+			System.out.println("accounts with this role: " + role.getAccountEntities());*/
 			
 		}catch(Exception e){
-			System.out.println("Exception in AccountsHibernateImpl.getAccountByLogin()");
+			System.out.println("Exception info");
 			System.out.println(e.getMessage());
 			System.out.println(e.getClass().getName());
 		}
 		
-//		try{
-//			AccountEntityHibernate account = accountsHibernate.getAccountByEmail("Jakubik@v.tubik");
-//			
-//		}catch(Exception e){
-//			System.out.println("Exception in AccountsHibernateImpl.getAccountByEmail()");
-//		}
+
 		
 	}
 	

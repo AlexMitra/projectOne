@@ -25,6 +25,7 @@ public class RegistrationController {
 	private ServiceOne zabiraiService;
 	
 	@Autowired
+	@Qualifier(value = "ZabiraiServiceHibernate")
 	private ServiceOne zabiraiServiceHibernate;
 	
 	@Autowired
