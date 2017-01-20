@@ -13,12 +13,12 @@ import org.springframework.stereotype.Repository;
 import by.kalilaska.daoHibernate.impls.entities.AccountRoleEntityHibernate;
 
 @Repository
-public class RolesHibernateImpl {	
+public class RolesRepositoryHibernate {	
 	
 	@PersistenceContext
 	private EntityManager manager;
 	
-	public RolesHibernateImpl() {
+	public RolesRepositoryHibernate() {
 		super();
 	}
 

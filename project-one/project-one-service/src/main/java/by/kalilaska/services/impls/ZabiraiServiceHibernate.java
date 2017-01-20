@@ -9,8 +9,8 @@ import by.kalilaska.BeansPool;
 import by.kalilaska.beans.UserAccountPageBean;
 import by.kalilaska.daoHibernate.impls.entities.AccountEntityHibernate;
 import by.kalilaska.daoHibernate.impls.entities.AccountRoleEntityHibernate;
-import by.kalilaska.daoHibernate.impls.repositories.AccountsHibernateImpl;
-import by.kalilaska.daoHibernate.impls.repositories.RolesHibernateImpl;
+import by.kalilaska.daoHibernate.impls.repositories.AccountsRepositoryHibernate;
+import by.kalilaska.daoHibernate.impls.repositories.RolesRepositoryHibernate;
 import by.kalilaska.services.ServiceOne;
 
 @Service
@@ -21,10 +21,10 @@ public class ZabiraiServiceHibernate implements ServiceOne{
 	private BeansPool beansPool;
 	
 	@Autowired
-	private AccountsHibernateImpl accountsHibernate;
+	private AccountsRepositoryHibernate accountsRepository;
 	
 	@Autowired
-	private RolesHibernateImpl rolesHibernate;
+	private RolesRepositoryHibernate rolesRepository;
 	
 	//TRUE
 	@Override
@@ -108,12 +108,12 @@ public class ZabiraiServiceHibernate implements ServiceOne{
 	@Transactional
 	public void test(){		
 		try{			
-			AccountEntityHibernate account = accountsHibernate.getAccountByLogin("Jakubik");	
+			AccountEntityHibernate account = accountsRepository.getAccountByLogin("Jakubik");	
 			
 			System.out.println("account: " + account);
 			System.out.println("account role: " + account.getAccountRole().getRoleStatus());
 			
-			AccountRoleEntityHibernate role = rolesHibernate.getAccountRoleById(3);
+			AccountRoleEntityHibernate role = rolesRepository.getAccountRoleById(3);
 			System.out.println("role: " + role);
 			System.out.println("accounts with this role: " + role.getAccountEntities());
 			
