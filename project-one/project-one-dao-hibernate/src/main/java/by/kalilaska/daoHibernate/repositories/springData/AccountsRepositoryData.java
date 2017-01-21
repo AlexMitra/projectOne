@@ -1,11 +1,11 @@
-package by.kalilaska.daoHibernate.impls.repositories;
+package by.kalilaska.daoHibernate.repositories.springData;
 
 import javax.persistence.TypedQuery;
 
 import org.hibernate.Session;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import by.kalilaska.daoHibernate.impls.entities.AccountEntityHibernate;
+import by.kalilaska.entities.forHibernate.AccountEntityHibernate;
 
 public interface AccountsRepositoryData 
 					extends JpaRepository<AccountEntityHibernate, Long>{

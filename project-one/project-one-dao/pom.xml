@@ -12,6 +12,11 @@
 	<artifactId>project-one-dao</artifactId>
 
 	<dependencies>
+		<dependency>
+			<groupId>by.kalilaska</groupId>
+			<artifactId>project-one-entities</artifactId>
+			<version>${app.version}</version>
+		</dependency>
 
 	</dependencies>
 </project>

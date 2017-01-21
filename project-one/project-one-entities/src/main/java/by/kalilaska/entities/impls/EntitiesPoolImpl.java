@@ -1,11 +1,11 @@
-package by.kalilaska.entities;
+package by.kalilaska.entities.impls;
 
 import org.springframework.stereotype.Component;
 
 import by.kalilaska.EntitiesPool;
-import by.kalilaska.entities.AccountEntity;
-import by.kalilaska.entities.AccountRoleEntity;
-import by.kalilaska.entities.AccountToRoleEntity;
+import by.kalilaska.entities.impls.AccountEntity;
+import by.kalilaska.entities.impls.AccountRoleEntity;
+import by.kalilaska.entities.impls.AccountToRoleEntity;
 
 @Component
 public class EntitiesPoolImpl implements EntitiesPool{

@@ -1,4 +1,4 @@
-package by.kalilaska.daoHibernate.impls.entities;
+package by.kalilaska.entities.forHibernate;
 
 import java.io.Serializable;
 
@@ -42,7 +42,7 @@ import javax.persistence.Table;
 	    ),
 })
 @Table(name = "Accounts")
-public class AccountEntityHibernate implements Serializable{
+public class AccountEntityHibernate{
 
 	
 	@Id
@@ -69,7 +69,7 @@ public class AccountEntityHibernate implements Serializable{
 	@JoinTable(name = "Accounts_to_roles",
 	joinColumns = @JoinColumn(name = "FK_Account_id", referencedColumnName = "Account_Id"),
 	inverseJoinColumns = @JoinColumn(name = "FK_Role_id", referencedColumnName = "Role_Id"))
-	private AccountRoleEntityHibernate accountRole;
+	private RoleEntityHibernate accountRole;
 
 	public AccountEntityHibernate() {
 		super();		
@@ -80,54 +80,52 @@ public class AccountEntityHibernate implements Serializable{
 		this.accountLogin = accountLogin;
 		this.accountEmail = accountEmail;
 		this.accountPassword = accountPassword;
-	}
+	}	
 	
 	public long getAccountId() {
 		return accountId;
 	}
-
+	
 	public String getAccountLogin() {
 		return accountLogin;
 	}
-
+	
 	public String getAccountEmail() {
 		return accountEmail;
 	}
-
+	
 	public String getAccountPassword() {
 		return accountPassword;
 	}
-
+	
 	public void setAccountId(long id) {
 		this.accountId = id;
 	}
-
+	
 	public void setAccountLogin(String accountLogin) {
 		this.accountLogin = accountLogin;
 	}
-
+	
 	public void setAccountEmail(String accountEmail) {
 		this.accountEmail = accountEmail;
 	}
-
+	
 	public void setAccountPassword(String accountPassword) {
 		this.accountPassword = accountPassword;
-	}
+	}	
 	
-
-	public AccountRoleEntityHibernate getAccountRole() {
+	public RoleEntityHibernate getAccountRole() {
 		return accountRole;
 	}
-
-	public void setAccountRole(AccountRoleEntityHibernate accountRole) {
+	
+	public void setAccountRole(RoleEntityHibernate accountRole) {
 		//System.out.println("accountRole: " + accountRole.getClass().getSimpleName());
-		this.accountRole = (AccountRoleEntityHibernate)accountRole;
+		this.accountRole = (RoleEntityHibernate)accountRole;
 	}
-
-	@Override
+	
 	public String toString() {
-		return "AccountEntity [accountId=" + accountId + ", accountLogin=" + accountLogin + ", accountEmail=" + accountEmail
-				+ ", accountPassword=" + accountPassword + "]";
+		return "AccountEntityHibernate [accountId=" + accountId + ", accountLogin=" + accountLogin + ", accountEmail="
+				+ accountEmail + ", accountPassword=" + accountPassword + "]";
 	}
 	
 }

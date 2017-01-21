@@ -1,4 +1,4 @@
-package by.kalilaska.daoHibernate.impls.repositories;
+package by.kalilaska.daoHibernate.repositories;
 
 import java.util.List;
 
@@ -12,12 +12,12 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-
-import by.kalilaska.daoHibernate.impls.entities.AccountEntityHibernate;
-import by.kalilaska.daoHibernate.impls.entities.AccountRoleEntityHibernate;
+import by.kalilaska.entities.forHibernate.AccountEntityHibernate;
+import by.kalilaska.entities.forHibernate.RoleEntityHibernate;
+import by.kalilaska.dao.forHibernate.AccountsRepository;;
 
 @Repository
-public class AccountsRepositoryHibernate {	
+public class AccountsRepositoryHibernate implements AccountsRepository{	
 
 	@PersistenceContext
 	EntityManager manager;
@@ -25,15 +25,16 @@ public class AccountsRepositoryHibernate {
 	@Autowired
 	private RolesRepositoryHibernate rolesHibernateImpl;
 	
-	private AccountRoleEntityHibernate accountRoleUser;
+	private RoleEntityHibernate accountRoleUser;
 	
-	private AccountRoleEntityHibernate accountRoleAdmin;
+	private RoleEntityHibernate accountRoleAdmin;
 
 	public AccountsRepositoryHibernate() {		
 		super();		
 	}
 
 	//!!!!INSERT
+	@Override
 	public void insertAccount(String login, String email, String password) {
 		AccountEntityHibernate accountEntity = new AccountEntityHibernate(login, email, password);
 		accountRoleUser = rolesHibernateImpl.getAccountRoleByRoleStatus("User");
@@ -45,6 +46,7 @@ public class AccountsRepositoryHibernate {
 	}
 	
 	//!!!!INSERT WITH RETURN
+	@Override
 	public AccountEntityHibernate insertAccountWithReturn(String login, String email, String password) {
 		AccountEntityHibernate accountEntity = new AccountEntityHibernate(login, email, password);
 		accountRoleUser = rolesHibernateImpl.getAccountRoleByRoleStatus("User");
@@ -54,6 +56,7 @@ public class AccountsRepositoryHibernate {
 	}
 	
 	//DELETE
+	@Override
 	public void deleteAccount(String login){			
 		AccountEntityHibernate accountEntity = getAccountByLogin(login);
 		
@@ -64,7 +67,7 @@ public class AccountsRepositoryHibernate {
 	}
 	
 	//SELECT
-//	@Transactional
+	@Override
 	public AccountEntityHibernate getAccountByLogin(String login) {		
 		TypedQuery<AccountEntityHibernate> query =
 				manager.createNamedQuery("getAccountByLogin", AccountEntityHibernate.class);
@@ -76,6 +79,7 @@ public class AccountsRepositoryHibernate {
 	}
 	
 	//SELECT
+	@Override
 	public AccountEntityHibernate getAccountByEmail(String email) {		
 		TypedQuery<AccountEntityHibernate> query = 
 				manager.createNamedQuery("getAccountByEmail", AccountEntityHibernate.class);
@@ -86,6 +90,7 @@ public class AccountsRepositoryHibernate {
 		return accountEntity;		
 	}
 	
+	@Override
 	public AccountEntityHibernate getAccountById(long id) {		
 		AccountEntityHibernate accountEntity = 
 				manager.find(AccountEntityHibernate.class, Long.valueOf(id));
@@ -95,6 +100,7 @@ public class AccountsRepositoryHibernate {
 	}	
 
 	////SELECT BY LOGIN AND EMAIL
+	@Override
 	public List<AccountEntityHibernate> getAccountsByLoginAndEmail(String login, String email) {		
 		TypedQuery<AccountEntityHibernate> query = 
 				manager.createNamedQuery("getAccountsByLoginAndEmail", AccountEntityHibernate.class);
@@ -102,16 +108,19 @@ public class AccountsRepositoryHibernate {
 		query.setParameter("email", email);
 		
 		List<AccountEntityHibernate> accountEntityList = query.getResultList();
-		return accountEntityList;
+		//return accountEntityList;
+		return null;
 	}
 	
 	//SELECT ALL
+	@Override
 	public List<AccountEntityHibernate> getAllAccounts() {		
 		TypedQuery<AccountEntityHibernate> query = 
 				manager.createNamedQuery("getAllAccounts", AccountEntityHibernate.class);
 		List<AccountEntityHibernate> accountEntityList = query.getResultList();
 
-		return accountEntityList;		
+		//return accountEntityList;
+		return null;
 	}
 
 }

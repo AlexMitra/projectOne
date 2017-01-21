@@ -11,7 +11,7 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import by.kalilaska.entities.AccountEntity;
+import by.kalilaska.entities.impls.AccountEntity;
 import by.kalilaska.utils.SqlRequestUpdater;
 
 

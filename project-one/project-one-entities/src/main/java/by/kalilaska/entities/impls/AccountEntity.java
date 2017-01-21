@@ -1,4 +1,4 @@
-package by.kalilaska.entities;
+package by.kalilaska.entities.impls;
 
 public class AccountEntity{
 	

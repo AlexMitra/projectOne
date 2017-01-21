@@ -7,11 +7,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import by.kalilaska.BeansPool;
 import by.kalilaska.beans.UserAccountPageBean;
-import by.kalilaska.daoHibernate.impls.entities.AccountEntityHibernate;
-import by.kalilaska.daoHibernate.impls.entities.AccountRoleEntityHibernate;
-import by.kalilaska.daoHibernate.impls.repositories.AccountsRepositoryHibernate;
-import by.kalilaska.daoHibernate.impls.repositories.RolesRepositoryHibernate;
+import by.kalilaska.daoHibernate.repositories.AccountsRepositoryHibernate;
+import by.kalilaska.daoHibernate.repositories.RolesRepositoryHibernate;
 import by.kalilaska.services.ServiceOne;
+import by.kalilaska.entities.forHibernate.*;
 
 @Service
 @Qualifier(value = "ZabiraiServiceHibernate")
@@ -113,7 +112,14 @@ public class ZabiraiServiceHibernate implements ServiceOne{
 			System.out.println("account: " + account);
 			System.out.println("account role: " + account.getAccountRole().getRoleStatus());
 			
-			AccountRoleEntityHibernate role = rolesRepository.getAccountRoleById(3);
+		}catch(Exception e){
+			System.out.println("Exception info");
+			System.out.println(e.getMessage());
+			System.out.println(e.getClass().getName());
+		}
+		
+		try{			
+			RoleEntityHibernate role = rolesRepository.getAccountRoleById(3);
 			System.out.println("role: " + role);
 			System.out.println("accounts with this role: " + role.getAccountEntities());
 			

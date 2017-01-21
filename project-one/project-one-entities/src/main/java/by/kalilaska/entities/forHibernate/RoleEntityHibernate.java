@@ -1,4 +1,4 @@
-package by.kalilaska.daoHibernate.impls.entities;
+package by.kalilaska.entities.forHibernate;
 
 import java.io.Serializable;
 import java.util.List;
@@ -17,23 +17,24 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+
 @Entity
 @NamedQueries({
     @NamedQuery(
 	        name = "getAccountRoleByRoleStatus",
-	        query = "select r from AccountRoleEntityHibernate r where r.roleStatus = :role"
+	        query = "select r from RoleEntityHibernate r where r.roleStatus = :role"
 	    ),
     @NamedQuery(
 	        name = "getAllAccountRoles",
-	        query = "select r from AccountRoleEntityHibernate r"
+	        query = "select r from RoleEntityHibernate r"
 	    ),
     @NamedQuery(
 	        name = "deleteAccountRoleByRoleStatus",
-	        query = "delete from AccountRoleEntityHibernate r where r.roleStatus = :role"
+	        query = "delete from RoleEntityHibernate r where r.roleStatus = :role"
 	    )
 })
 @Table(name = "Roles")
-public class AccountRoleEntityHibernate implements Serializable{
+public class RoleEntityHibernate{
 
 	
 	@Id
@@ -55,11 +56,11 @@ public class AccountRoleEntityHibernate implements Serializable{
 			fetch = FetchType.LAZY)
 	private List<AccountEntityHibernate> accountEntities;
 
-	public AccountRoleEntityHibernate() {
+	public RoleEntityHibernate() {
 		super();
 	}	
 
-	public AccountRoleEntityHibernate(String roleStatus) {
+	public RoleEntityHibernate(String roleStatus) {
 		super();
 		this.roleStatus = roleStatus;
 	}
@@ -67,33 +68,31 @@ public class AccountRoleEntityHibernate implements Serializable{
 	public int getRoleId() {
 		return roleId;
 	}
-
+	
 	public String getRoleStatus() {
 		return roleStatus;
 	}
-
+	
 	public void setRoleId(int roleId) {
 		this.roleId = roleId;
 	}
-
+	
 	public void setRoleStatus(String roleRole) {
 		this.roleStatus = roleRole;
 	}
 	
-
 	public List<AccountEntityHibernate> getAccountEntities() {
 		return accountEntities;
 	}
-
+	
 	public void setAccountEntities(List<AccountEntityHibernate> accountEntities) {
 		//System.out.println("accountEntities: " + accountEntities.getClass().getSimpleName());
 		
 		this.accountEntities = (List<AccountEntityHibernate>)accountEntities;
 	}
-
-	@Override
+	
 	public String toString() {
-		return "AccountRoleEntity [roleId=" + roleId + ", roleStatus=" + roleStatus + "]";
+		return "RoleEntityHibernate [roleId=" + roleId + ", roleStatus=" + roleStatus + "]";
 	}	
 
 }

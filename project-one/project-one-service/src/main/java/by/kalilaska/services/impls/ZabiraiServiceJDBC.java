@@ -11,12 +11,11 @@ import by.kalilaska.beans.UserAccountPageBean;
 import by.kalilaska.daoJDBC.AccountsJDBC;
 import by.kalilaska.daoJDBC.AccountsToRolesJDBC;
 import by.kalilaska.daoJDBC.RolesJDBC;
-import by.kalilaska.entities.Account;
-import by.kalilaska.entities.AccountEntity;
-import by.kalilaska.entities.AccountRoleEntity;
-import by.kalilaska.entities.AccountToRoleEntity;
+import by.kalilaska.entities.impls.Account;
+import by.kalilaska.entities.impls.AccountEntity;
+import by.kalilaska.entities.impls.AccountRoleEntity;
+import by.kalilaska.entities.impls.AccountToRoleEntity;
 import by.kalilaska.services.ServiceOne;
-import by.kalilaska.entities.AccountEntity;
 
 @Service
 @Qualifier(value = "ZabiraiServiceJDBC")

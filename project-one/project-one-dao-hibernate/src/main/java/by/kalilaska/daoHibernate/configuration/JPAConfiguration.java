@@ -16,7 +16,7 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
 @Configuration
 @ComponentScan
-@EnableJpaRepositories("by.kalilaska.daoHibernate.impls")
+//@EnableJpaRepositories("by.kalilaska.entities.forHibernate")
 public class JPAConfiguration {
 	
 	@Bean
@@ -45,7 +45,7 @@ public class JPAConfiguration {
 		LocalContainerEntityManagerFactoryBean emf = new LocalContainerEntityManagerFactoryBean();
 		emf.setDataSource(ds);
 		emf.setJpaVendorAdapter(jva);
-		emf.setPackagesToScan(new String[]{"by.kalilaska.daoHibernate.impls"});
+		emf.setPackagesToScan(new String[]{"by.kalilaska.entities.forHibernate"});
 		
 		return emf;
 	}

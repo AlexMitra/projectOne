@@ -12,7 +12,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import by.kalilaska.EntitiesPool;
-import by.kalilaska.entities.AccountRoleEntity;
+import by.kalilaska.entities.impls.AccountRoleEntity;
 import by.kalilaska.utils.SqlRequestUpdater;
 
 @Repository
