@@ -17,6 +17,10 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
 @Entity
 @NamedQueries({
     @NamedQuery(
@@ -42,8 +46,8 @@ import javax.persistence.Table;
 	    ),
 })
 @Table(name = "Accounts")
+@Data
 public class AccountEntityHibernate{
-
 	
 	@Id
 	@Column(name = "Account_Id")
@@ -57,14 +61,8 @@ public class AccountEntityHibernate{
 	private String accountEmail;
 	
 	@Column(name = "Password")
-	private String accountPassword;
-	
-	//@ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
-	//@ManyToOne(targetEntity = AccountRoleEntityHibernate.class, fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
-	//@ManyToOne(fetch = FetchType.LAZY)
-	/*@JoinTable(name = "Accounts_to_roles",
-				joinColumns = @JoinColumn(name = "FK_Account_id", referencedColumnName = "Account_Id"),
-				inverseJoinColumns = @JoinColumn(name = "FK_Role_id", referencedColumnName = "Role_Id"))*/
+	private String accountPassword;	
+
 	@ManyToOne
 	@JoinTable(name = "Accounts_to_roles",
 	joinColumns = @JoinColumn(name = "FK_Account_id", referencedColumnName = "Account_Id"),
@@ -80,52 +78,12 @@ public class AccountEntityHibernate{
 		this.accountLogin = accountLogin;
 		this.accountEmail = accountEmail;
 		this.accountPassword = accountPassword;
-	}	
-	
-	public long getAccountId() {
-		return accountId;
 	}
-	
-	public String getAccountLogin() {
-		return accountLogin;
-	}
-	
-	public String getAccountEmail() {
-		return accountEmail;
-	}
-	
-	public String getAccountPassword() {
-		return accountPassword;
-	}
-	
-	public void setAccountId(long id) {
-		this.accountId = id;
-	}
-	
-	public void setAccountLogin(String accountLogin) {
-		this.accountLogin = accountLogin;
-	}
-	
-	public void setAccountEmail(String accountEmail) {
-		this.accountEmail = accountEmail;
-	}
-	
-	public void setAccountPassword(String accountPassword) {
-		this.accountPassword = accountPassword;
-	}	
-	
-	public RoleEntityHibernate getAccountRole() {
-		return accountRole;
-	}
-	
-	public void setAccountRole(RoleEntityHibernate accountRole) {
-		//System.out.println("accountRole: " + accountRole.getClass().getSimpleName());
-		this.accountRole = (RoleEntityHibernate)accountRole;
-	}
-	
+
+	@Override
 	public String toString() {
 		return "AccountEntityHibernate [accountId=" + accountId + ", accountLogin=" + accountLogin + ", accountEmail="
 				+ accountEmail + ", accountPassword=" + accountPassword + "]";
-	}
+	}	
 	
 }

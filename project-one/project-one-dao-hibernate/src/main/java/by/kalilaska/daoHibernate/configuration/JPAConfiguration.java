@@ -33,7 +33,7 @@ public class JPAConfiguration {
 	public JpaVendorAdapter jpaVendorAdapter(){
 		HibernateJpaVendorAdapter hva = new HibernateJpaVendorAdapter();
 		hva.setDatabase(Database.MYSQL);
-		hva.setShowSql(true);
+		hva.setShowSql(false);
 		hva.setGenerateDdl(false);
 		hva.setDatabasePlatform("org.hibernate.dialect.MySQLDialect");
 		return hva;

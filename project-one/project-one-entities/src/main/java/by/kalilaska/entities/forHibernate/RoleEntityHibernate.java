@@ -17,6 +17,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import lombok.Data;
+
 
 @Entity
 @NamedQueries({
@@ -34,6 +36,7 @@ import javax.persistence.Table;
 	    )
 })
 @Table(name = "Roles")
+@Data
 public class RoleEntityHibernate{
 
 	
@@ -44,13 +47,6 @@ public class RoleEntityHibernate{
 	
 	@Column(name = "Role")
 	private String roleStatus;
-	
-	//@OneToMany(mappedBy = "accountRole", fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
-	//@OneToMany(mappedBy = "accountRole", targetEntity = AccountEntityHibernate.class, fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
-	//@OneToMany(mappedBy = "accountRole", fetch = FetchType.LAZY)
-	/*@JoinTable(name = "Accounts_to_roles",
-				joinColumns = @JoinColumn(name = "FK_Account_id", referencedColumnName = "Id"),
-				inverseJoinColumns = @JoinColumn(name = "FK_Role_id", referencedColumnName = "Id"))*/
 	
 	@OneToMany(targetEntity = AccountEntityHibernate.class, mappedBy = "accountRole",
 			fetch = FetchType.LAZY)
@@ -65,34 +61,9 @@ public class RoleEntityHibernate{
 		this.roleStatus = roleStatus;
 	}
 
-	public int getRoleId() {
-		return roleId;
-	}
-	
-	public String getRoleStatus() {
-		return roleStatus;
-	}
-	
-	public void setRoleId(int roleId) {
-		this.roleId = roleId;
-	}
-	
-	public void setRoleStatus(String roleRole) {
-		this.roleStatus = roleRole;
-	}
-	
-	public List<AccountEntityHibernate> getAccountEntities() {
-		return accountEntities;
-	}
-	
-	public void setAccountEntities(List<AccountEntityHibernate> accountEntities) {
-		//System.out.println("accountEntities: " + accountEntities.getClass().getSimpleName());
-		
-		this.accountEntities = (List<AccountEntityHibernate>)accountEntities;
-	}
-	
+	@Override
 	public String toString() {
 		return "RoleEntityHibernate [roleId=" + roleId + ", roleStatus=" + roleStatus + "]";
 	}	
-
+	
 }
