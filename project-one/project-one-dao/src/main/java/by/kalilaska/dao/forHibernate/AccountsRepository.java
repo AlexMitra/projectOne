@@ -2,6 +2,7 @@ package by.kalilaska.dao.forHibernate;
 
 import java.util.List;
 import by.kalilaska.entities.forHibernate.AccountEntityHibernate;
+import by.kalilaska.entities.forHibernate.RoleEntityHibernate;
 
 public interface AccountsRepository {
 	
@@ -17,7 +18,9 @@ public interface AccountsRepository {
 	
 	AccountEntityHibernate getAccountById(long id);
 	
-	List<AccountEntityHibernate> getAccountsByLoginAndEmail(String login, String email);	
+	List<AccountEntityHibernate> getAccountsByLoginAndEmail(String login, String email);
+	
+	RoleEntityHibernate getAccountRoleByAccountId(long id);
 	
 	List<AccountEntityHibernate> getAllAccounts();
 

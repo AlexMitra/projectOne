@@ -11,8 +11,6 @@ public interface RolesRepository {
 	
 	RoleEntityHibernate getAccountRoleById(int id);
 	
-	RoleEntityHibernate getAccountRoleByRoleStatus(String role);
-	
-	RoleEntityHibernate getAccountRoleByAccountId(long id);
+	RoleEntityHibernate getAccountRoleByRoleStatus(String role);	
 
 }

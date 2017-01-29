@@ -34,7 +34,7 @@ import lombok.Setter;
     @NamedQuery(
         name = "getAccountsByLoginAndEmail",
         query = "select a from AccountEntityHibernate a where a.accountLogin = :login"
-        		+ " and a.accountEmail = :email"
+        		+ " or a.accountEmail = :email"
     ),
     @NamedQuery(
 	        name = "getAllAccounts",

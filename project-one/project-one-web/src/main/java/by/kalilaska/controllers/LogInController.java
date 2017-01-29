@@ -19,12 +19,13 @@ import by.kalilaska.services.impls.ZabiraiServiceJDBC;
 public class LogInController {
 	
 	@Autowired
-	@Qualifier(value = "ZabiraiServiceJDBC")
+	//@Qualifier(value = "ZabiraiServiceJDBC")
+	@Qualifier(value = "zabiraiServiceHibernate")
 	private ServiceOne zabiraiService;
 	
-	@Autowired
-	@Qualifier(value = "ZabiraiServiceHibernate")
-	private ServiceOne zabiraiServiceHibernate;
+	/*@Autowired
+	@Qualifier(value = "zabiraiServiceHibernate")
+	private ServiceOne zabiraiServiceHibernate;*/
 	
 	@Autowired
 	private BeansPool beansPool;

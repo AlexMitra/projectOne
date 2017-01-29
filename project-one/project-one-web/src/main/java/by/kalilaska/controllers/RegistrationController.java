@@ -5,6 +5,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -18,15 +19,17 @@ import by.kalilaska.services.ServiceOne;
 import by.kalilaska.services.impls.ZabiraiServiceJDBC;
 
 @Controller
+@Transactional
 public class RegistrationController {
 	
 	@Autowired
-	@Qualifier(value = "ZabiraiServiceJDBC")
+	//@Qualifier(value = "ZabiraiServiceJDBC")
+	@Qualifier(value = "zabiraiServiceHibernate")
 	private ServiceOne zabiraiService;
 	
-	@Autowired
-	@Qualifier(value = "ZabiraiServiceHibernate")
-	private ServiceOne zabiraiServiceHibernate;
+	/*@Autowired
+	@Qualifier(value = "zabiraiServiceHibernate")
+	private ServiceOne zabiraiServiceHibernate;*/
 	
 	@Autowired
 	private BeansPool beansPool;

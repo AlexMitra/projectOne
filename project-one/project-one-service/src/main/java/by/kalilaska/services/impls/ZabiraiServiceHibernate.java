@@ -1,5 +1,7 @@
 package by.kalilaska.services.impls;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -7,47 +9,52 @@ import org.springframework.transaction.annotation.Transactional;
 
 import by.kalilaska.BeansPool;
 import by.kalilaska.beans.UserAccountPageBean;
+import by.kalilaska.dao.forHibernate.AccountsRepository;
+import by.kalilaska.dao.forHibernate.RolesRepository;
 import by.kalilaska.daoHibernate.repositories.AccountsRepositoryHibernate;
 import by.kalilaska.daoHibernate.repositories.RolesRepositoryHibernate;
 import by.kalilaska.services.ServiceOne;
 import by.kalilaska.entities.forHibernate.*;
 
 @Service
-@Qualifier(value = "ZabiraiServiceHibernate")
+//@Qualifier(value = "ZabiraiServiceHibernate")
 public class ZabiraiServiceHibernate implements ServiceOne{
 	
 	@Autowired
 	private BeansPool beansPool;
 	
 	@Autowired
-	private AccountsRepositoryHibernate accountsRepository;
+	@Qualifier("accountsRepositoryHibernate")
+	private AccountsRepository accountsRepository;
 	
 	@Autowired
-	private RolesRepositoryHibernate rolesRepository;
+	@Qualifier("rolesRepositoryHibernate")
+	private RolesRepository rolesRepository;
 	
 	//TRUE
 	@Override
 	public boolean insertNewAccount(UserAccountPageBean account){
-		/*String check = getAccountsByLoginAndEmail(account);
+		String check = getAccountsByLoginAndEmail(account);
 		System.out.println(check);
 		
 		if(check.equals("login and email are unique")){
+			System.out.println("in ZabiraiServiceHibernate insertNewAccount() account:" + account);
 			
-			AccountEntity accountEntity = accountsJdbc.insertAccountWithReturn(
+			AccountEntityHibernate accountEntity = accountsRepository.insertAccountWithReturn(
 					account.getAccountLogin(), account.getAccountEmail(),
 					account.getAccountPassword());
 			account.setId(accountEntity.getAccountId());
 			
-			accountsToRolesJdbc.insertRole(accountEntity.getAccountId(), 3);
-			AccountRoleEntity accountRoleEntity = 
-					rolesJdbc.getAccountRoleByAccountId(accountEntity.getAccountId());			
+			//accountsToRolesJdbc.insertRole(accountEntity.getAccountId(), 3);
+			//AccountRoleEntity accountRoleEntity = 
+					//rolesJdbc.getAccountRoleByAccountId(accountEntity.getAccountId());			
 			return true;
 		}else if(check.equals("this login already exist")){
 			account.setLoginCheck(check);
 			return false;
 		}else if(check.equals("this email already exist")){
 			account.setEmailCheck(check);
-		}*/
+		}
 
 		return false;
 	}
@@ -56,15 +63,13 @@ public class ZabiraiServiceHibernate implements ServiceOne{
 	@Override
 	public String getAccountsByLoginAndEmail(UserAccountPageBean account){
 		
-		/*List<AccountEntity> accounts= accountsJdbc.getAccountsByLoginAndEmail(
-				account.getAccountLogin(), account.getAccountEmail());
+		List<AccountEntityHibernate> accounts= accountsRepository.getAccountsByLoginAndEmail(
+				account.getAccountLogin(), account.getAccountEmail());		
 		
-		//List<AccountEntity> accounts= accountsJdbc.getAllAccounts();
-		
-		System.out.println("in service getAccountsByLoginAndEmail() accounts:" + accounts);
+		System.out.println("in ZabiraiServiceHibernate getAccountsByLoginAndEmail() accounts:" + accounts);
 		
 		if(accounts!=null){
-			for (AccountEntity accountEntity : accounts) {
+			for (AccountEntityHibernate accountEntity : accounts) {
 				if(accountEntity.getAccountLogin().equals(account.getAccountLogin())){
 					return "this login already exist";
 				}
@@ -72,18 +77,15 @@ public class ZabiraiServiceHibernate implements ServiceOne{
 					return "this email already exist";
 				}
 			}			
-		}*/
+		}
 		return "login and email are unique";		
 	}
 	
 	//TRUE
 	@Override
-	public boolean checkAccount(UserAccountPageBean account){
-		
-		/*System.out.println("in ZabiraiService checkAccount() account for check: " + account);
-		
-		AccountEntity accountEntity = accountsJdbc.getAccountByLogin(account.getAccountLogin());
-		//System.out.println("in ZabiraiService checkAccount() accountEntity: " + accountEntity);
+	public boolean checkAccount(UserAccountPageBean account){		
+		AccountEntityHibernate accountEntity = 
+				accountsRepository.getAccountByLogin(account.getAccountLogin());		
 		
 		if(accountEntity==null){
 			account.setLoginCheck("this login does not exist");
@@ -94,14 +96,11 @@ public class ZabiraiServiceHibernate implements ServiceOne{
 		}else{
 			account.setId(accountEntity.getAccountId());
 			account.setAccountEmail(accountEntity.getAccountEmail());
-			AccountToRoleEntity accountToRoleEntity = 
-					accountsToRolesJdbc.getAccountToRoleByAccountId(accountEntity.getAccountId());
-			AccountRoleEntity accountRoleEntity = rolesJdbc.getAccountRoleById(accountToRoleEntity.getFkRoleId());
-			account.setStatus(accountRoleEntity.getRoleStatus());
+			
+			account.setStatus(accountEntity.getAccountRole().getRoleStatus());
 			System.out.println("in ZabiraiService checkAccount() account after check: " + account);
 			return true;
-		}	*/
-		return false;
+		}		
 	}	
 	
 	@Transactional
@@ -127,11 +126,6 @@ public class ZabiraiServiceHibernate implements ServiceOne{
 			System.out.println("Exception info");
 			System.out.println(e.getMessage());
 			System.out.println(e.getClass().getName());
-		}
-		
-
-		
+		}		
 	}
-	
-
 }
