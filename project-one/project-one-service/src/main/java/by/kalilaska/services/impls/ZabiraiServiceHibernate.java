@@ -17,7 +17,6 @@ import by.kalilaska.services.ServiceOne;
 import by.kalilaska.entities.forHibernate.*;
 
 @Service
-//@Qualifier(value = "ZabiraiServiceHibernate")
 public class ZabiraiServiceHibernate implements ServiceOne{
 	
 	@Autowired
@@ -43,11 +42,7 @@ public class ZabiraiServiceHibernate implements ServiceOne{
 			AccountEntityHibernate accountEntity = accountsRepository.insertAccountWithReturn(
 					account.getAccountLogin(), account.getAccountEmail(),
 					account.getAccountPassword());
-			account.setId(accountEntity.getAccountId());
-			
-			//accountsToRolesJdbc.insertRole(accountEntity.getAccountId(), 3);
-			//AccountRoleEntity accountRoleEntity = 
-					//rolesJdbc.getAccountRoleByAccountId(accountEntity.getAccountId());			
+			account.setId(accountEntity.getAccountId());			
 			return true;
 		}else if(check.equals("this login already exist")){
 			account.setLoginCheck(check);

@@ -16,7 +16,7 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
 @Configuration
 @ComponentScan
-//@EnableJpaRepositories("by.kalilaska.entities.forHibernate")
+@EnableJpaRepositories("by.kalilaska.daoHibernate.repositories.springData")
 public class JPAConfiguration {
 	
 	@Bean

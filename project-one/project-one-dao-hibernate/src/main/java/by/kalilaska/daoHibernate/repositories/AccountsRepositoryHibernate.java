@@ -19,7 +19,7 @@ import by.kalilaska.entities.impls.AccountRoleEntity;
 import by.kalilaska.dao.forHibernate.AccountsRepository;;
 
 @Repository
-@Transactional
+
 public class AccountsRepositoryHibernate implements AccountsRepository{	
 
 	@PersistenceContext

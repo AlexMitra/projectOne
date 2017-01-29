@@ -24,7 +24,8 @@ public class RegistrationController {
 	
 	@Autowired
 	//@Qualifier(value = "ZabiraiServiceJDBC")
-	@Qualifier(value = "zabiraiServiceHibernate")
+	//@Qualifier(value = "zabiraiServiceHibernate")
+	@Qualifier(value = "zabiraiServiceData")
 	private ServiceOne zabiraiService;
 	
 	/*@Autowired
