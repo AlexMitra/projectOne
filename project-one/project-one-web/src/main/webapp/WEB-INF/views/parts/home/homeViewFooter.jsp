@@ -15,6 +15,6 @@
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src=<c:url value="resources/forViews/js/bootstrap.js"/>></script>
+    <script src=<c:url value="/resources/forViews/js/bootstrap.js"/>></script>
 
 

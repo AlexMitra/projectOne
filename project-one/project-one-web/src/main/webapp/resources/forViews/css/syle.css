@@ -46,3 +46,9 @@
 #image-logo{
     color: brown;
 }
+
+.accounts-table-area{
+	overflow: scroll; /* Добавляем полосы прокрутки */    
+    height: 50%; /* Высота блока */    
+    border: 0px; /* Параметры рамки */
+}

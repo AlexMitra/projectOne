@@ -18,8 +18,9 @@
 		<hibernate-validator.version>5.2.4.Final</hibernate-validator.version>
 		<mysql-connector-version>5.1.38</mysql-connector-version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<jackson.version>2.8.5</jackson.version>
+		<jackson-databind.version>2.8.5</jackson-databind.version>
 		<hibernate.version>5.2.5.Final</hibernate.version>
+		<dozer.version>5.5.1</dozer.version>
 	</properties>
 
 	<build>

@@ -24,10 +24,6 @@ public class LogInController {
 	@Qualifier(value = "zabiraiServiceData")
 	private ServiceOne zabiraiService;
 	
-	/*@Autowired
-	@Qualifier(value = "zabiraiServiceHibernate")
-	private ServiceOne zabiraiServiceHibernate;*/
-	
 	@Autowired
 	private BeansPool beansPool;
 	
@@ -48,7 +44,7 @@ public class LogInController {
 				return modelAndView;
 			}else{
 				String redirect = "redirect:/personalArea/user/" + account.getAccountLogin() + ".html";
-				ModelAndView modelAndView = new ModelAndView(redirect, "accountPageBean", account);
+				ModelAndView modelAndView = new ModelAndView(redirect, "accountPageBean", account);				
 				return modelAndView;
 			}			
 			

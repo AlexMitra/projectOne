@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import by.kalilaska.beans.AccountBean;
 import by.kalilaska.beans.UserAccountPageBean;
 import by.kalilaska.dao.forHibernate.AccountsRepository;
 import by.kalilaska.daoHibernate.repositories.springData.AccountsRepositoryData;
@@ -13,15 +14,19 @@ import by.kalilaska.daoHibernate.repositories.springData.RolesRepositoryData;
 import by.kalilaska.entities.forHibernate.AccountEntityHibernate;
 import by.kalilaska.entities.forHibernate.RoleEntityHibernate;
 import by.kalilaska.services.ServiceOne;
+import by.kalilaska.utilities.EntityToBeanConverter;
 
 @Service
 public class ZabiraiServiceData implements ServiceOne{
-	
+
 	@Autowired	
 	private AccountsRepositoryData accountsRepository;
 	
 	@Autowired	
 	private RolesRepositoryData rolesRepository;
+	
+	@Autowired
+	private EntityToBeanConverter entityToBeanConverter;
 	
 	private RoleEntityHibernate roleUser;
 	
@@ -113,6 +118,14 @@ public class ZabiraiServiceData implements ServiceOne{
 	public void test() {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	@Override
+	public List<AccountBean> getAllAccounts() {
+		List<AccountEntityHibernate> accountEntityList = accountsRepository.findAll();
+		List<AccountBean> accountBeanList = entityToBeanConverter.convertToBeanList(
+				accountEntityList, AccountBean.class);
+		return accountBeanList;
 	}
 
 }

@@ -5,6 +5,18 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 		
-<context:component-scan base-package="by.kalilaska.services"></context:component-scan>
+	<context:component-scan base-package="by.kalilaska.services"></context:component-scan>
+	<context:component-scan base-package="by.kalilaska.utilities"></context:component-scan>
+
+	<!-- Bean Configuration for Dozer Framework -->
+	<bean class="org.dozer.spring.DozerBeanMapperFactoryBean">
+		<property name="mappingFiles" value="classpath:/dozer/mappings/*_mapping.xml" />
+
+		<property name="customConverters">
+			<list>
+				<bean class="by.kalilaska.utilities.impls.dozer.RoleEntityToRoleStatusConverter" />
+			</list>
+		</property>
+	</bean>
 
 </beans>

@@ -28,10 +28,6 @@ public class RegistrationController {
 	@Qualifier(value = "zabiraiServiceData")
 	private ServiceOne zabiraiService;
 	
-	/*@Autowired
-	@Qualifier(value = "zabiraiServiceHibernate")
-	private ServiceOne zabiraiServiceHibernate;*/
-	
 	@Autowired
 	private BeansPool beansPool;
 	

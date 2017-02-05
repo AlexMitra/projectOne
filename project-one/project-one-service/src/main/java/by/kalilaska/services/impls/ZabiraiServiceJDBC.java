@@ -16,10 +16,11 @@ import by.kalilaska.entities.impls.AccountEntity;
 import by.kalilaska.entities.impls.AccountRoleEntity;
 import by.kalilaska.entities.impls.AccountToRoleEntity;
 import by.kalilaska.services.ServiceOne;
+import by.kalilaska.services.ServiceOneJdbc;
 
 @Service
 @Qualifier(value = "ZabiraiServiceJDBC")
-public class ZabiraiServiceJDBC implements ServiceOne{
+public class ZabiraiServiceJDBC implements ServiceOneJdbc{
 	
 	@Autowired
 	private BeansPool beansPool;

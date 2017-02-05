@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import by.kalilaska.BeansPool;
+import by.kalilaska.beans.AccountBean;
 import by.kalilaska.beans.UserAccountPageBean;
 import by.kalilaska.dao.forHibernate.AccountsRepository;
 import by.kalilaska.dao.forHibernate.RolesRepository;
@@ -19,6 +20,12 @@ import by.kalilaska.entities.forHibernate.*;
 @Service
 public class ZabiraiServiceHibernate implements ServiceOne{
 	
+	@Override
+	public List<AccountBean> getAllAccounts() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	@Autowired
 	private BeansPool beansPool;
 	
