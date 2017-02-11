@@ -82,7 +82,7 @@
                                         <table class="table table-hover">
                                             <thead>
                                                 <tr>
-                                                	<th>N</th>
+                                                	<th>#</th>
                                                     <th>Id</th>
                                                     <th>Login</th>
                                                     <th>Email</th>
@@ -98,10 +98,10 @@
 									<!--  aria-label="..." -->
                                     <div class="btn-group btn-group-justified" role="group">
   										<div class="btn-group" role="group">
-    										<button id="add-account" type="button" class="btn btn-default" aria-label="Add" disabled>Add</button>
+    										<button id="add-account" type="button" class="btn btn-default" aria-label="Add" >Add</button>
   										</div>
   										<div class="btn-group" role="group">
-    										<button id="update-account" type="button" class="btn btn-default" aria-label="Update" disabled>Update</button>
+    										<button id="update-account" type="button" class="btn btn-default" aria-label="Edit" disabled>Edit</button>
   										</div>
   										<div class="btn-group" role="group">
     										<button id="delete-account" type="button" class="btn btn-danger" aria-label="Delete" disabled>Delete</button>

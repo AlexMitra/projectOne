@@ -118,16 +118,19 @@ var workWithElements = {
 		}	
 	}
 }
-
+function hello(){
+	alert("hello");
+}
 
 var accountsTable = {
 	createAccountsTable: function(data){
 		var str = '';
 		var n;
+		var link = 'getbootstrap.com/';
 		for(var i in data){
 			//alert("typeof i: " + typeof i);
 			n = +i + 1;
-			str += '<tr>';
+			str += '<tr class="linkrow" onclick="hello()">';
 			str += '<td>' + n + '</td>';
 			str += '<td>' + data[i].accountId + '</td>';
 			str += '<td>' + data[i].accountLogin + '</td>';
@@ -150,13 +153,16 @@ var accountsTable = {
 				str += '<tr>';
 				str += '<td>' + n + '</td>';
 				str += '<td>' + data[i].accountId + '</td>';
-				if(searchOptions.getSearchFiled()==='byLogin'){					
-
-					str += column.createColumn(data[i].accountLogin, part);
-					str += '<td>' + data[i].accountEmail + '</td>';
-				}else if(searchOptions.getSearchFiled()==='byEmail'){
-					str += '<td>' + data[i].accountLogin + '</td>';				
+				if(searchOptions.getSearchFiled()==='byLogin'){
+					str += column.createColumn(data[i].accountLogin, part);					
+				}else{
+					str += '<td>' + data[i].accountLogin + '</td>';
+				}
+				
+				if(searchOptions.getSearchFiled()==='byEmail'){					
 					str += column.createColumn(data[i].accountEmail, part);
+				}else{
+					str += '<td>' + data[i].accountEmail + '</td>';
 				}
 				
 				str += '<td>' + data[i].accountPassword + '</td>';
