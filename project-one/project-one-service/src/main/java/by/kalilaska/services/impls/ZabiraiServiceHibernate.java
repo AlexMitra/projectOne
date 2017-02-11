@@ -130,4 +130,10 @@ public class ZabiraiServiceHibernate implements ServiceOne{
 			System.out.println(e.getClass().getName());
 		}		
 	}
+
+	@Override
+	public List<AccountBean> getSearchedAccounts(String part, String searchField, String searchPlace) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

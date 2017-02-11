@@ -19,8 +19,7 @@
                                 <a href="#">Сообщения</a>
                             </li>
                             <li>
-                                <a id = "allAccounts" href="#allAccounts">Пользователи</a>
-<!--                                 <a id = "allAccounts" href="/project-one-web/personalArea/api/allAccounts">Пользователи</a> -->
+                                <a id = "allAccounts" href="#allAccounts" onclick="workWithData.getAccountsData()">Пользователи</a>
                             </li>
                             <li>
                                 <a href="#">Объявления</a>
@@ -37,8 +36,7 @@
 
                     <!-- Page Content -->
                     <div id="page-content-wrapper">
-                        <div class="container-fluid">
-                            <div class="row">
+                        
                             	<div id="personal-info" class="col-lg-12" style="display: ">
                             		<h3 align="center">Glad to see you, ${accountPageBean.accountLogin}!</h3>
                             	</div>
@@ -48,52 +46,35 @@
                                     	<div class="input-group-btn">
                                             <button id="menu-button-1" type="button" class="btn btn-default dropdown-toggle" 
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" 
-                                            onclick="displayMenuOne()">By Login
+                                            onclick="displaySearchOptions.DisplaySearchOptionOne()">By Login
                                                 <span class="caret"></span>
                                             </button>
-                                            <ul id="menu-1" class="dropdown-menu">
-                                                <li><a href="#">by login</a> 
+                                            <ul id="search-option-1" class="dropdown-menu">
+                                                <li><a id = "search-by-login" href="#search-by-login" onclick="searcher.searchByLogin()">By Login</a> 
                                                 </li>
                                                 <li class="divider"></li>
-                                                <li><a href="#">by email</a>
+                                                <li><a id = "search-by-email" href="#search-by-email" onclick="searcher.searchByEmail()">By Email</a>
                                                 </li>
-                                                <li class="divider"></li>
-                                                <li><a href="#">by status</a>
-                                                </li>
+											<!--   <li class="divider"></li> -->
+											<!--   <li><a id = "search-by-role" href="#search-by-role" onclick="searchByRole()">By Role</a> -->
+											<!--   </li> -->
                                             </ul>
 
                                             <button id="menu-button-2" type="button" class="btn btn-default dropdown-toggle" 
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" 
-                                            onclick="displayMenuTwo()">At first
+                                            onclick="displaySearchOptions.DisplaySearchOptionTwo()">At first
                                                 <span class="caret"></span>
                                             </button>
-                                            <ul id="menu-2" class="dropdown-menu">
-                                                <li><a href="#">at first</a> 
+                                            <ul id="search-option-2" class="dropdown-menu">
+                                                <li><a id = "search-at-first" href="#search-at-first" onclick="searcher.searchAtFirstLetters()">At First</a> 
                                                 </li>
                                                 <li class="divider"></li>
-                                                <li><a href="#">anywhere</a>
+                                                <li><a id = "search-anywhere" href="#search-anywhere" onclick="searcher.searchAnywhere()">Anywhere</a>
                                                 </li>
                                             </ul>
                                         </div>
 
-                                        <script>
-                                        	menuOne = document.getElementById("menu-1");
-                                        	menuTwo = document.getElementById("menu-2");
-                                        	
-                                            function displayMenuOne() {
-                                                
-                                                menuOne.removeAttribute("style");
-                                                hideElement("menu-2");                                                
-                                            }
-
-                                            function displayMenuTwo() {
-                                                
-                                                menuTwo.removeAttribute("style");
-                                                hideElement("menu-1");
-                                            }                                           
-
-                                        </script>
-                                        <input type="text" class="form-control">
+                                        <input id = "search-accounts" type="text" class="form-control" onkeyup="workWithData.getSearchedData()">
                                         <span class="input-group-btn"><button class="btn btn-default" type="button"><i class="fa fa-search"></i></button></span>
                                     </div>
                                     
@@ -101,11 +82,12 @@
                                         <table class="table table-hover">
                                             <thead>
                                                 <tr>
+                                                	<th>N</th>
                                                     <th>Id</th>
                                                     <th>Login</th>
                                                     <th>Email</th>
                                                     <th>Password</th>
-                                                    <th>Status</th>
+                                                    <th>Role</th>
                                                 </tr>
                                             </thead>                                            
                                             <tbody id="accounts-data">
@@ -113,10 +95,21 @@
                                             </tbody>                                            
                                         </table>
                                     </div>
+									<!--  aria-label="..." -->
+                                    <div class="btn-group btn-group-justified" role="group">
+  										<div class="btn-group" role="group">
+    										<button id="add-account" type="button" class="btn btn-default" aria-label="Add" disabled>Add</button>
+  										</div>
+  										<div class="btn-group" role="group">
+    										<button id="update-account" type="button" class="btn btn-default" aria-label="Update" disabled>Update</button>
+  										</div>
+  										<div class="btn-group" role="group">
+    										<button id="delete-account" type="button" class="btn btn-danger" aria-label="Delete" disabled>Delete</button>
+  										</div>
+									</div>
                                                                         
                                 </div>
-                            </div>
-                        </div>
+                        
                     </div>
                     <!-- /#page-content-wrapper -->
 

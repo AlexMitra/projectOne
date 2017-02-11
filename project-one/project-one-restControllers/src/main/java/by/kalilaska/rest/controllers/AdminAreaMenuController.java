@@ -50,9 +50,22 @@ public class AdminAreaMenuController {
 	public ResponseEntity<List<AccountBean>> getAllAccounts() {
 		List<AccountBean> accountBeanList = zabiraiService.getAllAccounts();
 		return new ResponseEntity<List<AccountBean>>(accountBeanList, HttpStatus.ACCEPTED);		
-	}	
+	}
 	
-	@RequestMapping(value = "/test", 
+	@RequestMapping(value="/personalArea/admin/api/matchedAccounts", 
+			method = RequestMethod.GET, headers = "Accept=application/json",
+			produces={"application/json"})	
+	@ResponseBody
+	public ResponseEntity<List<AccountBean>> getMatchedAccounts(@RequestParam String part, 
+			String searchField, String searchPlace) {
+		System.out.println("part: " + part + ", searchField: " + searchField + ", searchPlace: " + searchPlace);
+		
+		List<AccountBean> accountBeanList = zabiraiService.getSearchedAccounts(part, 
+				searchField, searchPlace);
+		return new ResponseEntity<List<AccountBean>>(accountBeanList, HttpStatus.ACCEPTED);		
+	}
+	
+	/*@RequestMapping(value = "/test", 
 			method = RequestMethod.GET, headers = "Accept=application/json",
 			produces={"application/json"})
 	@ResponseBody
@@ -62,7 +75,7 @@ public class AdminAreaMenuController {
 		t.setName("Alex");
 		System.out.println(zabiraiService.getAllAccounts());
 		return new ResponseEntity<Test>(t, HttpStatus.ACCEPTED);		
-	}
+	}*/
 	
 	/*@RequestMapping(value="/project-one-web/personalArea/api/account", method = RequestMethod.GET, produces="application/json")
 	@ResponseBody

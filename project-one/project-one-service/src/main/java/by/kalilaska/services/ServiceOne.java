@@ -8,14 +8,16 @@ import by.kalilaska.entities.forHibernate.AccountEntityHibernate;
 
 public interface ServiceOne {
 	
-	public boolean insertNewAccount(UserAccountPageBean account);	
+	boolean insertNewAccount(UserAccountPageBean account);	
 	
-	public String getAccountsByLoginAndEmail(UserAccountPageBean account);	
+	String getAccountsByLoginAndEmail(UserAccountPageBean account);	
 	
-	public boolean checkAccount(UserAccountPageBean account);
+	boolean checkAccount(UserAccountPageBean account);
 	
-	public void test();
+	void test();
 	
-	public List<AccountBean> getAllAccounts();
+	List<AccountBean> getAllAccounts();
+	
+	List<AccountBean> getSearchedAccounts(String part, String searchField, String searchPlace);
 
 }

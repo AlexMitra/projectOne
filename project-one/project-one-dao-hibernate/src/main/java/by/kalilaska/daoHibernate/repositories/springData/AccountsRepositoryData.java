@@ -16,12 +16,20 @@ public interface AccountsRepositoryData
 					extends JpaRepository<AccountEntityHibernate, Long>{
 		
 	//SELECT		
-	public AccountEntityHibernate findByAccountLogin(String login);
+	AccountEntityHibernate findByAccountLogin(String login);
 		
 	//SELECT		
-	public AccountEntityHibernate findByAccountEmail(String email);
+	AccountEntityHibernate findByAccountEmail(String email);
 
 	////SELECT BY LOGIN AND EMAIL		
-	public List<AccountEntityHibernate> findByAccountLoginOrAccountEmail(String login, String email);	
+	List<AccountEntityHibernate> findByAccountLoginOrAccountEmail(String login, String email);
+	
+	List<AccountEntityHibernate> findByAccountLoginStartingWith(String reg);
+	
+	List<AccountEntityHibernate> findByAccountEmailStartingWith(String reg);
+	
+	List<AccountEntityHibernate> findByAccountLoginContaining(String reg);
+	
+	List<AccountEntityHibernate> findByAccountEmailContaining(String reg);
 
 }

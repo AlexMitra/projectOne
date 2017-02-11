@@ -14,6 +14,7 @@ import by.kalilaska.daoHibernate.repositories.springData.RolesRepositoryData;
 import by.kalilaska.entities.forHibernate.AccountEntityHibernate;
 import by.kalilaska.entities.forHibernate.RoleEntityHibernate;
 import by.kalilaska.services.ServiceOne;
+import by.kalilaska.utilities.AccountsSearcher;
 import by.kalilaska.utilities.EntityToBeanConverter;
 
 @Service
@@ -27,6 +28,9 @@ public class ZabiraiServiceData implements ServiceOne{
 	
 	@Autowired
 	private EntityToBeanConverter entityToBeanConverter;
+	
+	//@Autowired
+	//private AccountsSearcher accountsSearcher;
 	
 	private RoleEntityHibernate roleUser;
 	
@@ -126,6 +130,44 @@ public class ZabiraiServiceData implements ServiceOne{
 		List<AccountBean> accountBeanList = entityToBeanConverter.convertToBeanList(
 				accountEntityList, AccountBean.class);
 		return accountBeanList;
+	}
+	
+	public List<AccountBean> getSearchedAccounts(String part, String searchField, String searchPlace){		
+		if(searchField.equalsIgnoreCase("byLogin")){
+			if(searchPlace.equalsIgnoreCase("atFirstLetters")){
+				List<AccountEntityHibernate> accountEntityList = accountsRepository.findByAccountLoginStartingWith(part.trim());
+				//findByAccountLoginLike(part.trim() + "%");
+				List<AccountBean> accountBeanList = entityToBeanConverter.convertToBeanList(
+						accountEntityList, AccountBean.class);
+				return accountBeanList;
+			}else if(searchPlace.equalsIgnoreCase("anywhere")){
+				List<AccountEntityHibernate> accountEntityList = accountsRepository.findByAccountLoginContaining(part.trim());
+				List<AccountBean> accountBeanList = entityToBeanConverter.convertToBeanList(
+						accountEntityList, AccountBean.class);
+				return accountBeanList;
+			}else{
+				return null;
+			}
+			
+		}else if(searchField.equalsIgnoreCase("byEmail")){
+			if(searchPlace.equalsIgnoreCase("atFirstLetters")){
+				List<AccountEntityHibernate> accountEntityList = accountsRepository.findByAccountEmailStartingWith(part.trim());
+				//findByAccountEmailLike(part.trim() + "%");
+				List<AccountBean> accountBeanList = entityToBeanConverter.convertToBeanList(
+						accountEntityList, AccountBean.class);
+				return accountBeanList;
+			}else if(searchPlace.equalsIgnoreCase("anywhere")){
+				List<AccountEntityHibernate> accountEntityList = accountsRepository.findByAccountEmailContaining(part.trim());
+				List<AccountBean> accountBeanList = entityToBeanConverter.convertToBeanList(
+						accountEntityList, AccountBean.class);
+				return accountBeanList;
+			}else{
+				return null;
+			}
+			
+		}
+		
+		return null;
 	}
 
 }
