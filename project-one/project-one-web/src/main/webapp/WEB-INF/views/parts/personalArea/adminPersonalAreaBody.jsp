@@ -38,7 +38,7 @@
                     <div id="page-content-wrapper">
                         
                             	<div id="personal-info" class="col-lg-12" style="display: ">
-                            		<h3 align="center">Glad to see you, ${accountPageBean.accountLogin}!</h3>
+                            		<h3 align="center">Glad to see you, ${accountPageBean.getAccountLogin()}!</h3>
                             	</div>
                                 <div id="accounts" class="col-lg-12" style = "display: none;">
                                     <h2>Accounts</h2>                                    
@@ -78,6 +78,31 @@
                                         <span class="input-group-btn"><button class="btn btn-default" type="button"><i class="fa fa-search"></i></button></span>
                                     </div>
                                     
+                                    <div id="select-roles">
+                                		<a class="btn btn-primary-my" role="button" data-toggle="collapse" href="#role-variants" aria-expanded="false">
+                                    		Roles
+                                		</a>
+
+                                		<div class="collapse" id="role-variants">
+                                    		<div class="well">
+                                        		<div id="role-checkboxes" class="row">
+
+                                        			<c:set var="allRoles" value="${accountPageBean.getAllRoles()}"/>
+                                        			<c:forEach items="${allRoles}" var="role">
+                                        				<div class="col-lg-4 col-md-4 col-sm-4">
+                                                			<div class="checkbox">
+                                                    			<label>
+                                                        			<input type="checkbox" id="checkbox-${role}" onclick="if(this.checked){searchOptions.addRole(this.id)} else {searchOptions.removeRole(this.id)}"><c:out value="${role}"/>
+                                                    			</label>
+                                                			</div>
+                                            			</div>
+                                        			</c:forEach>
+                                        			
+                                        		</div>
+                                    		</div>
+                                		</div>
+                            		</div>
+                                    
                                     <div  id="accounts-table" class="table-responsive accounts-table-area">                                    
                                         <table class="table table-hover">
                                             <thead>
@@ -97,14 +122,17 @@
                                     </div>
 									<!--  aria-label="..." -->
                                     <div class="btn-group btn-group-justified" role="group">
-  										<div class="btn-group" role="group">
-    										<button id="add-account" type="button" class="btn btn-default" aria-label="Add" >Add</button>
+                                    	<div class="btn-group" role="group">
+    										<button id="unselect-all-account-button" type="button" class="btn btn-default" aria-label="Unselect All" disabled onclick="workWithElements.unselectAllCheckboxes()">Unselect All</button>
   										</div>
   										<div class="btn-group" role="group">
-    										<button id="update-account" type="button" class="btn btn-default" aria-label="Edit" disabled>Edit</button>
+    										<button id="add-account-button" type="button" class="btn btn-default" aria-label="Add">Add</button>
   										</div>
   										<div class="btn-group" role="group">
-    										<button id="delete-account" type="button" class="btn btn-danger" aria-label="Delete" disabled>Delete</button>
+    										<button id="update-account-button" type="button" class="btn btn-default" aria-label="Edit" disabled>Edit</button>
+  										</div>
+  										<div class="btn-group" role="group">
+    										<button id="delete-account-button" type="button" class="btn btn-danger" aria-label="Delete" disabled>Delete</button>
   										</div>
 									</div>
                                                                         

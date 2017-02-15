@@ -18,6 +18,11 @@ public interface ServiceOne {
 	
 	List<AccountBean> getAllAccounts();
 	
-	List<AccountBean> getSearchedAccounts(String part, String searchField, String searchPlace);
+	List<AccountBean> getSearchedAccounts(String part, String searchField, 
+			String searchPlace, String roles);
+	
+	List<String> getAllRoles();
+	
+	List<AccountBean> getSelectedRoleAccounts(String roleStatus);
 
 }

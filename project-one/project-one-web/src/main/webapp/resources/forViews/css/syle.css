@@ -52,3 +52,27 @@
     height: 50%; /* Высота блока */    
     border: 0px; /* Параметры рамки */
 }
+
+.btn-primary-my{ 
+	color: #fff;
+	background-color: #222;
+	border-color: #080808;
+}
+
+.btn-primary-my:hover {
+  color: brown;
+  background-color: #222;
+  border-color: #080808;
+}
+
+.btn-primary-my:active {
+  color: brown;
+  background-color: #222;
+  border-color: #080808;
+}
+
+.btn-primary-my:focus {
+  color: #fff;
+  background-color: #222;
+  border-color: #080808;
+}

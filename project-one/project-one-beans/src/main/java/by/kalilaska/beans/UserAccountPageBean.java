@@ -1,5 +1,7 @@
 package by.kalilaska.beans;
 
+import java.util.List;
+
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -26,6 +28,16 @@ public class UserAccountPageBean{
 	private String emailCheck;
 	
 	private String passwordCheck;
+	
+	private List<String> allRoles;
+
+	public List<String> getAllRoles() {
+		return allRoles;
+	}
+
+	public void setAllRoles(List<String> roles) {
+		this.allRoles = roles;
+	}
 
 	public long getId() {
 		return id;

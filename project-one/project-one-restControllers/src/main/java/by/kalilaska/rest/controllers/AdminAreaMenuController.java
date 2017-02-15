@@ -1,6 +1,7 @@
 package by.kalilaska.rest.controllers;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,12 +58,41 @@ public class AdminAreaMenuController {
 			produces={"application/json"})	
 	@ResponseBody
 	public ResponseEntity<List<AccountBean>> getMatchedAccounts(@RequestParam String part, 
-			String searchField, String searchPlace) {
-		System.out.println("part: " + part + ", searchField: " + searchField + ", searchPlace: " + searchPlace);
+			String searchField, String searchPlace, String roles) {
+		//System.out.println("part: " + part + ", searchField: " + searchField + ", searchPlace: " + searchPlace);
 		
 		List<AccountBean> accountBeanList = zabiraiService.getSearchedAccounts(part, 
-				searchField, searchPlace);
+			searchField, searchPlace, roles);
+		return new ResponseEntity<List<AccountBean>>(accountBeanList, HttpStatus.ACCEPTED);	
+	
+	}
+	
+	@RequestMapping(value="/personalArea/admin/api/selectedRolesAccounts", 
+			method = RequestMethod.GET, headers = "Accept=application/json",
+			produces={"application/json"})	
+	@ResponseBody
+	public ResponseEntity<List<AccountBean>> getSelectedRolesAccounts(@RequestParam String roles) {
+		
+		String[] rolesArr = roles.split("checkbox-");
+		List<AccountBean> accountBeanList = new ArrayList<>();
+		for (String role : rolesArr) {
+			if(role.length()>=1){
+				accountBeanList.addAll(zabiraiService.getSelectedRoleAccounts(role));
+			}
+		}
+		
+		System.out.println(accountBeanList);
+		
 		return new ResponseEntity<List<AccountBean>>(accountBeanList, HttpStatus.ACCEPTED);		
+	}
+	
+	@RequestMapping(value="/personalArea/admin/api/allRoles", 
+			method = RequestMethod.GET, headers = "Accept=application/json",
+			produces={"application/json"})	
+	@ResponseBody
+	public ResponseEntity<List<String>> getRoles() {
+		List<String> roleNameList = zabiraiService.getAllRoles();
+		return new ResponseEntity<List<String>>(roleNameList, HttpStatus.ACCEPTED);		
 	}
 	
 	/*@RequestMapping(value = "/test", 

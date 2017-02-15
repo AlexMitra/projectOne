@@ -1,5 +1,7 @@
 package by.kalilaska.controllers;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -34,12 +36,13 @@ public class LogInController {
 	}	
 	
 	@RequestMapping(value = {"/personalArea/login.html"}, method = RequestMethod.POST)
-	public ModelAndView LogIn(@ModelAttribute(name="accountPageBean") UserAccountPageBean account, Model model) {
+	public ModelAndView LogIn(@ModelAttribute(name="accountPageBean") UserAccountPageBean account, HttpSession session) {
 		if(zabiraiService.checkAccount(account)){
-			model.addAttribute("accountLogin", account.getAccountLogin());
 			
 			if(account.getStatus().equals("Administrator")){
-				String redirect = "redirect:/personalArea/admin/" + account.getAccountLogin() + ".html";				
+				String redirect = "redirect:/personalArea/admin/" + account.getAccountLogin() + ".html";
+				
+				session.setAttribute("accountPageBean", account);
 				ModelAndView modelAndView = new ModelAndView(redirect, "accountPageBean", account);
 				return modelAndView;
 			}else{
@@ -55,14 +58,18 @@ public class LogInController {
 	}
 	
 	@RequestMapping(value = {"/personalArea/admin/{accountLogin}.html"}, method = RequestMethod.GET)
-	public ModelAndView showAdminPage(@PathVariable String accountLogin, @ModelAttribute(name="accountPageBean") UserAccountPageBean account) {
-
+	public ModelAndView showAdminPage(@PathVariable String accountLogin, 
+			@ModelAttribute(name="accountPageBean") UserAccountPageBean account, 
+			HttpSession session) {
+		//!!!!!!!!!!!!!!!!!zabiraiService.test();
+		account = (UserAccountPageBean)session.getAttribute("accountPageBean");
 		ModelAndView modelAndView = new ModelAndView("adminPersonalAreaIn", "accountPageBean", account);
 		return modelAndView;
 	}
 	
 	@RequestMapping(value = {"/personalArea/user/{accountLogin}.html"}, method = RequestMethod.GET)
-	public ModelAndView showUserPage(@PathVariable String accountLogin, @ModelAttribute(name="accountPageBean") UserAccountPageBean account) {
+	public ModelAndView showUserPage(@PathVariable String accountLogin, 
+			@ModelAttribute(name="accountPageBean") UserAccountPageBean account) {
 
 		ModelAndView modelAndView = new ModelAndView("userPersonalAreaIn", "accountPageBean", account);
 		return modelAndView;

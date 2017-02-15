@@ -1,7 +1,11 @@
 tr.linkrow{
-  background-color: whitesmoke;
+    background-color: whitesmoke;
 }
 
 tr.linkrow:hover{  
-  cursor: pointer;
+    cursor: pointer;    
+}
+
+tr.linkrow:active{ 
+    color: brown;    
 }

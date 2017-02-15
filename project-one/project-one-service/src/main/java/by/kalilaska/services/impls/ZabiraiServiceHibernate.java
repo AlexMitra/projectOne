@@ -21,6 +21,12 @@ import by.kalilaska.entities.forHibernate.*;
 public class ZabiraiServiceHibernate implements ServiceOne{
 	
 	@Override
+	public List<AccountBean> getSelectedRoleAccounts(String roleStatus) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
 	public List<AccountBean> getAllAccounts() {
 		// TODO Auto-generated method stub
 		return null;
@@ -132,7 +138,14 @@ public class ZabiraiServiceHibernate implements ServiceOne{
 	}
 
 	@Override
-	public List<AccountBean> getSearchedAccounts(String part, String searchField, String searchPlace) {
+	public List<AccountBean> getSearchedAccounts(String part, String searchField, 
+			String searchPlace, String roles) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<String> getAllRoles() {
 		// TODO Auto-generated method stub
 		return null;
 	}
