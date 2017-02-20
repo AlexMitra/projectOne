@@ -76,3 +76,140 @@
   background-color: #222;
   border-color: #080808;
 }
+
+.all-ads-area{
+	overflow: scroll; /* Добавляем полосы прокрутки */    
+    height: 235vh; /* Высота блока */    
+    border: 0px; /* Параметры рамки */
+    margin-top: 5%;
+    margin-left: 250px;
+    margin-right: 5%;    
+}
+
+.one-ad-area{	
+    position: static;   
+}
+
+.sidebar {    
+    height: 245vh; /* Высота блока */
+    width: 250px;
+    z-index: 1000;   
+    overflow-y: auto;
+    background: #222;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;    
+}
+
+.footer {    
+/*   margin-right: 25%;*/
+    background-color: darkgray;
+    border: 0px;    
+}
+
+.like{
+    margin-top: 5%;
+    margin-left: 0%;
+    color: cornflowerblue;
+    text-decoration:none;    
+    
+}
+
+.like-counter{    
+    margin-top: 5%;    
+    color: brown;
+    text-decoration:none;    
+}
+
+.like-counter:hover{
+    font-weight:bold;
+    margin-top: 5%;    
+    color: brown;
+    text-decoration:none;    
+}
+
+.like-counter:focus{    
+    margin-top: 5%;    
+    color: brown;
+    text-decoration:none;    
+}
+
+.comments{
+    margin-top: 5%;
+    margin-left: 4%;
+    color: darkseagreen;
+}
+
+.comments-counter{    
+    margin-top: 5%;    
+    color: brown;
+    text-decoration:none;
+}
+
+.comments-counter:hover{
+    font-weight:bold;
+    margin-top: 5%;    
+    color: brown;
+    text-decoration:none;
+}
+
+.comments-counter:focus{    
+    margin-top: 5%;    
+    color: brown;
+    text-decoration:none;
+}
+
+.category-type{
+    color:dimgray;
+    font-weight: normal;
+    font-size: 95%;
+}
+.categories-list {
+    margin-left: 7%;
+    color: brown;
+}
+
+.one-ad-image {    
+    padding: 0px;
+    width: 260px;
+    max-width: 260px;
+    height: 140px;
+    max-height: 140px;
+}
+
+.one-ad-block {
+  width: 270px;
+  height: 220px;
+  display: block;
+  padding: 4px;
+  margin-bottom: 20px;
+  line-height: 1.42857143;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  -webkit-transition: border .2s ease-in-out;
+       -o-transition: border .2s ease-in-out;
+          transition: border .2s ease-in-out;
+}
+
+.one-ad-name {
+    color: dimgray;
+    font-size: 130%;
+    border-bottom: 0px;
+}
+
+.one-ad-name:hover {
+    font-weight:bold;
+    color: brown;
+    font-size: 130%;
+    border-bottom: 0px;
+    text-decoration:none;
+}
+
+.one-ad-name:focus {    
+    color: dimgray;
+    font-size: 130%;
+    border-bottom: 0px;
+    text-decoration:none;
+}

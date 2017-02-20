@@ -12,7 +12,7 @@
     	<put-attribute name="body" value="/WEB-INF/views/parts/homeParts/homeViewBody.jsp"/>
     	<put-attribute name="footer" value="/WEB-INF/views/parts/homeParts/homeViewFooter.jsp"/>
     </definition>
-    
+        
     <definition name="login" extends="home">    	
     	<put-attribute name="body" value="/WEB-INF/views/parts/logInParts/logInBody.jsp"/>    	
     	<put-attribute name="footer" value="/WEB-INF/views/parts/logInParts/logInFooter.jsp"/>
@@ -34,6 +34,16 @@
     	<put-attribute name="rolesButton" value="/WEB-INF/views/parts/personalAreaParts/personalAreaBodyParts/allAccountsBodyRolesButton.jsp"/>
     	<put-attribute name="accountsTable" value="/WEB-INF/views/parts/personalAreaParts/personalAreaBodyParts/allAccountsBodyAccountsTable.jsp"/>
     	<put-attribute name="accountsTableControlButtons" value="/WEB-INF/views/parts/personalAreaParts/personalAreaBodyParts/allAccountsBodyAccountsTableControlButtons.jsp"/>
+    </definition>
+    
+    <definition name="ads" extends="personalAreaIn">   	
+    	<put-attribute name="body" value="/WEB-INF/views/parts/adsParts/adsViewBody.jsp"/>
+    </definition>
+    
+    <definition name="adsBodySidebar" template="/WEB-INF/views/parts/adsParts/adsViewBodyParts/adsViewBodySidebar.jsp">
+    </definition>
+    
+    <definition name="adsBodyAdsArea" template="/WEB-INF/views/parts/adsParts/adsViewBodyParts/adsViewBodyAdsArea.jsp">
     </definition>
 
 </tiles-definitions>

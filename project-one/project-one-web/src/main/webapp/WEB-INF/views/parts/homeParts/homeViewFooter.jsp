@@ -5,7 +5,7 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
     
 
-        <div class="navbar navbar-btn">
+        <div class="navbar navbar-btn footer">
             <div class="row">
                 <br>
                 <h4 align="center"><spring:message code="homePage.menu.footer" /></h4>

@@ -25,7 +25,7 @@
                         <ul class="nav navbar-nav">
                             <li><a href="#"><spring:message code="homePage.menu.aboutUs" /></a> 
                             </li>
-                            <li><a href="#"><spring:message code="homePage.menu.posts" /></a> 
+                            <li><a href="/project-one-web/ads.html"><spring:message code="homePage.menu.ads" /></a> 
                             </li>
                             <li><a href="#"><spring:message code="homePage.menu.actions" /></a> 
                             </li>
