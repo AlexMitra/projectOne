@@ -63,7 +63,7 @@ public class LogInController {
 			HttpSession session) {
 		//!!!!!!!!!!!!!!!!!zabiraiService.test();
 		account = (UserAccountPageBean)session.getAttribute("accountPageBean");
-		ModelAndView modelAndView = new ModelAndView("adminPersonalAreaIn", "accountPageBean", account);
+		ModelAndView modelAndView = new ModelAndView("personalAreaIn", "accountPageBean", account);
 		return modelAndView;
 	}
 	
@@ -71,7 +71,7 @@ public class LogInController {
 	public ModelAndView showUserPage(@PathVariable String accountLogin, 
 			@ModelAttribute(name="accountPageBean") UserAccountPageBean account) {
 
-		ModelAndView modelAndView = new ModelAndView("userPersonalAreaIn", "accountPageBean", account);
+		ModelAndView modelAndView = new ModelAndView("personalAreaIn", "accountPageBean", account);
 		return modelAndView;
 	}
 

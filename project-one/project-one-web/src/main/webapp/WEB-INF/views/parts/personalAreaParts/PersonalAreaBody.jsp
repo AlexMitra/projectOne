@@ -13,13 +13,13 @@
                     <div id="sidebar-wrapper">
                         <ul class="sidebar-nav">
                             <li class="sidebar-brand">
-                                <p class="personal-area-name">Личный кабинет</p>
+                                <p class="personal-area-name">Личный кабинет(Admin)</p>
                             </li>
                             <li>
                                 <a href="#">Сообщения</a>
                             </li>
                             <li>
-                                <a href="/project-one-web/personalArea/api/users">Пользователи</a>
+                                <a id = "allAccounts" href="#allAccounts" onclick="workWithData.getAccountsData()">Пользователи</a>
                             </li>
                             <li>
                                 <a href="#">Объявления</a>
@@ -36,14 +36,13 @@
 
                     <!-- Page Content -->
                     <div id="page-content-wrapper">
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                <h3 align="center">Glad to see you, ${accountPageBean.accountLogin}!</h3>
-                                
-                                </div>
-                            </div>
-                        </div>
+                        
+                    	<div id="personal-info" class="col-lg-12" style="display: ">
+                        	<h3 align="center">Glad to see you, ${accountPageBean.getAccountLogin()}!</h3>
+                        </div>                            	
+
+						<tiles:insertDefinition name="allAccountsBodyTemplate" flush="true"/>						
+                        
                     </div>
                     <!-- /#page-content-wrapper -->
 

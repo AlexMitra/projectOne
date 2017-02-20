@@ -6,34 +6,34 @@
 
 <tiles-definitions>
     <definition name="home" template="/WEB-INF/views/homeViewTemplate.jsp">
-    	<put-attribute name="head" value="/WEB-INF/views/parts/home/homeViewHead.jsp"/>
-    	<put-attribute name="header" value="/WEB-INF/views/parts/home/homeViewHeader.jsp"/>
-    	<put-attribute name="menuBar" value="/WEB-INF/views/parts/home/menuBar.jsp"/>
-    	<put-attribute name="body" value="/WEB-INF/views/parts/home/homeViewBody.jsp"/>
-    	<put-attribute name="footer" value="/WEB-INF/views/parts/home/homeViewFooter.jsp"/>
+    	<put-attribute name="head" value="/WEB-INF/views/parts/homeParts/homeViewHead.jsp"/>
+    	<put-attribute name="header" value="/WEB-INF/views/parts/homeParts/homeViewHeader.jsp"/>
+    	<put-attribute name="menuBar" value="/WEB-INF/views/parts/homeParts/menuBar.jsp"/>
+    	<put-attribute name="body" value="/WEB-INF/views/parts/homeParts/homeViewBody.jsp"/>
+    	<put-attribute name="footer" value="/WEB-INF/views/parts/homeParts/homeViewFooter.jsp"/>
     </definition>
     
     <definition name="login" extends="home">    	
-    	<put-attribute name="body" value="/WEB-INF/views/parts/personalArea/logInBody.jsp"/>    	
-    	<put-attribute name="footer" value="/WEB-INF/views/parts/personalArea/logInFooter.jsp"/>
+    	<put-attribute name="body" value="/WEB-INF/views/parts/logInParts/logInBody.jsp"/>    	
+    	<put-attribute name="footer" value="/WEB-INF/views/parts/logInParts/logInFooter.jsp"/>
     </definition>
     
     <definition name="registration" extends="login">    	
-    	<put-attribute name="body" value="/WEB-INF/views/parts/personalArea/registrationBody.jsp"/>    	
+    	<put-attribute name="body" value="/WEB-INF/views/parts/registrationParts/registrationBody.jsp"/>    	
     </definition>    
         
-    <definition name="personalAreaIn" extends="login">
-    	<put-attribute name="head" value="/WEB-INF/views/parts/personalArea/personalAreaHead.jsp"/>
-    	<put-attribute name="menuBar" value="/WEB-INF/views/parts/personalArea/personalAreaMenuBar.jsp"/>
-    	<put-attribute name="body" value="/WEB-INF/views/parts/personalArea/personalAreaBody.jsp"/>
+    <definition name="personalAreaIn" extends="home">
+    	<put-attribute name="head" value="/WEB-INF/views/parts/personalAreaParts/personalAreaHead.jsp"/>
+    	<put-attribute name="menuBar" value="/WEB-INF/views/parts/personalAreaParts/personalAreaMenuBar.jsp"/>
+    	<put-attribute name="body" value="/WEB-INF/views/parts/personalAreaParts/personalAreaBody.jsp"/>
     </definition>
     
-    <definition name="adminPersonalAreaIn" extends="personalAreaIn">
-    	<put-attribute name="body" value="/WEB-INF/views/parts/personalArea/adminPersonalAreaBody.jsp"/>
-    </definition>
     
-    <definition name="userPersonalAreaIn" extends="personalAreaIn">
-    	<put-attribute name="body" value="/WEB-INF/views/parts/personalArea/userPersonalAreaBody.jsp"/>
+    <definition name="allAccountsBodyTemplate" template="/WEB-INF/views/parts/personalAreaParts/personalAreaBodyParts/allAccountsBodyTemplate.jsp">
+    	<put-attribute name="searchPanel" value="/WEB-INF/views/parts/personalAreaParts/personalAreaBodyParts/allAccountsBodySearchPanel.jsp"/>
+    	<put-attribute name="rolesButton" value="/WEB-INF/views/parts/personalAreaParts/personalAreaBodyParts/allAccountsBodyRolesButton.jsp"/>
+    	<put-attribute name="accountsTable" value="/WEB-INF/views/parts/personalAreaParts/personalAreaBodyParts/allAccountsBodyAccountsTable.jsp"/>
+    	<put-attribute name="accountsTableControlButtons" value="/WEB-INF/views/parts/personalAreaParts/personalAreaBodyParts/allAccountsBodyAccountsTableControlButtons.jsp"/>
     </definition>
 
 </tiles-definitions>

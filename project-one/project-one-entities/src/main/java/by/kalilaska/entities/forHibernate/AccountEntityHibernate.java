@@ -1,8 +1,7 @@
 package by.kalilaska.entities.forHibernate;
 
-import java.io.Serializable;
+import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -17,7 +16,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -46,7 +44,8 @@ import lombok.Setter;
 	    ),
 })
 @Table(name = "Accounts")
-@Data
+@Getter
+@Setter
 public class AccountEntityHibernate{
 	
 	@Id
@@ -65,9 +64,15 @@ public class AccountEntityHibernate{
 
 	@ManyToOne
 	@JoinTable(name = "Accounts_to_roles",
-	joinColumns = @JoinColumn(name = "FK_Account_id", referencedColumnName = "Account_Id"),
-	inverseJoinColumns = @JoinColumn(name = "FK_Role_id", referencedColumnName = "Role_Id"))
+		joinColumns = @JoinColumn(name = "Accounts_to_roles_FK_Account_id", 
+		referencedColumnName = "Account_Id"),
+		inverseJoinColumns = @JoinColumn(name = "Accounts_to_roles_FK_Role_id", 
+		referencedColumnName = "Role_Id"))
 	private RoleEntityHibernate accountRole;
+	
+	@OneToMany(targetEntity = AdEntityHibernate.class ,mappedBy = "adMaker", 
+		fetch = FetchType.LAZY)
+	private List<AdEntityHibernate> accountAds;
 
 	public AccountEntityHibernate() {
 		super();		
