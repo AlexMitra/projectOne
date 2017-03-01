@@ -9,17 +9,17 @@ import org.springframework.transaction.annotation.Transactional;
 
 import by.kalilaska.BeansPool;
 import by.kalilaska.beans.AccountBean;
+import by.kalilaska.beans.AccountDetailsPageBean;
 import by.kalilaska.beans.UserAccountPageBean;
 import by.kalilaska.dao.forHibernate.AccountsRepository;
 import by.kalilaska.dao.forHibernate.RolesRepository;
-import by.kalilaska.daoHibernate.repositories.AccountsRepositoryHibernate;
-import by.kalilaska.daoHibernate.repositories.RolesRepositoryHibernate;
+import by.kalilaska.entities.forHibernate.AccountEntityHibernate;
+import by.kalilaska.entities.forHibernate.RoleEntityHibernate;
 import by.kalilaska.services.ServiceOne;
-import by.kalilaska.entities.forHibernate.*;
 
 @Service
-public class ZabiraiServiceHibernate implements ServiceOne{
-	
+public class ZabiraiServiceHibernate implements ServiceOne {
+
 	@Override
 	public List<AccountBean> getSelectedRoleAccounts(String roleStatus) {
 		// TODO Auto-generated method stub
@@ -34,112 +34,110 @@ public class ZabiraiServiceHibernate implements ServiceOne{
 
 	@Autowired
 	private BeansPool beansPool;
-	
+
 	@Autowired
 	@Qualifier("accountsRepositoryHibernate")
 	private AccountsRepository accountsRepository;
-	
+
 	@Autowired
 	@Qualifier("rolesRepositoryHibernate")
 	private RolesRepository rolesRepository;
-	
-	//TRUE
+
+	// TRUE
 	@Override
-	public boolean insertNewAccount(UserAccountPageBean account){
+	public boolean insertNewAccount(AccountDetailsPageBean account) {
 		String check = getAccountsByLoginAndEmail(account);
 		System.out.println(check);
-		
-		if(check.equals("login and email are unique")){
+
+		if (check.equals("login and email are unique")) {
 			System.out.println("in ZabiraiServiceHibernate insertNewAccount() account:" + account);
-			
-			AccountEntityHibernate accountEntity = accountsRepository.insertAccountWithReturn(
-					account.getAccountLogin(), account.getAccountEmail(),
-					account.getAccountPassword());
-			account.setId(accountEntity.getAccountId());			
+
+			AccountEntityHibernate accountEntity = accountsRepository.insertAccountWithReturn(account.getAccountLogin(),
+					account.getAccountEmail(), account.getAccountPassword());
+			account.setId(accountEntity.getAccountId());
 			return true;
-		}else if(check.equals("this login already exist")){
+		} else if (check.equals("this login already exist")) {
 			account.setLoginCheck(check);
 			return false;
-		}else if(check.equals("this email already exist")){
+		} else if (check.equals("this email already exist")) {
 			account.setEmailCheck(check);
 		}
 
 		return false;
 	}
-	
-	//TRUE
+
+	// TRUE
 	@Override
-	public String getAccountsByLoginAndEmail(UserAccountPageBean account){
-		
-		List<AccountEntityHibernate> accounts= accountsRepository.getAccountsByLoginAndEmail(
-				account.getAccountLogin(), account.getAccountEmail());		
-		
+	public String getAccountsByLoginAndEmail(AccountDetailsPageBean account) {
+
+		List<AccountEntityHibernate> accounts = accountsRepository.getAccountsByLoginAndEmail(account.getAccountLogin(),
+				account.getAccountEmail());
+
 		System.out.println("in ZabiraiServiceHibernate getAccountsByLoginAndEmail() accounts:" + accounts);
-		
-		if(accounts!=null){
+
+		if (accounts != null) {
 			for (AccountEntityHibernate accountEntity : accounts) {
-				if(accountEntity.getAccountLogin().equals(account.getAccountLogin())){
+				if (accountEntity.getAccountLogin().equals(account.getAccountLogin())) {
 					return "this login already exist";
 				}
-				if(accountEntity.getAccountEmail().equals(account.getAccountEmail())){
+				if (accountEntity.getAccountEmail().equals(account.getAccountEmail())) {
 					return "this email already exist";
 				}
-			}			
+			}
 		}
-		return "login and email are unique";		
+		return "login and email are unique";
 	}
-	
-	//TRUE
+
+	// TRUE
 	@Override
-	public boolean checkAccount(UserAccountPageBean account){		
-		AccountEntityHibernate accountEntity = 
-				accountsRepository.getAccountByLogin(account.getAccountLogin());		
-		
-		if(accountEntity==null){
+	public boolean checkAccount(UserAccountPageBean account) {
+		AccountEntityHibernate accountEntity = accountsRepository.getAccountByLogin(account.getAccountLogin());
+
+		if (accountEntity == null) {
 			account.setLoginCheck("this login does not exist");
 			return false;
-		}else if(!accountEntity.getAccountPassword().equals(account.getAccountPassword())){
+		} else if (!accountEntity.getAccountPassword().equals(account.getAccountPassword())) {
 			account.setPasswordCheck("incorrect password");
 			return false;
-		}else{
+		} else {
 			account.setId(accountEntity.getAccountId());
 			account.setAccountEmail(accountEntity.getAccountEmail());
-			
+
 			account.setStatus(accountEntity.getAccountRole().getRoleStatus());
 			System.out.println("in ZabiraiService checkAccount() account after check: " + account);
 			return true;
-		}		
-	}	
-	
+		}
+	}
+
+	@Override
 	@Transactional
-	public void test(){		
-		try{			
-			AccountEntityHibernate account = accountsRepository.getAccountByLogin("Jakubik");	
-			
+	public void test() {
+		try {
+			AccountEntityHibernate account = accountsRepository.getAccountByLogin("Jakubik");
+
 			System.out.println("account: " + account);
 			System.out.println("account role: " + account.getAccountRole().getRoleStatus());
-			
-		}catch(Exception e){
+
+		} catch (Exception e) {
 			System.out.println("Exception info");
 			System.out.println(e.getMessage());
 			System.out.println(e.getClass().getName());
 		}
-		
-		try{			
+
+		try {
 			RoleEntityHibernate role = rolesRepository.getAccountRoleById(3);
 			System.out.println("role: " + role);
 			System.out.println("accounts with this role: " + role.getAccountEntities());
-			
-		}catch(Exception e){
+
+		} catch (Exception e) {
 			System.out.println("Exception info");
 			System.out.println(e.getMessage());
 			System.out.println(e.getClass().getName());
-		}		
+		}
 	}
 
 	@Override
-	public List<AccountBean> getSearchedAccounts(String part, String searchField, 
-			String searchPlace, String roles) {
+	public List<AccountBean> getSearchedAccounts(String part, String searchField, String searchPlace, String roles) {
 		// TODO Auto-generated method stub
 		return null;
 	}

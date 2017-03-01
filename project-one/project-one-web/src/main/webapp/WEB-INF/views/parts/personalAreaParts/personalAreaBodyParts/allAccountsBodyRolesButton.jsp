@@ -13,7 +13,7 @@
                                     		<div class="well">
                                         		<div id="role-checkboxes" class="row">
 
-                                        			<c:set var="allRoles" value="${accountPageBean.getAllRoles()}"/>
+                                        			<c:set var="allRoles" value="${accountPageBean.getAuthorities()}"/>
                                         			<c:forEach items="${allRoles}" var="role">
                                         				<div class="col-lg-4 col-md-4 col-sm-4">
                                                 			<div class="checkbox">

@@ -12,39 +12,41 @@ import by.kalilaska.beans.UserAccountPageBean;
 
 @Controller
 public class MenuBarController {
-	
+
 	//@Autowired
 	//@Qualifier(value = "ZabiraiServiceJDBC")
 	//@Qualifier(value = "zabiraiServiceHibernate")
 	//private ServiceOne zabiraiService;
-	
+
 	@Autowired
 	private BeansPool beansPool;
-	
+
 	@RequestMapping(value = {"/personalArea.html"}, method = RequestMethod.GET)
 	public ModelAndView persinalArea(@ModelAttribute(name="accountPageBean") UserAccountPageBean account) {
-		
-		//zabiraiService.test();		
-		
+
+		//zabiraiService.test();
+
 		if(account==null || account.getAccountLogin() == null){
-			return new ModelAndView("redirect:/personalArea/login.html", "accountPageBean", beansPool.getUserAccountPageBean());
+			// return new ModelAndView("redirect:/personalArea/login.html",
+			// "accountPageBean", beansPool.getUserAccountPageBean());
+			return new ModelAndView("redirect:/personalArea/login.html");
 		}else if(account.getStatus().equals("Administrator")){
-			String redirect = "redirect:/personalArea/admin/" + account.getAccountLogin() + ".html";				
+			String redirect = "redirect:/personalArea/" + account.getAccountLogin() + ".html";
 			ModelAndView modelAndView = new ModelAndView(redirect, "accountPageBean", account);
 			return modelAndView;
 		}else{
-			String redirect = "redirect:/personalArea/user/" + account.getAccountLogin() + ".html";
+			String redirect = "redirect:/personalArea/" + account.getAccountLogin() + ".html";
 			ModelAndView modelAndView = new ModelAndView(redirect, "accountPageBean", account);
 			return modelAndView;
 		}
 	}
-	
+
 	@RequestMapping(value = {"/ads.html"}, method = RequestMethod.GET)
 	public ModelAndView ads(/*@ModelAttribute(name="accountPageBean" UserAccountPageBean account*/){
 		ModelAndView modelAndView = new ModelAndView("ads"/*, "accountPageBean", account*/);
 		return modelAndView;
 	}
-	
+
 	/*@ModelAttribute
 	private Entity getAccount(){
 		//return EntitiesPool.getAccount();

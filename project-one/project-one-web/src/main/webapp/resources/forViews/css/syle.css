@@ -28,6 +28,8 @@
 
 .error-text-color {
     color: red;
+    margin-top: 7px;
+    font-weight:bold;
 }
 
 #menu-band {      
@@ -37,6 +39,7 @@
 
 .personal-area-name {
     color: brown;
+    font-size: 88%;
 }
 
 .personal-area-greatings {
@@ -48,9 +51,9 @@
 }
 
 .accounts-table-area{
-	overflow: scroll; /* Добавляем полосы прокрутки */    
-    height: 50%; /* Высота блока */    
-    border: 0px; /* Параметры рамки */
+	overflow: scroll; /* пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ */    
+    height: 50%; /* пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ */    
+    border: 0px; /* пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ */
 }
 
 .btn-primary-my{ 
@@ -78,9 +81,9 @@
 }
 
 .all-ads-area{
-	overflow: scroll; /* Добавляем полосы прокрутки */    
-    height: 235vh; /* Высота блока */    
-    border: 0px; /* Параметры рамки */
+	overflow: scroll; /* пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ */    
+    height: 235vh; /* пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ */    
+    border: 0px; /* пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ */
     margin-top: 5%;
     margin-left: 250px;
     margin-right: 5%;    
@@ -91,7 +94,7 @@
 }
 
 .sidebar {    
-    height: 245vh; /* Высота блока */
+    height: 245vh; /* пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ */
     width: 250px;
     z-index: 1000;   
     overflow-y: auto;
@@ -212,4 +215,8 @@
     font-size: 130%;
     border-bottom: 0px;
     text-decoration:none;
+}
+
+.logout-button {
+	background: #222;
 }

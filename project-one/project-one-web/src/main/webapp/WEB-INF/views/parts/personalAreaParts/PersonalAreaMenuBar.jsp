@@ -10,7 +10,7 @@
             <div id="menu-band" class="navbar navbar-inverse">
                 <div class="container">
                     <div class="navbar-header">
-                        <p><a class="navbar-brand" href="/project-one-web/home.html">Z<i  id="image-logo" class="fa fa-heart-o"></i></a>
+                        <p><a class="navbar-brand" href="/project-one-web/">Z<i  id="image-logo" class="fa fa-heart-o"></i></a>
                         </p>
 
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#responsive-menu">
@@ -25,7 +25,7 @@
                         <ul class="nav navbar-nav">
                             <li><a href="#"><spring:message code="homePage.menu.aboutUs" /></a> 
                             </li>
-                            <li><a href="#"><spring:message code="homePage.menu.posts" /></a> 
+                            <li><a href="/project-one-web/ads.html"><spring:message code="homePage.menu.ads" /></a> 
                             </li>
                             <li><a href="#"><spring:message code="homePage.menu.actions" /></a> 
                             </li>

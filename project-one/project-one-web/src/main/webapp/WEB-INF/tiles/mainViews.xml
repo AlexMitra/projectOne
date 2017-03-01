@@ -5,6 +5,10 @@
     "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">  
 
 <tiles-definitions>
+
+    <definition name="accessDenied" template="/WEB-INF/views/accessDenied.jsp">
+    </definition>
+    
     <definition name="home" template="/WEB-INF/views/homeViewTemplate.jsp">
     	<put-attribute name="head" value="/WEB-INF/views/parts/homeParts/homeViewHead.jsp"/>
     	<put-attribute name="header" value="/WEB-INF/views/parts/homeParts/homeViewHeader.jsp"/>
@@ -26,6 +30,9 @@
     	<put-attribute name="head" value="/WEB-INF/views/parts/personalAreaParts/personalAreaHead.jsp"/>
     	<put-attribute name="menuBar" value="/WEB-INF/views/parts/personalAreaParts/personalAreaMenuBar.jsp"/>
     	<put-attribute name="body" value="/WEB-INF/views/parts/personalAreaParts/personalAreaBody.jsp"/>
+    </definition>
+    
+    <definition name="personalAreaInSideMenu" template="/WEB-INF/views/parts/personalAreaParts/personalAreaSideMenu.jsp">
     </definition>
     
     

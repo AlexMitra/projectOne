@@ -20,13 +20,22 @@
 
                 <div class="form-login-screen">
                 
-                    <form name="f" action="<c:url value='/perform_login'/>" method="post" class="form-horizontal" >
+                    <form:form action="${loginUrl}" modelAttribute="accountPageBean" method="post" class="form-horizontal" >
 
-                        	
+                        	<c:if test="${param.error != null}">
+								<p>
+									Invalid username and password.
+								</p>
+							</c:if>
+								<c:if test="${param.logout != null}">
+								<p>
+									You have been logged out.
+								</p>
+							</c:if>
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Логин</label>
                             <div class="col-sm-10">
-                            	<input type="text" name="username" class="form-control" placeholder="Login"/>                                
+                            	<form:input type="text" class="form-control" id="inputLogin" placeholder="Login" path="accountLogin"/>                                
                             </div>
 <!--                             <div class="col-sm-10">                                -->
 <%--                                 <font type="text" class="error-text-color">${accountPageBean.loginCheck}</font> --%>
@@ -36,42 +45,34 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Пароль</label>
                             <div class="col-sm-10">                                
-                                <input type="password" name="password" class="form-control" placeholder="Password"/>
+                                <form:input type="password" class="form-control" id="inputPassword" placeholder="Password" path="accountPassword"/>
                             </div>
-
+<!--                             <div class="col-sm-10">                                -->
+<%--                                 <font type="text" class="error-text-color">${accountPageBean.passwordCheck}</font> --%>
+<!--                             </div> -->
                         </div>
 
                         <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-4">
+                            <div class="col-sm-offset-2 col-sm-10">
                                 <div class="checkbox">
                                     <label>
                                         <input type="checkbox">Запомнить меня
                                     </label>
                                 </div>
                             </div>
-                            
-                            <c:if test="${badAuthentication eq true}">
-                        		<div class="col-sm-6 error-text-color">                               
-                               		<font type="text">Bad login or password</font>
-                        		</div>
-                        	</c:if>
                         </div>
                         
                         <!-- CSRF Protection -->
-                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+<!--                         <input type="hidden" -->
+<%-- 							name="${_csrf.parameterName}" --%>
+<%-- 							value="${_csrf.token}"/> --%>
 		
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">                                
-                                <button type="submit" name="submit" class="btn btn-default">Войти</button>
+                                <button type="submit" name="logIn" class="btn btn-default">Войти</button>
                             </div>
                         </div>
-                        
-                        
-							
-						<c:if test="${logout != null}">
-							<p>${logout}</p>
-						</c:if>
-                    </form>
+                    </form:form>
                 </div>
 
             </div>

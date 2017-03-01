@@ -20,7 +20,7 @@ import by.kalilaska.utilities.EntityToBeanConverter;
 
 @Service
 @Transactional
-public class ZabiraiServiceData implements ServiceOne {
+public class ZabiraiServiceDataNonSecurity implements ServiceOne {
 
 	@Autowired
 	private AccountsRepositoryData accountsRepository;
@@ -83,6 +83,9 @@ public class ZabiraiServiceData implements ServiceOne {
 	public String getAccountsByLoginAndEmail(AccountDetailsPageBean account) {
 		List<AccountEntityHibernate> accounts = accountsRepository
 				.findByAccountLoginOrAccountEmail(account.getAccountLogin(), account.getAccountEmail());
+
+		// System.out.println("in ZabiraiServiceHibernate
+		// getAccountsByLoginAndEmail() accounts:" + accounts);
 
 		if (accounts != null) {
 			for (AccountEntityHibernate accountEntity : accounts) {

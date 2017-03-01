@@ -62,7 +62,7 @@ public class AccountEntityHibernate{
 	@Column(name = "Password")
 	private String accountPassword;	
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinTable(name = "Accounts_to_roles",
 		joinColumns = @JoinColumn(name = "Accounts_to_roles_FK_Account_id", 
 		referencedColumnName = "Account_Id"),

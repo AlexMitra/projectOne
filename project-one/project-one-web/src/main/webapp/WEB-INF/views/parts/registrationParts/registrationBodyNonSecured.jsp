@@ -21,49 +21,37 @@
 
                 <div class="form-login-screen">   
 
-    				<form:form method="post" modelAttribute="accountPageBean" class="form-horizontal" enctype="utf8">                        
+    				<form:form method="post" modelAttribute="accountPageBean" class="form-horizontal" >                        
                         
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">Логин</label>
+                            <label for="inputLogin" class="col-sm-2 control-label">Логин</label>
                             <div class="col-sm-10">
                                 <form:input type="text" class="form-control" id="inputLogin" placeholder="Login" path="accountLogin"/>
                             </div>
                             <div class="col-sm-10">
                                 <form:errors type="text" class="error-text-color" path="accountLogin"/>
-<%--                                 <p type="text" class="error-text-color">${accountPageBean.loginCheck}<p> --%>
+                                <p type="text" class="error-text-color">${accountPageBean.loginCheck}<p>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">Почта</label>
+                            <label for="inputEmail" class="col-sm-2 control-label">Почта</label>
                             <div class="col-sm-10">
                                 <form:input type="email" class="form-control" id="inputEmail" placeholder="Email" path="accountEmail"/>
                             </div>
                             <div class="col-sm-10">
                                 <form:errors type="text" class="error-text-color" path="accountEmail"/>
-                                <form:errors type="text" class="error-text-color" path="accountEmail"/>
-<%--                                 <p type="text" class="error-text-color">${accountPageBean.emailCheck}<p> --%>
+                                <p type="text" class="error-text-color">${accountPageBean.emailCheck}<p>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">Пароль</label>
+                            <label for="inputPassword" class="col-sm-2 control-label">Пароль</label>
                             <div class="col-sm-10">
                                 <form:input type="password" class="form-control" id="inputPassword" placeholder="Password" path="accountPassword"/>
                             </div>
                             <div class="col-sm-10">
                                 <form:errors type="text" class="error-text-color" path="accountPassword"/>
-                            </div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">Повторите пароль</label>
-                            <div class="col-sm-10">
-                                <form:input type="password" class="form-control" id="inputPasswordOnceMore" placeholder="Password once more" path="accountPasswordOnceMore"/>
-                            </div>
-                            <div class="col-sm-10">
-                            	<form:errors type="text" class="error-text-color" path="accountPasswordOnceMore"/>
-                                <form:errors type="text" class="error-text-color"/>
                             </div>
                         </div>
                         

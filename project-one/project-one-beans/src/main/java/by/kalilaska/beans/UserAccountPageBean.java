@@ -6,29 +6,29 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 public class UserAccountPageBean{
-	
+
 	private long id;
 
 	@NotNull
 	@Size(min=5, max=20, message="login have to have more than 5 symbols and less than 21 symbol")
-	private String accountLogin;	
+	private String accountLogin;
 
 	@NotNull
 	@Size(min=5, max=20, message="email have to be correct")
-	private String accountEmail;	
+	private String accountEmail;
 
 	@NotNull
 	@Size(min=5, max=20, message="login have to have more than 5 symbols and less than 21 symbol")
 	private String accountPassword;
-	
+
 	private String status;
-	
+
 	private String loginCheck;
-	
+
 	private String emailCheck;
-	
+
 	private String passwordCheck;
-	
+
 	private List<String> allRoles;
 
 	public List<String> getAllRoles() {
@@ -108,5 +108,5 @@ public class UserAccountPageBean{
 		return "UserAccountPageBean [id=" + id + ", accountLogin=" + accountLogin + ", accountEmail=" + accountEmail
 				+ ", accountPassword=" + accountPassword + ", status=" + status + ", loginCheck=" + loginCheck
 				+ ", emailCheck=" + emailCheck + ", passwordCheck=" + passwordCheck + "]";
-	}	
+	}
 }
