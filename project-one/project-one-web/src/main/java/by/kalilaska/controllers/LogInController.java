@@ -131,7 +131,7 @@ public class LogInController {
 
 	@RequestMapping(value = { "/personalArea/userPage.html" }, method = RequestMethod.GET)
 	public ModelAndView loginSuccess() {
-		printUserDetails();
+		// printUserDetails();
 		AccountDetailsPageBean account = getAccountPageBean();
 		String redirect = "redirect:/personalArea/" + account.getAccountLogin() + ".html";
 

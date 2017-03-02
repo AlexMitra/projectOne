@@ -45,7 +45,7 @@
                             <div class="col-sm-offset-2 col-sm-4">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox">Запомнить меня
+                                        <input id="remember" type="checkbox" name="remember-me" value="true">Запомнить меня
                                     </label>
                                 </div>
                             </div>

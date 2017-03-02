@@ -42,17 +42,18 @@
 			logout-url="/personalArea/logout.html" 
 			invalidate-session="true" 
 			delete-cookies="JSESSIONID"/>
-<!-- 			logout-url="/personalArea/logout.html" /> -->
+			
+			<remember-me data-source-ref="dataSource" 
+				token-validity-seconds="86400" 
+				remember-me-parameter="remember-me"/>
+
 		</http>
 		
-<!-- 		<beans:bean id="encoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"> -->
-<!-- 			<beans:constructor-arg name="strength" value="11"/> -->
-<!-- 		</beans:bean> -->
+
 		
 		<beans:bean id="daoAuthenticationProvider" 
 		class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
 			<beans:property name="userDetailsService" ref="userDetailsService"/>
-<!-- 			<beans:property name="passwordEncoder" ref="encoder"/> -->
 		</beans:bean>
 		
 		<beans:bean id="authenticationManager" class="org.springframework.security.authentication.ProviderManager">
@@ -62,7 +63,6 @@
 				</beans:list>
 			</beans:constructor-arg>
 		</beans:bean>
-
 		
 		<authentication-manager>
 			<authentication-provider user-service-ref="userDetailsService">
@@ -70,14 +70,20 @@
 			</authentication-provider>
 		</authentication-manager>
 		
+		<beans:bean id="rememberMeAuthenticationProvider" class="org.springframework.security.web.authentication.rememberme.PersistentTokenBasedRememberMeServices">
+    		<beans:constructor-arg value="myAppKey" />
+    		<beans:constructor-arg ref="jdbcTokenRepository" />
+    		<beans:constructor-arg ref="userDetailsService" />
+		</beans:bean>
+		
+		<beans:bean id="jdbcTokenRepository"
+  			class="org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl"> 
+    		<beans:property name="createTableOnStartup" value="false" /> 
+    		<beans:property name="dataSource" ref="dataSource" /> 
+		</beans:bean>
+		
 
 		
-<!-- 		<authentication-manager> -->
-<!--       		<authentication-provider> -->
-<!--          		<user-service> -->
-<!--             		<user name="user1" password="user1" authorities="ROLE_USER" /> -->
-<!--          		</user-service> -->
-<!--       		</authentication-provider> -->
-<!--    		</authentication-manager> -->
+
 
 </beans:beans>

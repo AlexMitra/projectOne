@@ -1,55 +1,89 @@
 package by.kalilaska.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.authentication.RememberMeAuthenticationToken;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import by.kalilaska.BeansPool;
-import by.kalilaska.beans.UserAccountPageBean;
 
 @Controller
 public class MenuBarController {
 
-	//@Autowired
-	//@Qualifier(value = "ZabiraiServiceJDBC")
-	//@Qualifier(value = "zabiraiServiceHibernate")
-	//private ServiceOne zabiraiService;
+	// @Autowired
+	// @Qualifier(value = "ZabiraiServiceJDBC")
+	// @Qualifier(value = "zabiraiServiceHibernate")
+	// private ServiceOne zabiraiService;
+
+	@Autowired
+	@Qualifier(value = "accountDetailsPageBean")
+	UserDetails userDetails;
 
 	@Autowired
 	private BeansPool beansPool;
 
-	@RequestMapping(value = {"/personalArea.html"}, method = RequestMethod.GET)
-	public ModelAndView persinalArea(@ModelAttribute(name="accountPageBean") UserAccountPageBean account) {
+	@RequestMapping(value = { "/personalArea.html" }, method = RequestMethod.GET)
+	public ModelAndView persinalArea() {
 
-		//zabiraiService.test();
-
-		if(account==null || account.getAccountLogin() == null){
-			// return new ModelAndView("redirect:/personalArea/login.html",
-			// "accountPageBean", beansPool.getUserAccountPageBean());
+		if (isAuthenticated()) {
+			return new ModelAndView("redirect:/personalArea/userPage.html");
+		} else {
 			return new ModelAndView("redirect:/personalArea/login.html");
-		}else if(account.getStatus().equals("Administrator")){
-			String redirect = "redirect:/personalArea/" + account.getAccountLogin() + ".html";
-			ModelAndView modelAndView = new ModelAndView(redirect, "accountPageBean", account);
-			return modelAndView;
-		}else{
-			String redirect = "redirect:/personalArea/" + account.getAccountLogin() + ".html";
-			ModelAndView modelAndView = new ModelAndView(redirect, "accountPageBean", account);
-			return modelAndView;
+		}
+
+	}
+
+	private boolean isAuthenticated() {
+
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		System.out.println("authentication: " + authentication);
+		if (authentication != null) {
+			if (authentication.getClass() == UsernamePasswordAuthenticationToken.class) {
+				printDetails(authentication);
+				return true;
+			}
+			if (authentication.getClass() == RememberMeAuthenticationToken.class) {
+				printDetails(authentication);
+				return true;
+			}
+
+		}
+
+		return false;
+	}
+
+	private void printDetails(Authentication authentication) {
+		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+		if (userDetails != null) {
+			System.out.println("pass: " + userDetails.getPassword());
+			System.out.println("userName: " + userDetails.getUsername());
+
+			for (GrantedAuthority auth : userDetails.getAuthorities()) {
+				System.out.println(auth.getAuthority());
+			}
 		}
 	}
 
-	@RequestMapping(value = {"/ads.html"}, method = RequestMethod.GET)
-	public ModelAndView ads(/*@ModelAttribute(name="accountPageBean" UserAccountPageBean account*/){
-		ModelAndView modelAndView = new ModelAndView("ads"/*, "accountPageBean", account*/);
+	@RequestMapping(value = { "/ads.html" }, method = RequestMethod.GET)
+	public ModelAndView ads(/*
+							 * @ModelAttribute(name="accountPageBean"
+							 * UserAccountPageBean account
+							 */) {
+		ModelAndView modelAndView = new ModelAndView(
+				"ads"/* , "accountPageBean", account */);
 		return modelAndView;
 	}
 
-	/*@ModelAttribute
-	private Entity getAccount(){
-		//return EntitiesPool.getAccount();
-		return new Account();
-	}*/
+	/*
+	 * @ModelAttribute private Entity getAccount(){ //return
+	 * EntitiesPool.getAccount(); return new Account(); }
+	 */
 }
