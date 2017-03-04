@@ -10,29 +10,49 @@
                     <div id="sidebar-wrapper">
                         <ul class="sidebar-nav">
                             <li class="sidebar-brand">
-                                <p class="personal-area-name">Личный кабинет(${accountPageBean.getUsername()})</p>
+                                <p class="personal-area-name"><spring:message code="personalArea.sideMenu.personalArea"/>(${accountPageBean.getUsername()})</p>
                             </li>
                             <li>
-                                <a href="#">Сообщения</a>
+                                <a href="#"><spring:message code="personalArea.sideMenu.myMessages" /></a>
                             </li>
                             
                             <security:authorize access="hasAuthority('Administrator')">
                             <li>
-                                <a id = "allAccounts" href="#allAccounts" onclick="workWithData.getAccountsData()">Пользователи</a>
+                                <a href="#"><spring:message code="personalArea.sideMenu.messages"/></a>
+                            </li>
+                            </security:authorize>
+                            
+                            <security:authorize access="hasAuthority('Administrator')">
+                            <li>
+                                <a id = "allAccounts" href="#allAccounts" onclick="workWithData.getAccountsData()"><spring:message code="personalArea.sideMenu.allAccounts"/></a>
                             </li>
                             </security:authorize>
                             
                             <li>
-                                <a href="#">Объявления</a>
+                                <a href="#"><spring:message code="personalArea.sideMenu.myAds"/></a>
                             </li>
+                            
+                            <security:authorize access="hasAuthority('Administrator')">
                             <li>
-                                <a href="#">Мероприятия</a>
+                                <a href="#"><spring:message code="personalArea.sideMenu.allAds"/></a>
                             </li>
+                            </security:authorize>
+                            
+                            <li>
+                                <a href="#"><spring:message code="personalArea.sideMenu.myActions"/></a>
+                            </li>
+                            
+                            <security:authorize access="hasAuthority('Administrator')">
+                            <li>
+                                <a href="#"><spring:message code="personalArea.sideMenu.allActions"/></a>
+                            </li>
+                            </security:authorize>
+                            
                             <li>                                
                                 <c:url var="logoutUrl" value="/personalArea/logout.html"/>
                                 <form id="my-logout-form" action="${logoutUrl}" method="post">
                                 
-                                	<a href="#" onclick="document.getElementById('my-logout-form').submit();">Выход</a>
+                                	<a href="#" onclick="document.getElementById('my-logout-form').submit();"><spring:message code="personalArea.sideMenu.logOut"/></a>
                                 	<input type="hidden" 
                                 		name="${_csrf.parameterName}" 
                                 		value="${_csrf.token}"/>

@@ -20,6 +20,7 @@
 }
 .link-text-color {
     color: black;
+    white-space: nowrap;
 }
 
 .language-text-color {

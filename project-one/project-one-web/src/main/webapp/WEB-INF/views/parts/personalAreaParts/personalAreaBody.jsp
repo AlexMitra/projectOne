@@ -17,7 +17,7 @@
                     <div id="page-content-wrapper">
                         
                     	<div id="personal-info" class="col-lg-12" style="display: ">
-                        	<h3 align="center">Glad to see you, ${accountPageBean.getAccountLogin()}!</h3>
+                        	<h3 align="center"><spring:message code="personalArea.body.greetings"/>${accountPageBean.getAccountLogin()}!</h3>
                         </div>                            	
 
 						<security:authorize access="hasAuthority('Administrator')">

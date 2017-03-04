@@ -10,10 +10,10 @@
                     <div class="row">
                         <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5"></div>
                         <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
-                            <h3 align="center"><a class="link-text-color" href="/project-one-web/personalArea/login.html">Вход</a></h3>
+                            <h3 align="center"><a class="link-text-color" href="/project-one-web/personalArea/login.html"><spring:message code="registration.form.log.in"/></a></h3>
                         </div>
                         <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
-                            <h3 align="center">Регистрация</h3>
+                            <h3 align="center" class="link-text-color"><spring:message code="registration.form.signUp"/></h3>
                         </div>
                         <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5"></div>
                     </div>
@@ -24,32 +24,32 @@
     				<form:form method="post" modelAttribute="accountPageBean" class="form-horizontal" enctype="utf8">                        
                         
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">Логин</label>
+                            <label class="col-sm-2 control-label"><spring:message code="registration.form.login"/></label>
                             <div class="col-sm-10">
-                                <form:input type="text" class="form-control" id="inputLogin" placeholder="Login" path="accountLogin"/>
+                            	<spring:message code="registration.form.login" var="registrationFormLogin"/>
+                                <form:input type="text" class="form-control" id="inputLogin" path="accountLogin" placeholder="${registrationFormLogin}"/>
                             </div>
                             <div class="col-sm-10">
                                 <form:errors type="text" class="error-text-color" path="accountLogin"/>
-<%--                                 <p type="text" class="error-text-color">${accountPageBean.loginCheck}<p> --%>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">Почта</label>
+                            <label class="col-sm-2 control-label"><spring:message code="registration.form.email"/></label>
                             <div class="col-sm-10">
-                                <form:input type="email" class="form-control" id="inputEmail" placeholder="Email" path="accountEmail"/>
+                            	<spring:message code="registration.form.email" var="registrationFormEmail"/>
+                                <form:input type="email" class="form-control" id="inputEmail" placeholder="${registrationFormEmail}" path="accountEmail"/>
                             </div>
                             <div class="col-sm-10">
                                 <form:errors type="text" class="error-text-color" path="accountEmail"/>
-                                <form:errors type="text" class="error-text-color" path="accountEmail"/>
-<%--                                 <p type="text" class="error-text-color">${accountPageBean.emailCheck}<p> --%>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">Пароль</label>
+                            <label class="col-sm-2 control-label"><spring:message code="registration.form.password"/></label>
                             <div class="col-sm-10">
-                                <form:input type="password" class="form-control" id="inputPassword" placeholder="Password" path="accountPassword"/>
+                            	<spring:message code="registration.form.password" var="registrationFormPassword"/>
+                                <form:input type="password" class="form-control" id="inputPassword" placeholder="${registrationFormPassword}" path="accountPassword"/>
                             </div>
                             <div class="col-sm-10">
                                 <form:errors type="text" class="error-text-color" path="accountPassword"/>
@@ -57,9 +57,10 @@
                         </div>
                         
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">Повторите пароль</label>
+                            <label class="col-sm-2 control-label"><spring:message code="registration.form.passwordOnceMore"/></label>
                             <div class="col-sm-10">
-                                <form:input type="password" class="form-control" id="inputPasswordOnceMore" placeholder="Password once more" path="accountPasswordOnceMore"/>
+                            	<spring:message code="registration.form.passwordOnceMore" var="registrationFormPasswordOnceMore"/>
+                                <form:input type="password" class="form-control" id="inputPasswordOnceMore" placeholder="${registrationFormPasswordOnceMore}" path="accountPasswordOnceMore"/>
                             </div>
                             <div class="col-sm-10">
                             	<form:errors type="text" class="error-text-color" path="accountPasswordOnceMore"/>
@@ -69,7 +70,7 @@
                         
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
-                                <button type="submit" name="registration" class="btn btn-default">Зарегистрироваться</button>
+                                <button type="submit" name="registration" class="btn btn-default"><spring:message code="registration.form.createAccount"/></button>
                             </div>
                         </div>
                     </form:form>
