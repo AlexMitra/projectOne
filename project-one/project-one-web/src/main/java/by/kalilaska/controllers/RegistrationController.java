@@ -81,6 +81,7 @@ public class RegistrationController {
 		AccountDetailsPageBean registered = null;
 
 		if (bindingResult.hasErrors()) {
+
 			return new ModelAndView("registration", "accountPageBean", account);
 		}
 
@@ -88,15 +89,15 @@ public class RegistrationController {
 			registered = registrationService.insertNewAccount(account);
 		} catch (LoginExistsException e) {
 
-			bindingResult.rejectValue("accountLogin", "registration.form.loginAlreadyExists");
+			bindingResult.rejectValue("accountLogin", "error.registration.form.loginAlreadyExists");
 			return new ModelAndView("registration", "accountPageBean", account);
 		} catch (EmailExistsException e) {
 
-			bindingResult.rejectValue("accountEmail", "registration.form.emailAlreadyExists");
+			bindingResult.rejectValue("accountEmail", "error.registration.form.emailAlreadyExists");
 			return new ModelAndView("registration", "accountPageBean", account);
 		} catch (UnknownCauseAccountExistException e) {
 
-			bindingResult.rejectValue("accountEmail", "registration.form.unknownExistence");
+			bindingResult.rejectValue("accountEmail", "error.registration.form.unknownExistence");
 			return new ModelAndView("registration", "accountPageBean", account);
 		}
 

@@ -71,10 +71,10 @@ public class ZabiraiServiceDataNonSecurity implements ServiceOne {
 			account.setId(accountEntity.getAccountId());
 			return true;
 		} else if (check.equals("this login already exist")) {
-			account.setLoginCheck(check);
+			// account.setLoginCheck(check);
 			return false;
 		} else if (check.equals("this email already exist")) {
-			account.setEmailCheck(check);
+			// account.setEmailCheck(check);
 		}
 		return false;
 	}

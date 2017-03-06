@@ -9,7 +9,7 @@
 	http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
 	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 	
-	<mvc:annotation-driven />
+	<mvc:annotation-driven validator="validator"/>		
 	
 	<import resource="ApplicationContext-web.xml"/>	
 	
@@ -25,7 +25,7 @@
 	<bean class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
 		<property name="definitions">
 			<list>
-				<value>/WEB-INF/tiles/mainViews.xml</value>
+				<value>/WEB-INF/tiles/mainViews.xml</value>				
 			</list>		
 		</property>	
 	</bean>
@@ -34,10 +34,17 @@
         <property name="basenames">
             <list>
                 <value>classpath:by/kalilaska/resources/i18n/msgs</value>
+                <value>classpath:by/kalilaska/resources/validationMessages/ValidationMessages</value>
             </list>
-        </property>
+        </property>        
         <property name="defaultEncoding" value="UTF-8"/>
     </bean>
+    
+	<bean id="validator" name="validator"  class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+    	<property name="validationMessageSource">
+       		<ref bean="messageSource"/>
+    	</property>
+	</bean>
 
     <bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
         <property name="defaultLocale" value="en_US" />

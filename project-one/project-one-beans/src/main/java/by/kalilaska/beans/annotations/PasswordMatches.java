@@ -11,7 +11,7 @@ import javax.validation.Payload;
 
 import by.kalilaska.utilities.validators.PasswordMatchesValidator;
 
-@Target(value = { ElementType.TYPE, ElementType.ANNOTATION_TYPE })
+@Target(value = { ElementType.TYPE, ElementType.ANNOTATION_TYPE, ElementType.FIELD })
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = PasswordMatchesValidator.class)
 @Documented
