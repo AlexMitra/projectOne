@@ -99,10 +99,10 @@ public class AccountRegistrationServiceBySD implements AccountRegistrationServic
 
 		if (accounts != null) {
 			for (AccountEntityHibernate accountEntity : accounts) {
-				if (accountEntity.getAccountLogin().equals(account.getAccountLogin())) {
+				if (accountEntity.getAccountLogin().toLowerCase().equals(account.getAccountLogin().toLowerCase())) {
 					throw new LoginExistsException("this login already exist");
 				}
-				if (accountEntity.getAccountEmail().equals(account.getAccountEmail())) {
+				if (accountEntity.getAccountEmail().toLowerCase().equals(account.getAccountEmail().toLowerCase())) {
 					throw new EmailExistsException("this email already exist");
 				}
 			}

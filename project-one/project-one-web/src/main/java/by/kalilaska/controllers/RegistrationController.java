@@ -3,15 +3,12 @@ package by.kalilaska.controllers;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,23 +18,12 @@ import org.springframework.web.servlet.ModelAndView;
 import by.kalilaska.BeansPool;
 import by.kalilaska.beans.AccountDetailsPageBean;
 import by.kalilaska.services.AccountRegistrationService;
-import by.kalilaska.services.ServiceOne;
 import by.kalilaska.services.exceptions.EmailExistsException;
 import by.kalilaska.services.exceptions.LoginExistsException;
 import by.kalilaska.services.exceptions.UnknownCauseAccountExistException;
 
 @Controller
-@Transactional
 public class RegistrationController {
-
-	@Autowired
-	private AuthenticationManager authenticationManager;
-
-	@Autowired
-	// @Qualifier(value = "ZabiraiServiceJDBC")
-	// @Qualifier(value = "zabiraiServiceHibernate")
-	@Qualifier(value = "zabiraiServiceData")
-	private ServiceOne zabiraiService;
 
 	@Autowired
 	private AccountRegistrationService registrationService;
@@ -49,35 +35,11 @@ public class RegistrationController {
 	public ModelAndView showRegistration(WebRequest request) {
 		return new ModelAndView("registration", "accountPageBean", new AccountDetailsPageBean());
 	}
-	// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	// @RequestMapping(value = { "/personalArea/registration.html" }, method =
-	// RequestMethod.POST)
-	// public ModelAndView registrationOn(@Valid @ModelAttribute(name =
-	// "accountPageBean") AccountDetailsPageBean account,
-	// BindingResult bindingResult, WebRequest request, Errors errors) {
-	// if (bindingResult.hasErrors()) {
-	// return new ModelAndView("registration", "accountPageBean", account);
-	// }
-	// if (zabiraiService.insertNewAccount(account)) {
-	//
-	// String redirect = "redirect:/personalArea/" + account.getAccountLogin() +
-	// ".html";
-	// ModelAndView modelAndView = new ModelAndView(redirect, "accountPageBean",
-	// account);
-	// return modelAndView;
-	// }
-	//
-	// // System.out.println(account);
-	// ModelAndView modelAndView = new ModelAndView("registration",
-	// "accountPageBean", account);
-	// return modelAndView;
-	//
-	// }
-	// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 	@RequestMapping(value = { "/personalArea/registration.html" }, method = RequestMethod.POST)
 	public ModelAndView registrationOn(@Valid @ModelAttribute(name = "accountPageBean") AccountDetailsPageBean account,
-			BindingResult bindingResult, WebRequest request, Errors errors) {
+			BindingResult bindingResult) {
+
 		AccountDetailsPageBean registered = null;
 
 		if (bindingResult.hasErrors()) {
@@ -94,6 +56,10 @@ public class RegistrationController {
 		} catch (EmailExistsException e) {
 
 			bindingResult.rejectValue("accountEmail", "error.registration.form.emailAlreadyExists");
+			return new ModelAndView("registration", "accountPageBean", account);
+		} catch (IncorrectResultSizeDataAccessException e) {
+
+			bindingResult.rejectValue("accountEmail", "error.registration.form.unknownExistence");
 			return new ModelAndView("registration", "accountPageBean", account);
 		} catch (UnknownCauseAccountExistException e) {
 
