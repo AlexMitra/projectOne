@@ -28,73 +28,6 @@ public class LogInController {
 	@Autowired
 	private BeansPool beansPool;
 
-	// @RequestMapping(value = {"/personalArea/login.html"}, method =
-	// RequestMethod.GET)
-	// public ModelAndView showLogIn(@ModelAttribute(name="userAccountPageBean")
-	// UserAccountPageBean account) {
-	//
-	// return new ModelAndView("login", "accountPageBean", account);
-	//
-	// }
-
-	// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	// @RequestMapping(value = { "/personalArea/login.html" }, method =
-	// RequestMethod.POST)
-	// public ModelAndView LogIn(@ModelAttribute(name = "accountPageBean")
-	// UserAccountPageBean account,
-	// HttpSession session) {
-	// if (zabiraiService.checkAccount(account)) {
-	//
-	// String redirect = "redirect:/personalArea/" + account.getAccountLogin() +
-	// ".html";
-	// session.setAttribute("accountPageBean", account);
-	// ModelAndView modelAndView = new ModelAndView(redirect, "accountPageBean",
-	// account);
-	// return modelAndView;
-	// }
-	//
-	// ModelAndView modelAndView = new ModelAndView("login", "accountPageBean",
-	// account);
-	// return modelAndView;
-	// }
-	// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-	// @RequestMapping(value = { "/personalArea/{accountLogin}.html" }, method =
-	// RequestMethod.GET)
-	// public ModelAndView showAdminPage(@PathVariable String accountLogin,
-	// @ModelAttribute(name="accountPageBean") UserAccountPageBean account,
-	// HttpSession session) {
-	// account = (UserAccountPageBean)session.getAttribute("accountPageBean");
-	// ModelAndView modelAndView = new ModelAndView("personalAreaIn",
-	// "accountPageBean", account);
-	// return modelAndView;
-	// }
-	//
-	// @RequestMapping(value = { "/personalArea/{accountLogin}.html" }, method =
-	// RequestMethod.GET)
-	// public ModelAndView showUserPage(@PathVariable String accountLogin,
-	// @ModelAttribute(name="accountPageBean") UserAccountPageBean account) {
-	//
-	// ModelAndView modelAndView = new ModelAndView("personalAreaIn",
-	// "accountPageBean", account);
-	// return modelAndView;
-	// }
-
-	// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	// @RequestMapping(value = { "/personalArea/{accountLogin}.html" }, method =
-	// RequestMethod.GET)
-	// public ModelAndView showPersonalAreaPage(@PathVariable String
-	// accountLogin,
-	// @ModelAttribute(name="accountPageBean") UserAccountPageBean account,
-	// HttpSession session) {
-	// //!!!!!!!!!!!!!!!!!zabiraiService.test();
-	// account = (UserAccountPageBean)session.getAttribute("accountPageBean");
-	// ModelAndView modelAndView = new ModelAndView("personalAreaIn",
-	// "accountPageBean", account);
-	// return modelAndView;
-	// }
-	// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
 	@RequestMapping(value = { "/personalArea/login.html" }, method = RequestMethod.GET)
 	public ModelAndView showLogIn() {
 
@@ -131,7 +64,7 @@ public class LogInController {
 
 	@RequestMapping(value = { "/personalArea/userPage.html" }, method = RequestMethod.GET)
 	public ModelAndView loginSuccess() {
-		// printUserDetails();
+
 		AccountDetailsPageBean account = getAccountPageBean();
 		String redirect = "redirect:/personalArea/" + account.getAccountLogin() + ".html";
 
@@ -141,7 +74,7 @@ public class LogInController {
 
 	@RequestMapping(value = { "/personalArea/{accountLogin}.html" }, method = RequestMethod.GET)
 	public ModelAndView showPersonalAreaPage(@PathVariable String accountLogin) {
-		// printUserDetails();
+
 		AccountDetailsPageBean account = getAccountPageBean();
 
 		ModelAndView modelAndView = new ModelAndView("personalAreaIn", "accountPageBean", account);
