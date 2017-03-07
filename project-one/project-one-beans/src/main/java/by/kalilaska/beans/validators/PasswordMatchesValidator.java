@@ -1,4 +1,4 @@
-package by.kalilaska.utilities.validators;
+package by.kalilaska.beans.validators;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;

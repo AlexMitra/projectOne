@@ -9,7 +9,7 @@ import java.lang.annotation.Target;
 import javax.validation.Constraint;
 import javax.validation.Payload;
 
-import by.kalilaska.utilities.validators.PasswordMatchesValidator;
+import by.kalilaska.beans.validators.PasswordMatchesValidator;
 
 @Target(value = { ElementType.TYPE, ElementType.ANNOTATION_TYPE, ElementType.FIELD })
 @Retention(RetentionPolicy.RUNTIME)
