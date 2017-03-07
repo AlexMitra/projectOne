@@ -17,52 +17,52 @@
                         </div>
                         <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5"></div>
                     </div>
-                </div>
+                
 
                 <div class="form-login-screen row">   
 
     				<form:form method="post" modelAttribute="accountPageBean" class="form-horizontal" enctype="utf8">                        
                         
                         <div class="form-group">
-                            <label class="col-sm-2 control-label"><spring:message code="registration.form.login"/></label>
-                            <div class="col-sm-10">
+                            <label class="col-sm-3 control-label"><p class="label-text"><spring:message code="registration.form.login"/></p></label>
+                            <div class="col-sm-9">
                             	<spring:message code="registration.form.login" var="registrationFormLogin"/>
                                 <form:input type="text" class="form-control" id="inputLogin" path="accountLogin" placeholder="${registrationFormLogin}"/>
                             </div>
-                            <div class="col-sm-10">
+                            <div class="col-sm-offset-3 col-sm-9">
                                 <form:errors type="text" class="error-text-color" path="accountLogin"/>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-sm-2 control-label"><spring:message code="registration.form.email"/></label>
-                            <div class="col-sm-10">
+                            <label class="col-sm-3 control-label"><p class="label-text"><spring:message code="registration.form.email"/></p></label>
+                            <div class="col-sm-9">
                             	<spring:message code="registration.form.email" var="registrationFormEmail"/>
                                 <form:input type="email" class="form-control" id="inputEmail" placeholder="${registrationFormEmail}" path="accountEmail"/>
                             </div>
-                            <div class="col-sm-10">
+                            <div class="col-sm-offset-3 col-sm-9">
                                 <form:errors type="text" class="error-text-color" path="accountEmail"/>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-sm-2 control-label"><spring:message code="registration.form.password"/></label>
-                            <div class="col-sm-10">
+                            <label class="col-sm-3 control-label"><p class="label-text"><spring:message code="registration.form.password"/></p></label>
+                            <div class="col-sm-9">
                             	<spring:message code="registration.form.password" var="registrationFormPassword"/>
                                 <form:input type="password" class="form-control" id="inputPassword" placeholder="${registrationFormPassword}" path="accountPassword"/>
                             </div>
-                            <div class="col-sm-10">
+                            <div class="col-sm-offset-3 col-sm-9">
                                 <form:errors type="text" class="error-text-color" path="accountPassword"/>
                             </div>
                         </div>
                         
                         <div class="form-group">
-                            <label class="col-sm-2 control-label"><spring:message code="registration.form.passwordOnceMore"/></label>
-                            <div class="col-sm-10">
+                            <label class="col-sm-3 control-label"><p class="label-text"><spring:message code="registration.form.passwordOnceMore"/></p></label>
+                            <div class="col-sm-9">
                             	<spring:message code="registration.form.passwordOnceMore" var="registrationFormPasswordOnceMore"/>
                                 <form:input type="password" class="form-control" id="inputPasswordOnceMore" placeholder="${registrationFormPasswordOnceMore}" path="accountPasswordOnceMore"/>
                             </div>
-                            <div class="col-sm-10">
+                            <div class="col-sm-offset-3 col-sm-9">
                             	<form:errors type="text" class="error-text-color" path="accountPasswordOnceMore"/>
                                 <form:errors type="text" class="error-text-color"/>
                             </div>
@@ -75,7 +75,9 @@
                         </div>
                     </form:form>
                 </div>
-
+                
+                
+				</div>
             </div>
         </div>
 

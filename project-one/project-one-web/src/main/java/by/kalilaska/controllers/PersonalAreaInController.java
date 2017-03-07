@@ -1,5 +1,6 @@
 package by.kalilaska.controllers;
 
+import org.apache.log4j.Logger;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,6 +12,8 @@ import by.kalilaska.beans.AccountDetailsPageBean;
 
 @Controller
 public class PersonalAreaInController {
+
+	private final static Logger logger = Logger.getLogger(PersonalAreaInController.class);
 
 	@RequestMapping(value = { "/personalArea/userPage.html" }, method = RequestMethod.GET)
 	public ModelAndView loginSuccess() {
@@ -26,6 +29,10 @@ public class PersonalAreaInController {
 	public ModelAndView showPersonalAreaPage(@PathVariable String accountLogin) {
 
 		AccountDetailsPageBean account = getAccountPageBean();
+		logger.info(accountLogin + " log in successfull");
+		// logger.error(" error message ");
+		// logger.debug(" debug message ");
+		// logger.fatal(" fatal message ");
 
 		ModelAndView modelAndView = new ModelAndView("personalAreaIn", "accountPageBean", account);
 		return modelAndView;

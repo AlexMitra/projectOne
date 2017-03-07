@@ -17,7 +17,7 @@
                         </div>
                         <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5"></div>
                     </div>
-                </div>
+                
 
                 <div class="form-login-screen row">
                     <form name="f" action="<c:url value='/perform_login'/>" method="post" class="form-horizontal" >
@@ -67,15 +67,10 @@
                                 <button type="submit" name="submit" class="btn btn-default"><spring:message code="login.form.log.in"/></button>
                             </div>
                         </div>
-                        
-                        
-							
-						<c:if test="${logout != null}">
-							<p>${logout}</p>
-						</c:if>
                     </form>
                 </div>
-
+                
+				</div>
             </div>
         </div>
 

@@ -122,6 +122,11 @@
     border: 0px;   
 }
 
+.label-text {
+	text-align: right;
+	white-space: nowrap;
+}
+
 .footer {    
 /*   margin-right: 25%;*/
     background-color: darkgray;
