@@ -1,7 +1,5 @@
 package by.kalilaska.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,23 +9,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import by.kalilaska.BeansPool;
-import by.kalilaska.services.ServiceOne;
-
 @Controller
 public class LogInController {
 
-	@Autowired
-	// @Qualifier(value = "ZabiraiServiceJDBC")
-	// @Qualifier(value = "zabiraiServiceHibernate")
-	@Qualifier(value = "zabiraiServiceData")
-	private ServiceOne zabiraiService;
-
-	@Autowired
-	private BeansPool beansPool;
-
 	@RequestMapping(value = { "/personalArea/login.html" }, method = RequestMethod.GET)
-	public ModelAndView showLogIn() {
+	public ModelAndView showLogIn(@RequestParam(value = "logOutSuccess", required = false) Object logOutSuccess) {
+		if (logOutSuccess != null) {
+			return new ModelAndView("login", "logOutSuccess", true);
+		}
 
 		return new ModelAndView("login");
 	}

@@ -53,6 +53,11 @@
                                		<font type="text"><spring:message code="login.form.badLoginOrPassword"/></font>
                         		</div>
                         	</c:if>
+                        	<c:if test="${logOutSuccess eq true}">
+                        		<div class="col-sm-6 success-text-color">                               
+                               		<font type="text"><spring:message code="login.form.logOutSuccess"/></font>
+                        		</div>
+                        	</c:if>
                         </div>
                         
                         <!-- CSRF Protection -->

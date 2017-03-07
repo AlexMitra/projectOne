@@ -33,6 +33,12 @@
     font-weight:bold;
 }
 
+.success-text-color {
+    color: green;
+    margin-top: 7px;
+    font-weight:bold;
+}
+
 #menu-band {      
     height: 100%;
     margin-bottom: 0px;
