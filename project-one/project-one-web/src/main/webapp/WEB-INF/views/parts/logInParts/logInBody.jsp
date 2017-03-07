@@ -5,7 +5,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
         <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 login-area">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5"></div>
@@ -19,8 +19,7 @@
                     </div>
                 </div>
 
-                <div class="form-login-screen">
-                
+                <div class="form-login-screen row">
                     <form name="f" action="<c:url value='/perform_login'/>" method="post" class="form-horizontal" >
 
                         	

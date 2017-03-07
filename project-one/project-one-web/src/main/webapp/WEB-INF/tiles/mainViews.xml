@@ -18,8 +18,7 @@
     </definition>
         
     <definition name="login" extends="home">    	
-    	<put-attribute name="body" value="/WEB-INF/views/parts/logInParts/logInBody.jsp"/>    	
-    	<put-attribute name="footer" value="/WEB-INF/views/parts/logInParts/logInFooter.jsp"/>
+    	<put-attribute name="body" value="/WEB-INF/views/parts/logInParts/logInBody.jsp"/>
     </definition>
     
     <definition name="registration" extends="login">    	

@@ -4,13 +4,12 @@
     height: 500px;
     margin: 0 auto;
 }
+
 .form-login-screen {
-    display: block;
-    max-width: 50%;
-    height: 100%;
+    max-width: 55%;
     margin: 0 auto;
-    vertical-align: middle;
 }
+
 .navbar-fixed-bottom {
     position: fixed;
     left: 0;
@@ -18,6 +17,7 @@
     padding: 10px;
     width: 100%;
 }
+
 .link-text-color {
     color: black;
     white-space: nowrap;
@@ -110,6 +110,16 @@
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
     transition: all 0.5s ease;    
+}
+
+.login-area {    
+    height: 80vh;    
+    border: 0px;   
+}
+
+.registration-area {    
+    height: 80vh;    
+    border: 0px;   
 }
 
 .footer {    

@@ -5,12 +5,12 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
     
 
+    <div class="row">
         <div class="navbar navbar-btn footer">
-            <div class="row">
-                <br>
-                <h4 align="center"><spring:message code="homePage.menu.footer" /></h4>
-            </div>
+            <br>
+            <h4 align="center"><spring:message code="allPages.footer"/></h4>
         </div>
+    </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.js"></script>
