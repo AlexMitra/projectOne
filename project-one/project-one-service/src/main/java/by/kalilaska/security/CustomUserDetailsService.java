@@ -38,7 +38,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 			String email = accountEntity.getAccountEmail();
 			String password = accountEntity.getAccountPassword();
 
-			boolean enabled = true;
+			boolean enabled = accountEntity.isAccountEnabled();
 			// boolean accountNonExpired = true;
 			// boolean credentialsNonExpired = true;
 			// boolean accountNonLocker = true;

@@ -21,74 +21,57 @@ import lombok.Setter;
 
 @Entity
 @NamedQueries({
-    @NamedQuery(
-	        name = "getAccountByLogin",
-	        query = "select a from AccountEntityHibernate a where a.accountLogin = :login"
-	    ),
-    @NamedQuery(
-	        name = "getAccountByEmail",
-	        query = "select a from AccountEntityHibernate a where a.accountEmail = :email"
-	    ),
-    @NamedQuery(
-        name = "getAccountsByLoginAndEmail",
-        query = "select a from AccountEntityHibernate a where a.accountLogin = :login"
-        		+ " or a.accountEmail = :email"
-    ),
-    @NamedQuery(
-	        name = "getAllAccounts",
-	        query = "select a from AccountEntityHibernate a"
-	    ),
-    @NamedQuery(
-	        name = "deleteAccountByLogin",
-	        query = "delete from AccountEntityHibernate a where a.accountLogin = :login"
-	    ),
-})
+		@NamedQuery(name = "getAccountByLogin", query = "select a from AccountEntityHibernate a where a.accountLogin = :login"),
+		@NamedQuery(name = "getAccountByEmail", query = "select a from AccountEntityHibernate a where a.accountEmail = :email"),
+		@NamedQuery(name = "getAccountsByLoginAndEmail", query = "select a from AccountEntityHibernate a where a.accountLogin = :login"
+				+ " or a.accountEmail = :email"),
+		@NamedQuery(name = "getAllAccounts", query = "select a from AccountEntityHibernate a"),
+		@NamedQuery(name = "deleteAccountByLogin", query = "delete from AccountEntityHibernate a where a.accountLogin = :login"), })
 @Table(name = "Accounts")
 @Getter
 @Setter
-public class AccountEntityHibernate{
-	
+public class AccountEntityHibernate {
+
 	@Id
 	@Column(name = "Account_Id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long accountId;
-	
+
 	@Column(name = "Login")
 	private String accountLogin;
-	
+
 	@Column(name = "Email")
 	private String accountEmail;
-	
+
 	@Column(name = "Password")
-	private String accountPassword;	
+	private String accountPassword;
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinTable(name = "Accounts_to_roles",
-		joinColumns = @JoinColumn(name = "Accounts_to_roles_FK_Account_id", 
-		referencedColumnName = "Account_Id"),
-		inverseJoinColumns = @JoinColumn(name = "Accounts_to_roles_FK_Role_id", 
-		referencedColumnName = "Role_Id"))
+	@JoinTable(name = "Accounts_to_roles", joinColumns = @JoinColumn(name = "Accounts_to_roles_FK_Account_id", referencedColumnName = "Account_Id"), inverseJoinColumns = @JoinColumn(name = "Accounts_to_roles_FK_Role_id", referencedColumnName = "Role_Id"))
 	private RoleEntityHibernate accountRole;
-	
-	@OneToMany(targetEntity = AdEntityHibernate.class ,mappedBy = "adMaker", 
-		fetch = FetchType.LAZY)
+
+	@OneToMany(targetEntity = AdEntityHibernate.class, mappedBy = "adMaker", fetch = FetchType.LAZY)
 	private List<AdEntityHibernate> accountAds;
 
+	@Column(name = "Account_enabled")
+	private boolean accountEnabled;
+
 	public AccountEntityHibernate() {
-		super();		
-	}	
+		super();
+	}
 
 	public AccountEntityHibernate(String accountLogin, String accountEmail, String accountPassword) {
 		super();
 		this.accountLogin = accountLogin;
 		this.accountEmail = accountEmail;
 		this.accountPassword = accountPassword;
+		this.accountEnabled = true;
 	}
 
 	@Override
 	public String toString() {
 		return "AccountEntityHibernate [accountId=" + accountId + ", accountLogin=" + accountLogin + ", accountEmail="
-				+ accountEmail + ", accountPassword=" + accountPassword + "]";
-	}	
-	
+				+ accountEmail + ", accountPassword=" + accountPassword + ", accountEnabled=" + accountEnabled + "]";
+	}
+
 }
