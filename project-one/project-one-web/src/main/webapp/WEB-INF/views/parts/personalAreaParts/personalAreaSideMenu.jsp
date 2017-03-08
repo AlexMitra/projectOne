@@ -6,8 +6,6 @@
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 
 
-                    <!-- Sidebar -->
-                    <div id="sidebar-wrapper">
                         <ul class="sidebar-nav">
                             <li class="sidebar-brand">
                                 <p class="personal-area-name"><spring:message code="personalArea.sideMenu.personalArea"/>(${accountPageBean.getUsername()})</p>
@@ -60,7 +58,6 @@
                             </li>
                         </ul>									
 				
-					<!-- /#sidebar-wrapper -->	
-                    </div>
+
                     
 

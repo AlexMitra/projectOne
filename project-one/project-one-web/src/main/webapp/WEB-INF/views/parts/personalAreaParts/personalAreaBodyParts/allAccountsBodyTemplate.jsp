@@ -5,7 +5,7 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 
-                                <div id="accounts" class="col-lg-12" style = "display: none;">
+                                <div id="accounts" class="col-lg-12 personalArea-body-element" style = "display: none;">
                                     <h2>Accounts</h2>
                                     
                                     <tiles:insertAttribute name="searchPanel"/>

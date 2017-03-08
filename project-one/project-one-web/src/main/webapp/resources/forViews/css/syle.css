@@ -58,9 +58,9 @@
 }
 
 .accounts-table-area{
-	overflow: scroll; /* ��������� ������ ��������� */    
-    height: 50%; /* ������ ����� */    
-    border: 0px; /* ��������� ����� */
+	overflow: scroll;  
+    height: 50%;   
+    border: 0px;
 }
 
 .btn-primary-my{ 
@@ -88,9 +88,9 @@
 }
 
 .all-ads-area{
-	overflow: scroll; /* ��������� ������ ��������� */    
-    height: 235vh; /* ������ ����� */    
-    border: 0px; /* ��������� ����� */
+	overflow: scroll; /*как дела?*/
+    height: 235vh;   
+    border: 0px;
     margin-top: 5%;
     margin-left: 250px;
     margin-right: 5%;    
@@ -101,7 +101,7 @@
 }
 
 .sidebar {    
-    height: 245vh; /* ������ ����� */
+    height: 245vh;
     width: 250px;
     z-index: 1000;   
     overflow-y: auto;
@@ -131,6 +131,15 @@
 /*   margin-right: 25%;*/
     background-color: darkgray;
     border: 0px;    
+}
+
+.personalArea-body-area{
+    height: 235vh;    
+    border: 0px;    
+}
+
+.personalArea-body-element{
+   position: static;   
 }
 
 .like{
