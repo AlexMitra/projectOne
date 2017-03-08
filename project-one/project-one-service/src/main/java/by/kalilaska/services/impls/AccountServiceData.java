@@ -11,7 +11,7 @@ import by.kalilaska.services.AccountService;
 public class AccountServiceData implements AccountService {
 
 	@Autowired
-	AccountsRepositoryData accountRepository;
+	private AccountsRepositoryData accountRepository;
 
 	@Override
 	public AccountEntityHibernate findByAccountLogin(String login) {

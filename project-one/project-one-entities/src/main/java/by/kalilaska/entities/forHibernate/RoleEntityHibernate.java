@@ -15,42 +15,29 @@ import javax.persistence.Table;
 
 import lombok.Data;
 
-
 @Entity
 @NamedQueries({
-    @NamedQuery(
-	        name = "getAccountRoleByRoleStatus",
-	        query = "select r from RoleEntityHibernate r where r.roleStatus = :role"
-	    ),
-    @NamedQuery(
-	        name = "getAllAccountRoles",
-	        query = "select r from RoleEntityHibernate r"
-	    ),
-    @NamedQuery(
-	        name = "deleteAccountRoleByRoleStatus",
-	        query = "delete from RoleEntityHibernate r where r.roleStatus = :role"
-	    )
-})
+		@NamedQuery(name = "getAccountRoleByRoleStatus", query = "select r from RoleEntityHibernate r where r.roleStatus = :role"),
+		@NamedQuery(name = "getAllAccountRoles", query = "select r from RoleEntityHibernate r"),
+		@NamedQuery(name = "deleteAccountRoleByRoleStatus", query = "delete from RoleEntityHibernate r where r.roleStatus = :role") })
 @Table(name = "Roles")
 @Data
-public class RoleEntityHibernate{
+public class RoleEntityHibernate {
 
-	
 	@Id
 	@Column(name = "Role_Id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int roleId;
-	
+
 	@Column(name = "Role")
 	private String roleStatus;
-	
-	@OneToMany(targetEntity = AccountEntityHibernate.class, mappedBy = "accountRole",
-			fetch = FetchType.LAZY)
+
+	@OneToMany(targetEntity = AccountEntityHibernate.class, mappedBy = "accountRole", fetch = FetchType.LAZY)
 	private List<AccountEntityHibernate> accountEntities;
 
 	public RoleEntityHibernate() {
 		super();
-	}	
+	}
 
 	public RoleEntityHibernate(String roleStatus) {
 		super();
@@ -60,6 +47,6 @@ public class RoleEntityHibernate{
 	@Override
 	public String toString() {
 		return "RoleEntityHibernate [roleId=" + roleId + ", roleStatus=" + roleStatus + "]";
-	}	
-	
+	}
+
 }

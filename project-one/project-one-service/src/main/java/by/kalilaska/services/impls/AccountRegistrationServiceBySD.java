@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import by.kalilaska.beans.AccountDetailsPageBean;
 import by.kalilaska.daoHibernate.repositories.springData.AccountsRepositoryData;
 import by.kalilaska.daoHibernate.repositories.springData.RolesRepositoryData;
+import by.kalilaska.entities.enums.Authorities;
 import by.kalilaska.entities.forHibernate.AccountEntityHibernate;
 import by.kalilaska.entities.forHibernate.RoleEntityHibernate;
 import by.kalilaska.services.AccountRegistrationService;
@@ -43,7 +44,7 @@ public class AccountRegistrationServiceBySD implements AccountRegistrationServic
 
 	private RoleEntityHibernate getRoleUser() {
 		if (roleUser == null) {
-			roleUser = rolesRepository.findByRoleStatus("User");
+			roleUser = rolesRepository.findByRoleStatus(Authorities.USER.getRole());
 		}
 		return roleUser;
 
@@ -51,7 +52,7 @@ public class AccountRegistrationServiceBySD implements AccountRegistrationServic
 
 	private RoleEntityHibernate getRoleAdmin() {
 		if (roleAdmin == null) {
-			roleAdmin = rolesRepository.findByRoleStatus("Administrator");
+			roleAdmin = rolesRepository.findByRoleStatus(Authorities.ADMINISTRATOR.getRole());
 		}
 		return roleAdmin;
 
