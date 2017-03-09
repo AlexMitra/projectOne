@@ -22,12 +22,13 @@
 <!--     </context-param> -->
 
 	<listener>
-		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>		
 	</listener>
 	
-<!-- 	<listener> -->
-<!--         <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class> -->
-<!--     </listener> -->
+<!-- 	<listener>		 -->
+<!-- 		<listener-class>org.springframework.security.web.session.HttpSessionEventPublisher</listener-class> -->
+<!-- 	</listener> -->
+
   
   	<servlet>
 		<servlet-name>front</servlet-name>

@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import by.kalilaska.BeansPool;
 import by.kalilaska.beans.AccountDetailsPageBean;
+import by.kalilaska.loggers.LoggerMaster;
 import by.kalilaska.services.AccountRegistrationService;
 import by.kalilaska.services.exceptions.EmailExistsException;
 import by.kalilaska.services.exceptions.LoginExistsException;
@@ -86,6 +87,9 @@ public class RegistrationController {
 
 		if (authentication.isAuthenticated()) {
 			SecurityContextHolder.getContext().setAuthentication(authentication);
+			UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+			LoggerMaster.setupClass(this.getClass());
+			LoggerMaster.info(userDetails.getUsername() + " signed up");
 		}
 
 	}

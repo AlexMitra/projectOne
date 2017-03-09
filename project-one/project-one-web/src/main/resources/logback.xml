@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration scan="true" scanPeriod="30 seconds">
-	<property name="LOG_HOME" value="D:/Zabirai_logs" />
+	<property name="LOG_HOME" value="${catalina.base}/logs/Zabirai" />
 	
     <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
@@ -12,7 +12,7 @@
 		class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<file>${LOG_HOME}/debug.log</file>
 		<encoder>
-			<Pattern>%.-19date [%thread] [%level] [%logger] >>> %msg%n</Pattern>
+			<Pattern>%.-19date [%thread] [%level] >>> %msg%n</Pattern>
 		</encoder>
 
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
@@ -46,15 +46,15 @@
 	</appender>
 	
 	<logger name="by.kalilaska" level="debug" additivity="false">
-		<appender-ref ref="FILE-AUDIT" />
-		<appender-ref ref="console" />
+		<appender-ref ref="FILE-AUDIT" />		
 	</logger>
 	
-	<logger name="org.springframework" level="info" additivity="false">		
+	<logger name="org.springframework" level="info" additivity="false">			
 		<appender-ref ref="console" />
 	</logger>
 
     <root level="error">
         <appender-ref ref="FILE-ERROR" />
+        <appender-ref ref="console" />
     </root>
 </configuration>
