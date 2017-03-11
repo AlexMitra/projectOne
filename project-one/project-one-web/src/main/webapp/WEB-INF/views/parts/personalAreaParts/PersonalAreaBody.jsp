@@ -13,7 +13,7 @@
                     
   				</div>                
             </div>
-                    <!-- Page Content -->
+                    <!-- Page Content  -->
                     <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 personalArea-body-area" align="left" >
                         
                     	<div id="personal-info" class="col-lg-12 personalArea-body-element" style="display: ">
