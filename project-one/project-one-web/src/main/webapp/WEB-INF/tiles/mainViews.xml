@@ -9,11 +9,8 @@
     <definition name="accessDenied" template="/WEB-INF/views/accessDenied.jsp">
     </definition>
     
-    <definition name="exception" template="/WEB-INF/views/exception.jsp">
-    	<put-attribute name="head" value="/WEB-INF/views/parts/homeParts/homeViewHead.jsp"/>
-    	<put-attribute name="header" value="/WEB-INF/views/parts/homeParts/homeViewHeader.jsp"/>
-    	<put-attribute name="menuBar" value="/WEB-INF/views/parts/homeParts/menuBar.jsp"/>    	
-    	<put-attribute name="footer" value="/WEB-INF/views/parts/homeParts/homeViewFooter.jsp"/>
+    <definition name="exception" extends="home">
+    	<put-attribute name="body" value="/WEB-INF/views/exception.jsp"/>
     </definition>
     
     <definition name="home" template="/WEB-INF/views/homeViewTemplate.jsp">

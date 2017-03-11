@@ -52,6 +52,11 @@
 	<logger name="org.springframework" level="info" additivity="false">			
 		<appender-ref ref="console" />
 	</logger>
+	
+	<logger name="org.apache" level="error" additivity="false">	
+		<appender-ref ref="FILE-ERROR" />		
+		<appender-ref ref="console" />
+	</logger>	
 
     <root level="error">
         <appender-ref ref="FILE-ERROR" />

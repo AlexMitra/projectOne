@@ -3,15 +3,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 
-<!DOCTYPE html>
-<html>
-
-<head>
-	<tiles:insertAttribute name="head"/>
-</head>
-<body>
-	<tiles:insertAttribute name="header"/>
-	<tiles:insertAttribute name="menuBar"/>
 	
         <!-- Page Content -->
         <div class="container login-area">
@@ -30,8 +21,3 @@
                 </div> 
             </div>
         </div>
-        
-	<tiles:insertAttribute name="footer"/>
-</body>
-
-</html>
