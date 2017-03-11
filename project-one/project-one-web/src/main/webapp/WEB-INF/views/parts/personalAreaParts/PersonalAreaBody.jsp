@@ -6,17 +6,17 @@
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 
         <div class="row">
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <div class="container">
-                <div id="wrapper">
+        	<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+            	<div class="sidebar">
                     
                     <tiles:insertDefinition name="personalAreaInSideMenu" flush="true"/>
                     
-
+  				</div>                
+            </div>
                     <!-- Page Content -->
-                    <div id="page-content-wrapper">
+                    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 personalArea-body-area" align="left" >
                         
-                    	<div id="personal-info" class="col-lg-12" style="display: ">
+                    	<div id="personal-info" class="col-lg-12 personalArea-body-element" style="display: ">
                         	<h3 align="center"><spring:message code="personalArea.body.greetings"/>${accountPageBean.getAccountLogin()}!</h3>
                         </div>                            	
 
@@ -24,12 +24,8 @@
 						<tiles:insertDefinition name="allAccountsBodyTemplate" flush="true"/>						
                         </security:authorize>
                     
-                    <!-- /#page-content-wrapper -->    
+                    <!-- Page Content -->  
                     </div>                    
 
-                <!-- /#wrapper -->
-                </div>                
-            </div>
-        </div>
-    </div>
-
+                
+         </div>
