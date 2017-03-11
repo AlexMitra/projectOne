@@ -7,6 +7,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class LogoutController {
+
 	@RequestMapping(value = { "/personalArea/logoutSuccess.html" }, method = RequestMethod.POST)
 	public ModelAndView logoutSuccess() {
 		String redirect = "redirect:/personalArea/login.html";
