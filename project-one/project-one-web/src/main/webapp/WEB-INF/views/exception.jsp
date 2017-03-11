@@ -9,14 +9,14 @@
  
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Этот сервис временно не доступен
+                    <h1 class="page-header"><spring:message code="exceptionPage.title"/>
                     	<small>by exception handler</small>
                     </h1>                    
                 </div>
             </div>
             
             <div class="row"><div class="col-lg-12">
-                    <p>Message:</p>
+                    <p><spring:message code="exceptionPage.message"/>:</p>
                     <h4>${exceptionMessage}</h4>
                 </div> 
             </div>
