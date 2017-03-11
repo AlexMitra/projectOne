@@ -14,33 +14,23 @@
 	<tiles:insertAttribute name="menuBar"/>
 	
         <!-- Page Content -->
-        <div class="container">
+        <div class="container login-area">
  
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Упс</h1>
-                    <ol class="breadcrumb">                        
-                        <li class="active">Exception Handler</li>
-                    </ol>
+                    <h1 class="page-header">Этот сервис временно не доступен
+                    	<small>by exception handler</small>
+                    </h1>                    
                 </div>
             </div>
-            <!-- /.row -->
- 
-            <!-- Content Row -->
-            <div class="row">
- 
-                <div class="col-lg-12">
+            
+            <div class="row"><div class="col-lg-12">
                     <p>Message:</p>
-                    <b>${exceptionMsg}</b>
-                </div>
- 
+                    <h4>${exceptionMessage}</h4>
+                </div> 
             </div>
-            <!-- /.row -->
- 
-            <hr>
- 
         </div>
-        <!-- /.container -->
+        
 	<tiles:insertAttribute name="footer"/>
 </body>
 
