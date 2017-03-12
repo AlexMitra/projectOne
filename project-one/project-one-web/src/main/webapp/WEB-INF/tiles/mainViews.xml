@@ -10,7 +10,7 @@
     </definition>
     
     <definition name="exception" extends="home">
-    	<put-attribute name="body" value="/WEB-INF/views/exception.jsp"/>
+    	<put-attribute name="body" value="/WEB-INF/views/parts/exceptionBody.jsp"/>
     </definition>
     
     <definition name="home" template="/WEB-INF/views/homeViewTemplate.jsp">
