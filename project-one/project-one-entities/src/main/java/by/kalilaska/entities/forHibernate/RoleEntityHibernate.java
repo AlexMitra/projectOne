@@ -34,7 +34,7 @@ public class RoleEntityHibernate {
 	@Column(name = "Role")
 	private String roleStatus;
 
-	@OneToMany(targetEntity = AccountEntityHibernate.class, mappedBy = "accountRole", fetch = FetchType.LAZY)
+	@OneToMany(targetEntity = AccountEntityHibernate.class, mappedBy = "accountRoles", fetch = FetchType.LAZY)
 	private List<AccountEntityHibernate> accountEntities;
 
 	public RoleEntityHibernate() {

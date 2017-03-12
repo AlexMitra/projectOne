@@ -103,7 +103,7 @@ public class ZabiraiServiceHibernate implements ServiceOne {
 			account.setId(accountEntity.getAccountId());
 			account.setAccountEmail(accountEntity.getAccountEmail());
 
-			account.setStatus(accountEntity.getAccountRole().getRoleStatus());
+			// account.setStatus(accountEntity.getAccountRole().getRoleStatus());
 			System.out.println("in ZabiraiService checkAccount() account after check: " + account);
 			return true;
 		}
@@ -116,7 +116,8 @@ public class ZabiraiServiceHibernate implements ServiceOne {
 			AccountEntityHibernate account = accountsRepository.getAccountByLogin("Jakubik");
 
 			System.out.println("account: " + account);
-			System.out.println("account role: " + account.getAccountRole().getRoleStatus());
+			// System.out.println("account role: " +
+			// account.getAccountRole().getRoleStatus());
 
 		} catch (Exception e) {
 			System.out.println("Exception info");

@@ -10,7 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
-import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -46,9 +46,9 @@ public class AccountEntityHibernate {
 	@Column(name = "Password")
 	private String accountPassword;
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "Accounts_to_roles", joinColumns = @JoinColumn(name = "Accounts_to_roles_FK_Account_id", referencedColumnName = "Account_Id"), inverseJoinColumns = @JoinColumn(name = "Accounts_to_roles_FK_Role_id", referencedColumnName = "Role_Id"))
-	private RoleEntityHibernate accountRole;
+	private List<RoleEntityHibernate> accountRoles;
 
 	@OneToMany(targetEntity = AdEntityHibernate.class, mappedBy = "adMaker", fetch = FetchType.LAZY)
 	private List<AdEntityHibernate> accountAds;

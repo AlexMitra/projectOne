@@ -64,7 +64,9 @@ public class ZabiraiServiceData implements ServiceOne {
 			// account:" + account);
 			AccountEntityHibernate accountEntity = new AccountEntityHibernate(account.getAccountLogin(),
 					account.getAccountEmail(), account.getAccountPassword());
-			accountEntity.setAccountRole(getRoleUser());
+			List<RoleEntityHibernate> roleList = new ArrayList<>();
+			roleList.add(getRoleUser());
+			accountEntity.setAccountRoles(roleList);
 
 			accountEntity = accountsRepository.save(accountEntity);
 
@@ -111,7 +113,7 @@ public class ZabiraiServiceData implements ServiceOne {
 			account.setId(accountEntity.getAccountId());
 			account.setAccountEmail(accountEntity.getAccountEmail());
 
-			account.setStatus(accountEntity.getAccountRole().getRoleStatus());
+			// account.setStatus(accountEntity.getAccountRole().getRoleStatus());
 			account.setAllRoles(getAllRoles());
 			System.out.println("in ZabiraiService checkAccount() account after check: " + account);
 			return true;
@@ -121,15 +123,19 @@ public class ZabiraiServiceData implements ServiceOne {
 	@Override
 	public void test() {
 		System.out.println("in test, before: ");
-		List<AccountEntityHibernate> accountEntityList = accountsRepository.findByAccountRole("User");
-		System.out.println("in test, after: " + accountEntityList);
+		// List<AccountEntityHibernate> accountEntityList =
+		// accountsRepository.findByAccountRole("User");
+		// System.out.println("in test, after: " + accountEntityList);
 	}
 
 	@Override
 	public List<AccountBean> getAllAccounts() {
+
 		List<AccountEntityHibernate> accountEntityList = accountsRepository.findAll();
+
 		List<AccountBean> accountBeanList = entityToBeanConverter.convertToBeanList(accountEntityList,
 				AccountBean.class);
+
 		return accountBeanList;
 	}
 
@@ -207,7 +213,7 @@ public class ZabiraiServiceData implements ServiceOne {
 	@Override
 	public List<AccountBean> getSearchedAccounts(String part, String searchField, String searchPlace, String roles) {
 
-		System.out.println("in getSearchedAccounts(), 1 if(): " + roles);
+		// System.out.println("in getSearchedAccounts(), 1 if(): " + roles);
 		if (searchField.equalsIgnoreCase("byLogin")) {
 			if (searchPlace.equalsIgnoreCase("atFirstLetters")) {
 				List<AccountEntityHibernate> accountEntityList = accountsRepository

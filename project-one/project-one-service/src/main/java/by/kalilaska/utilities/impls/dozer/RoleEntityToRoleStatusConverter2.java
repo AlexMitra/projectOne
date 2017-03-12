@@ -1,35 +1,29 @@
 package by.kalilaska.utilities.impls.dozer;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import org.dozer.ConfigurableCustomConverter;
+import org.dozer.DozerConverter;
 
 import by.kalilaska.entities.forHibernate.RoleEntityHibernate;
 
 @SuppressWarnings("rawtypes")
-public class RoleEntityToRoleStatusConverter implements ConfigurableCustomConverter {
+public class RoleEntityToRoleStatusConverter2 extends DozerConverter<List<RoleEntityHibernate>, List<String>> {
 
-	@Override
-	public Object convert(Object existingDestinationFieldValue, Object sourceFieldValue, Class<?> destinationClass,
-			Class<?> sourceClass) {
-		List<String> destination = new ArrayList<String>();
-		List<RoleEntityHibernate> source = (List<RoleEntityHibernate>) sourceFieldValue;
-
-		for (RoleEntityHibernate roleEntity : source) {
-
-			destination.add(roleEntity.getRoleStatus());
-		}
-
-		return destination;
+	public RoleEntityToRoleStatusConverter2(Class<List<RoleEntityHibernate>> prototypeA,
+			Class<List<String>> prototypeB) {
+		super(prototypeA, prototypeB);
+		// TODO Auto-generated constructor stub
 	}
 
+	private List<RoleEntityHibernate> roleList;
+	private List<String> nameList;
+
+	// public RoleEntityToRoleStatusConverter() {
+	// super((List<RoleEntityHibernate>) List.class, (List<String>) List.class);
+	// // TODO Auto-generated constructor stub
+	// }
+
 	@Override
-	public void setParameter(String parameter) {
-		// TODO Auto-generated method stub
-
-	}
-
 	public List<String> convertTo(List<RoleEntityHibernate> source, List<String> destination) {
 		for (RoleEntityHibernate role : source) {
 			destination.add(role.getRoleStatus());
@@ -38,6 +32,7 @@ public class RoleEntityToRoleStatusConverter implements ConfigurableCustomConver
 		return destination;
 	}
 
+	@Override
 	public List<RoleEntityHibernate> convertFrom(List<String> source, List<RoleEntityHibernate> destination) {
 		for (String roleName : source) {
 			RoleEntityHibernate roleEntity = new RoleEntityHibernate();

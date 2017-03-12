@@ -4,30 +4,30 @@ var searchOptions = {
 
 	roles : [],
 
-	setSearchField : function(field) {
+	setSearchField : function (field) {
 		this.byField = field;
 	},
 
-	setSearchPlace : function(p) {
+	setSearchPlace : function (p) {
 		this.place = p;
 	},
 
-	getSearchFiled : function() {
+	getSearchFiled : function () {
 		return this.byField;
 	},
 
-	getSearchPlace : function() {
+	getSearchPlace : function () {
 		return this.place;
 	},
 
-	addRole : function(role) {
+	addRole : function (role) {
 		document.getElementById(role).checked = true;
 		this.roles.push(role);
-		// workWithData.getSearchedData();
-		workWithData.getSelectedRolesData();
+		workWithData.getSearchedData();
+		// workWithData.getSelectedRolesData();
 	},
 
-	removeRole : function(role) {
+	removeRole : function (role) {
 		document.getElementById(role).checked = false;
 		var i = this.containRole(role);
 		if (i >= 0) {
@@ -37,11 +37,9 @@ var searchOptions = {
 		workWithData.getSelectedRolesData();
 	},
 
-	containRole : function(role) {
+	containRole : function (role) {
 		for (var i = 0; i < this.roles.length; i++) {
-			if (this.roles[i].toLowerCase() === role.toLowerCase()) {
-				return i;
-			}
+			if (this.roles[i].toLowerCase() === role.toLowerCase()) { return i; }
 		}
 		return -1;
 	},
@@ -54,7 +52,7 @@ var searchOptions = {
 	// roleCheckboxes.createRoleCheckboxes(this.roles);
 	// },
 
-	getRoles : function() {
+	getRoles : function () {
 		str = "";
 
 		for (var i = 0; i < this.roles.length; i++) {
@@ -69,42 +67,42 @@ var displaySearchOptions = {
 
 	searchOptionTwo : null,
 
-	setSearchOptionOne : function(element) {
+	setSearchOptionOne : function (element) {
 		this.searchOptionOne = element;
 	},
 
-	setSearchOptionTwo : function(element) {
+	setSearchOptionTwo : function (element) {
 		this.searchOptionTwo = element;
 	},
 
-	DisplaySearchOptionOne : function() {
+	DisplaySearchOptionOne : function () {
 		this.searchOptionOne.removeAttribute("style");
 		workWithElements.hideElement("search-option-2");
 	},
 
-	DisplaySearchOptionTwo : function() {
+	DisplaySearchOptionTwo : function () {
 		this.searchOptionTwo.removeAttribute("style");
 		workWithElements.hideElement("search-option-1");
 	}
 }
 
 var searcher = {
-	searchByLogin : function() {
+	searchByLogin : function () {
 		document.getElementById("menu-button-1").innerHTML = 'By Login<span class="caret"></span>';
 		searchOptions.setSearchField("byLogin");
 	},
 
-	searchByEmail : function() {
+	searchByEmail : function () {
 		document.getElementById("menu-button-1").innerHTML = 'By Email<span class="caret"></span>';
 		searchOptions.setSearchField("byEmail");
 	},
 
-	searchAtFirstLetters : function() {
+	searchAtFirstLetters : function () {
 		document.getElementById("menu-button-2").innerHTML = 'At First<span class="caret"></span>';
 		searchOptions.setSearchPlace("atFirstLetters");
 	},
 
-	searchAnywhere : function() {
+	searchAnywhere : function () {
 		document.getElementById("menu-button-2").innerHTML = 'Anywhere<span class="caret"></span>';
 		searchOptions.setSearchPlace("anywhere");
 	}
@@ -125,7 +123,7 @@ var searcher = {
 // }
 // }
 
-function init() {
+function init () {
 	// workWithData.getRoles();
 
 	displaySearchOptions.setSearchOptionOne(document

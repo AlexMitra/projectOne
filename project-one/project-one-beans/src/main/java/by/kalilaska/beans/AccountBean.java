@@ -1,14 +1,16 @@
 package by.kalilaska.beans;
+
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 
 import lombok.Getter;
 import lombok.Setter;
 
-
 @Component
 @Getter
 @Setter
-public class AccountBean {	
+public class AccountBean {
 
 	private long accountId;
 
@@ -16,18 +18,18 @@ public class AccountBean {
 
 	private String accountEmail;
 
-	private String accountPassword;	
+	private String accountPassword;
 
-	private String accountRole;
+	private List<String> accountRoles;
 
 	public AccountBean() {
-	
+
 	}
 
 	@Override
 	public String toString() {
 		return "AccountBean [accountId=" + accountId + ", accountLogin=" + accountLogin + ", accountEmail="
-				+ accountEmail + ", accountPassword=" + accountPassword + ", accountRole=" + accountRole + "]";
-	}	
+				+ accountEmail + ", accountPassword=" + accountPassword + ", accountRole=" + accountRoles + "]";
+	}
 
 }

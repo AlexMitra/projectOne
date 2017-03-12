@@ -8,8 +8,8 @@
 		<class-b>by.kalilaska.beans.AccountBean</class-b>
 
 		<field custom-converter="by.kalilaska.utilities.impls.dozer.RoleEntityToRoleStatusConverter">
-			<a>accountRole</a>
-			<b>accountRole</b>
+			<a>accountRoles</a>
+			<b>accountRoles</b>
 		</field>	
 	</mapping>
 	

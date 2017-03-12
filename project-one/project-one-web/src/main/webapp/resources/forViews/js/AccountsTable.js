@@ -17,10 +17,28 @@ var accountsTable = {
 			str += '<td>' + data[i].accountLogin + '</td>';
 			str += '<td>' + data[i].accountEmail + '</td>';
 			str += '<td>' + data[i].accountPassword + '</td>';
-			str += '<td>' + data[i].accountRole + '</td>';
+			//str += '<td>' + data[i].accountRoles + '</td>';
+			str += '<td>' + this.getRoles(data[i].accountRoles) + '</td>';
 			str += '</tr>';
 		}
 		document.getElementById("accounts-data").innerHTML = str;
+	},
+
+	getRoles : function(roleList) {
+		if (roleList.length == 1) {
+			return roleList[0];
+		}
+		if (roleList.length > 1) {
+			var roles = "";
+			for (var i = 0; i < roleList.length; i++) {
+				if (i > 0) {
+					roles += ", ";
+				}
+				roles += roleList[i];
+
+			}
+			return roles;
+		}
 	},
 
 	createAccountsTableWithEmphasize : function(part, data) {

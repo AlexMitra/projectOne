@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import by.kalilaska.beans.AccountDetailsPageBean;
 import by.kalilaska.entities.forHibernate.AccountEntityHibernate;
+import by.kalilaska.entities.forHibernate.RoleEntityHibernate;
 import by.kalilaska.services.AccountService;
 
 @Service("userDetailsService")
@@ -39,7 +40,9 @@ public class CustomUserDetailsService implements UserDetailsService {
 			// boolean accountNonLocker = true;
 
 			Set<GrantedAuthority> authorities = new HashSet<GrantedAuthority>();
-			authorities.add(new SimpleGrantedAuthority(accountEntity.getAccountRole().getRoleStatus()));
+			for (RoleEntityHibernate role : accountEntity.getAccountRoles()) {
+				authorities.add(new SimpleGrantedAuthority(role.getRoleStatus()));
+			}
 
 			AccountDetailsPageBean accountPageBean = new AccountDetailsPageBean(id, username, email, password, enabled,
 					authorities);

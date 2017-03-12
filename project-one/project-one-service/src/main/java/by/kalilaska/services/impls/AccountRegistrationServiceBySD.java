@@ -1,5 +1,6 @@
 package by.kalilaska.services.impls;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,7 +80,9 @@ public class AccountRegistrationServiceBySD implements AccountRegistrationServic
 
 			AccountEntityHibernate accountEntity = new AccountEntityHibernate(account.getAccountLogin(),
 					account.getAccountEmail(), passwordEncoder.encode(account.getAccountPassword()));
-			accountEntity.setAccountRole(getRoleUser());
+			List<RoleEntityHibernate> roleList = new ArrayList<>();
+			roleList.add(getRoleUser());
+			accountEntity.setAccountRoles(roleList);
 
 			accountEntity = accountsRepository.save(accountEntity);
 

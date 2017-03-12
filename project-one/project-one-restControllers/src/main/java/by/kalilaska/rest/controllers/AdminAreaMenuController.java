@@ -40,8 +40,8 @@ public class AdminAreaMenuController {
 	@ResponseBody
 	public ResponseEntity<List<AccountBean>> getMatchedAccounts(@RequestParam String part, String searchField,
 			String searchPlace, String roles) {
-		// System.out.println("part: " + part + ", searchField: " + searchField
-		// + ", searchPlace: " + searchPlace);
+		System.out.println("part: " + part + ", searchField: " + searchField + ", searchPlace: " + searchPlace
+				+ ", roles: " + roles);
 
 		List<AccountBean> accountBeanList = zabiraiService.getSearchedAccounts(part, searchField, searchPlace, roles);
 		return new ResponseEntity<List<AccountBean>>(accountBeanList, HttpStatus.ACCEPTED);
