@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozer.sourceforge.net"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://dozer.sourceforge.net http://dozer.sourceforge.net/schema/beanmapping.xsd">
+
+	<mapping>
+		<class-a>by.kalilaska.entities.forHibernate.AccountEntityHibernate</class-a>
+		<class-b>by.kalilaska.beans.AccountBean</class-b>
+
+		<field custom-converter="by.kalilaska.utilities.impls.dozer.RoleEntityToRoleStatusConverter">
+			<a>accountRole</a>
+			<b>accountRole</b>
+		</field>	
+	</mapping>
+	
+	<mapping>
+		<class-a>by.kalilaska.entities.forHibernate.RoleEntityHibernate</class-a>
+			<class-b>by.kalilaska.beans.RoleBean</class-b>
+
+			<field>
+				<a>roleId</a>
+				<b>roleId</b>
+			</field>
+			
+			<field>
+				<a>roleStatus</a>
+				<b>roleStatus</b>
+			</field>
+	</mapping>
+</mappings>

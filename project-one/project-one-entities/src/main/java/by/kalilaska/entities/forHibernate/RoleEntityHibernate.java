@@ -13,7 +13,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @NamedQueries({
@@ -21,7 +22,8 @@ import lombok.Data;
 		@NamedQuery(name = "getAllAccountRoles", query = "select r from RoleEntityHibernate r"),
 		@NamedQuery(name = "deleteAccountRoleByRoleStatus", query = "delete from RoleEntityHibernate r where r.roleStatus = :role") })
 @Table(name = "Roles")
-@Data
+@Getter
+@Setter
 public class RoleEntityHibernate {
 
 	@Id

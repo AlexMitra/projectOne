@@ -2,7 +2,7 @@ package by.kalilaska.entities.enums;
 
 public enum Authorities {
 	ADMINISTRATOR("Administrator"), MODERATOR("Moderator"), USER("User");
-	String role;
+	public String role;
 
 	Authorities(String role) {
 		this.role = role;

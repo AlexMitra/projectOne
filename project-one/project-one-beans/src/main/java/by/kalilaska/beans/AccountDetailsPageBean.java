@@ -1,5 +1,6 @@
 package by.kalilaska.beans;
 
+import java.util.List;
 import java.util.Set;
 
 import javax.validation.constraints.Pattern;
@@ -37,6 +38,8 @@ public class AccountDetailsPageBean implements UserDetails {
 	private boolean enabled;
 
 	private Set<GrantedAuthority> authorities;
+
+	private List<RoleBean> allAuthorities;
 
 	public AccountDetailsPageBean() {
 		super();

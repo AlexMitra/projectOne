@@ -13,12 +13,12 @@
                                     		<div class="well">
                                         		<div id="role-checkboxes" class="row">
 
-                                        			<c:set var="allRoles" value="${accountPageBean.getAuthorities()}"/>
+                                        			<c:set var="allRoles" value="${accountPageBean.getAllAuthorities()}"/>
                                         			<c:forEach items="${allRoles}" var="role">
                                         				<div class="col-lg-4 col-md-4 col-sm-4">
                                                 			<div class="checkbox">
                                                     			<label>
-                                                        			<input type="checkbox" id="checkbox-${role}" onclick="if(this.checked){searchOptions.addRole(this.id)} else {searchOptions.removeRole(this.id)}"><c:out value="${role}"/>
+                                                        			<input type="checkbox" id="checkbox-${role.getRoleStatus()}" onclick="if(this.checked){searchOptions.addRole(this.id)} else {searchOptions.removeRole(this.id)}"><c:out value="${role.getRoleStatus()}"/>
                                                     			</label>
                                                 			</div>
                                             			</div>
