@@ -28,6 +28,12 @@ public class RoleServiceBySD implements RoleService {
 
 	@Transactional
 	@Override
+	public RoleEntityHibernate findByRoleStatus(String role) {
+		return rolesRepository.findByRoleStatus(role);
+	}
+
+	@Transactional
+	@Override
 	public List<RoleEntityHibernate> findAllRoles() {
 		return rolesRepository.findAll();
 	}

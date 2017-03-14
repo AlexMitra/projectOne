@@ -30,7 +30,7 @@ import lombok.Setter;
 @Table(name = "Accounts")
 @Getter
 @Setter
-public class AccountEntityHibernate {
+public class AccountEntityHibernate implements Comparable<AccountEntityHibernate> {
 
 	@Id
 	@Column(name = "Account_Id")
@@ -72,6 +72,47 @@ public class AccountEntityHibernate {
 	public String toString() {
 		return "AccountEntityHibernate [accountId=" + accountId + ", accountLogin=" + accountLogin + ", accountEmail="
 				+ accountEmail + ", accountPassword=" + accountPassword + ", accountEnabled=" + accountEnabled + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (accountId ^ (accountId >>> 32));
+		result = prime * result + ((accountLogin == null) ? 0 : accountLogin.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		AccountEntityHibernate other = (AccountEntityHibernate) obj;
+		if (accountId != other.accountId) {
+			return false;
+		}
+		if (accountLogin == null) {
+			if (other.accountLogin != null) {
+				return false;
+			}
+		} else if (!accountLogin.equals(other.accountLogin)) {
+			return false;
+		}
+		return true;
+	}
+
+	@Override
+	public int compareTo(AccountEntityHibernate o) {
+		AccountEntityHibernate account = o;
+
+		return new Long(this.accountId).compareTo(new Long(account.getAccountId()));
 	}
 
 }

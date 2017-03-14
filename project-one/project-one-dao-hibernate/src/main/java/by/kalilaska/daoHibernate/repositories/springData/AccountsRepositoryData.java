@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import by.kalilaska.entities.forHibernate.AccountEntityHibernate;
+import by.kalilaska.entities.forHibernate.RoleEntityHibernate;
 
 @Repository
 public interface AccountsRepositoryData extends JpaRepository<AccountEntityHibernate, Long> {
@@ -19,6 +20,10 @@ public interface AccountsRepositoryData extends JpaRepository<AccountEntityHiber
 	//// SELECT BY LOGIN AND EMAIL
 	List<AccountEntityHibernate> findByAccountLoginOrAccountEmail(String login, String email);
 
+	List<AccountEntityHibernate> findByAccountLoginLike(String reg);
+
+	List<AccountEntityHibernate> findByAccountEmailLike(String reg);
+
 	List<AccountEntityHibernate> findByAccountLoginStartingWith(String reg);
 
 	List<AccountEntityHibernate> findByAccountEmailStartingWith(String reg);
@@ -27,7 +32,11 @@ public interface AccountsRepositoryData extends JpaRepository<AccountEntityHiber
 
 	List<AccountEntityHibernate> findByAccountEmailContaining(String reg);
 
-	// List<AccountEntityHibernate> findByAccountRole(String role);
+	List<AccountEntityHibernate> findByAccountRolesIn(List<RoleEntityHibernate> roles);
+
+	List<AccountEntityHibernate> findByAccountLoginLikeAndAccountRolesIn(String reg, List<RoleEntityHibernate> roles);
+
+	List<AccountEntityHibernate> findByAccountEmailLikeAndAccountRolesIn(String reg, List<RoleEntityHibernate> roles);
 
 	//// SELECT BY LOGIN AND EMAIL AND ROLE
 

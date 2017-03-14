@@ -12,13 +12,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import by.kalilaska.beans.UserAccountPageBean;
+import by.kalilaska.services.AccountService;
 
 @Controller
 public class HomeController {
 
 	@Autowired
 	@Qualifier(value = "accountDetailsPageBean")
-	UserDetails userDetails;
+	private UserDetails userDetails;
+
+	@Autowired
+	private AccountService accountService;
 
 	@RequestMapping(value = { "/" }, method = RequestMethod.GET)
 	public String home() {
@@ -26,6 +30,7 @@ public class HomeController {
 		// ModelAndView modelAndView = new ModelAndView(redirect);
 		// return modelAndView;
 		printUserDetails();
+		// accountService.test();
 		return "home";
 	}
 

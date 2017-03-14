@@ -70,7 +70,8 @@ var accountsTable = {
 				}
 
 				str += '<td>' + data[i].accountPassword + '</td>';
-				str += '<td>' + data[i].accountRole + '</td>';
+				//str += '<td>' + data[i].accountRole + '</td>';
+				str += '<td>' + this.getRoles(data[i].accountRoles) + '</td>';
 				str += '</tr>';
 			}
 			document.getElementById("accounts-data").innerHTML = str;

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import by.kalilaska.beans.AccountBean;
+import by.kalilaska.services.AccountService;
 import by.kalilaska.services.ServiceOne;
 
 @RestController
@@ -26,6 +27,9 @@ public class AdminAreaMenuController {
 	// @Qualifier(value = "zabiraiServiceHibernate")
 	@Qualifier(value = "zabiraiServiceData")
 	private ServiceOne zabiraiService;
+
+	@Autowired
+	private AccountService accountService;
 
 	@RequestMapping(value = "/personalArea/admin/api/allAccounts", method = RequestMethod.GET, headers = "Accept=application/json", produces = {
 			"application/json" })
@@ -43,7 +47,7 @@ public class AdminAreaMenuController {
 		System.out.println("part: " + part + ", searchField: " + searchField + ", searchPlace: " + searchPlace
 				+ ", roles: " + roles);
 
-		List<AccountBean> accountBeanList = zabiraiService.getSearchedAccounts(part, searchField, searchPlace, roles);
+		List<AccountBean> accountBeanList = accountService.getSearchedAccounts(part, searchField, searchPlace, roles);
 		return new ResponseEntity<List<AccountBean>>(accountBeanList, HttpStatus.ACCEPTED);
 
 	}
@@ -55,23 +59,27 @@ public class AdminAreaMenuController {
 
 		String[] rolesArr = roles.split("checkbox-");
 		List<AccountBean> accountBeanList = new ArrayList<>();
-		for (String role : rolesArr) {
-			if (role.length() >= 1) {
-				accountBeanList.addAll(zabiraiService.getSelectedRoleAccounts(role));
-			}
-		}
+		// for (String role : rolesArr) {
+		// if (role.length() >= 1) {
+		// accountBeanList.addAll(zabiraiService.getSelectedRoleAccounts(role));
+		// }
+		// }
+
+		accountBeanList.addAll(accountService.getSelectedRoleAccounts(rolesArr));
 
 		System.out.println(accountBeanList);
 
 		return new ResponseEntity<List<AccountBean>>(accountBeanList, HttpStatus.ACCEPTED);
 	}
 
-	@RequestMapping(value = "/personalArea/admin/api/allRoles", method = RequestMethod.GET, headers = "Accept=application/json", produces = {
-			"application/json" })
-	@ResponseBody
-	public ResponseEntity<List<String>> getRoles() {
-		List<String> roleNameList = zabiraiService.getAllRoles();
-		return new ResponseEntity<List<String>>(roleNameList, HttpStatus.ACCEPTED);
-	}
+	// @RequestMapping(value = "/personalArea/admin/api/allRoles", method =
+	// RequestMethod.GET, headers = "Accept=application/json", produces = {
+	// "application/json" })
+	// @ResponseBody
+	// public ResponseEntity<List<String>> getRoles() {
+	// List<String> roleNameList = zabiraiService.getAllRoles();
+	// return new ResponseEntity<List<String>>(roleNameList,
+	// HttpStatus.ACCEPTED);
+	// }
 
 }

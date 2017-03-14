@@ -12,9 +12,9 @@ import by.kalilaska.beans.AccountBean;
 import by.kalilaska.beans.AccountDetailsPageBean;
 import by.kalilaska.beans.UserAccountPageBean;
 import by.kalilaska.daoHibernate.repositories.springData.AccountsRepositoryData;
-import by.kalilaska.daoHibernate.repositories.springData.RolesRepositoryData;
 import by.kalilaska.entities.forHibernate.AccountEntityHibernate;
 import by.kalilaska.entities.forHibernate.RoleEntityHibernate;
+import by.kalilaska.services.RoleService;
 import by.kalilaska.services.ServiceOne;
 import by.kalilaska.utilities.EntityToBeanConverter;
 
@@ -26,7 +26,7 @@ public class ZabiraiServiceData implements ServiceOne {
 	private AccountsRepositoryData accountsRepository;
 
 	@Autowired
-	private RolesRepositoryData rolesRepository;
+	private RoleService rolesService;
 
 	@Autowired
 	private EntityToBeanConverter entityToBeanConverter;
@@ -38,9 +38,11 @@ public class ZabiraiServiceData implements ServiceOne {
 
 	private RoleEntityHibernate roleAdmin;
 
+	private RoleEntityHibernate roleModer;
+
 	private RoleEntityHibernate getRoleUser() {
 		if (roleUser == null) {
-			roleUser = rolesRepository.findByRoleStatus("User");
+			roleUser = rolesService.findByRoleStatus("User");
 		}
 		return roleUser;
 
@@ -48,9 +50,17 @@ public class ZabiraiServiceData implements ServiceOne {
 
 	private RoleEntityHibernate getRoleAdmin() {
 		if (roleAdmin == null) {
-			roleAdmin = rolesRepository.findByRoleStatus("Administrator");
+			roleAdmin = rolesService.findByRoleStatus("Administrator");
 		}
 		return roleAdmin;
+
+	}
+
+	private RoleEntityHibernate getRoleModer() {
+		if (roleModer == null) {
+			roleModer = rolesService.findByRoleStatus("Moderator");
+		}
+		return roleModer;
 
 	}
 
@@ -212,6 +222,18 @@ public class ZabiraiServiceData implements ServiceOne {
 
 	@Override
 	public List<AccountBean> getSearchedAccounts(String part, String searchField, String searchPlace, String roles) {
+		System.out.println("part: " + part);
+		System.out.println("searchField: " + searchField);
+		System.out.println("searchPlace: " + searchPlace);
+		System.out.println("roles: " + roles);
+		String searchedRolesArr[] = null;
+		if (roles.length() > 0) {
+			searchedRolesArr = roles.split("checkbox-");
+			for (String s : searchedRolesArr) {
+				System.out.println("<<<<<<<<searchedRole>>>>>>>>>: " + s);
+			}
+
+		}
 
 		// System.out.println("in getSearchedAccounts(), 1 if(): " + roles);
 		if (searchField.equalsIgnoreCase("byLogin")) {
@@ -256,7 +278,7 @@ public class ZabiraiServiceData implements ServiceOne {
 
 	@Override
 	public List<String> getAllRoles() {
-		List<RoleEntityHibernate> roleEntityList = rolesRepository.findAll();
+		List<RoleEntityHibernate> roleEntityList = rolesService.findAllRoles();
 		List<String> roleNameList = new ArrayList<>();
 		for (RoleEntityHibernate r : roleEntityList) {
 			roleNameList.add(r.getRoleStatus());
@@ -267,7 +289,7 @@ public class ZabiraiServiceData implements ServiceOne {
 
 	@Override
 	public List<AccountBean> getSelectedRoleAccounts(String roleStatus) {
-		RoleEntityHibernate roleEntity = rolesRepository.findByRoleStatus(roleStatus);
+		RoleEntityHibernate roleEntity = rolesService.findByRoleStatus(roleStatus);
 		Hibernate.initialize(roleEntity.getAccountEntities());
 		List<AccountEntityHibernate> accountEntityList = roleEntity.getAccountEntities();
 
