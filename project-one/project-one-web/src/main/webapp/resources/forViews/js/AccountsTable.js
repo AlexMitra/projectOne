@@ -16,9 +16,9 @@ var accountsTable = {
 			str += '<td>' + data[i].accountId + '</td>';
 			str += '<td>' + data[i].accountLogin + '</td>';
 			str += '<td>' + data[i].accountEmail + '</td>';
-			str += '<td>' + data[i].accountPassword + '</td>';
 			//str += '<td>' + data[i].accountRoles + '</td>';
 			str += '<td>' + this.getRoles(data[i].accountRoles) + '</td>';
+			str += '<td>' + data[i].accountEnabled + '</td>';
 			str += '</tr>';
 		}
 		document.getElementById("accounts-data").innerHTML = str;
@@ -69,9 +69,9 @@ var accountsTable = {
 					str += '<td>' + data[i].accountEmail + '</td>';
 				}
 
-				str += '<td>' + data[i].accountPassword + '</td>';
 				//str += '<td>' + data[i].accountRole + '</td>';
 				str += '<td>' + this.getRoles(data[i].accountRoles) + '</td>';
+				str += '<td>' + data[i].accountEnabled + '</td>';
 				str += '</tr>';
 			}
 			document.getElementById("accounts-data").innerHTML = str;

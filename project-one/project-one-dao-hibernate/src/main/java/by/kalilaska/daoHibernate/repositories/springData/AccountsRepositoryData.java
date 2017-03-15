@@ -18,50 +18,21 @@ public interface AccountsRepositoryData extends JpaRepository<AccountEntityHiber
 	AccountEntityHibernate findByAccountEmail(String email);
 
 	//// SELECT BY LOGIN AND EMAIL
+	List<AccountEntityHibernate> findByAccountEnabled(boolean enabled);
+
 	List<AccountEntityHibernate> findByAccountLoginOrAccountEmail(String login, String email);
 
-	List<AccountEntityHibernate> findByAccountLoginLike(String reg);
+	List<AccountEntityHibernate> findByAccountLoginLikeAndAccountEnabled(String reg, boolean enabled);
 
-	List<AccountEntityHibernate> findByAccountEmailLike(String reg);
+	List<AccountEntityHibernate> findByAccountEmailLikeAndAccountEnabled(String reg, boolean enabled);
 
-	List<AccountEntityHibernate> findByAccountLoginStartingWith(String reg);
+	List<AccountEntityHibernate> findByAccountRolesInAndAccountEnabled(List<RoleEntityHibernate> roles,
+			boolean enabled);
 
-	List<AccountEntityHibernate> findByAccountEmailStartingWith(String reg);
+	List<AccountEntityHibernate> findByAccountLoginLikeAndAccountRolesInAndAccountEnabled(String reg,
+			List<RoleEntityHibernate> roles, boolean enabled);
 
-	List<AccountEntityHibernate> findByAccountLoginContaining(String reg);
-
-	List<AccountEntityHibernate> findByAccountEmailContaining(String reg);
-
-	List<AccountEntityHibernate> findByAccountRolesIn(List<RoleEntityHibernate> roles);
-
-	List<AccountEntityHibernate> findByAccountLoginLikeAndAccountRolesIn(String reg, List<RoleEntityHibernate> roles);
-
-	List<AccountEntityHibernate> findByAccountEmailLikeAndAccountRolesIn(String reg, List<RoleEntityHibernate> roles);
-
-	//// SELECT BY LOGIN AND EMAIL AND ROLE
-
-	// List<AccountEntityHibernate>
-	// findByAccountLoginStartingWithAndAccountRole(String reg, String role);
-	//
-	// List<AccountEntityHibernate>
-	// findByAccountEmailStartingWithAndAccountRole(String reg, String role);
-	//
-	// List<AccountEntityHibernate>
-	// findByAccountLoginContainingAndAccountRole(String reg, String role);
-	//
-	// List<AccountEntityHibernate>
-	// findByAccountEmailContainingAndAccountRole(String reg, String role);
-
-	// @Query("select a from AccountEntityHibernate a where a.accountLogin like
-	// :login and a.accountRole = :role")
-	// List<AccountEntityHibernate>
-	// findByAccountLoginAndAccountRole(@Param("login") String reg,
-	// @Param("role") String role);
-	//
-	// @Query("select a from AccountEntityHibernate a where a.accountEmail like
-	// :email and a.accountRole = :role")
-	// List<AccountEntityHibernate>
-	// findByAccountEmailAndAccountRole(@Param("email") String reg,
-	// @Param("role") String role);
+	List<AccountEntityHibernate> findByAccountEmailLikeAndAccountRolesInAndAccountEnabled(String reg,
+			List<RoleEntityHibernate> roles, boolean enabled);
 
 }

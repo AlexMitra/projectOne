@@ -2,7 +2,7 @@ var workWithData = {
 	getAccountsData : function () {
 		$.ajax({
 					type : "GET",
-					url : "http://localhost:8080/project-one-web/personalArea/admin/api/allAccounts",
+					url : "http://localhost:8080/project-one-web/personalArea/admin/api/allEnabledAccounts",
 					dataType : "json",
 					success : function (data) {
 						workWithElements.hideElement("personal-info");
@@ -30,7 +30,7 @@ var workWithData = {
 		} else {
 			$.ajax({
 						type : "GET",
-						url : "http://localhost:8080/project-one-web/personalArea/admin/api/matchedAccounts",
+						url : "http://localhost:8080/project-one-web/personalArea/admin/api/matchedEnabledAccounts",
 						data : {
 							part : $('#search-accounts').val(),
 							searchField : searchOptions.getSearchFiled(),
@@ -56,7 +56,7 @@ var workWithData = {
 		} else {
 			$.ajax({
 						type : "GET",
-						url : "http://localhost:8080/project-one-web/personalArea/admin/api/selectedRolesAccounts",
+						url : "http://localhost:8080/project-one-web/personalArea/admin/api/selectedRolesEnabledAccounts",
 						data : {
 							roles : searchOptions.getRoles()
 						},

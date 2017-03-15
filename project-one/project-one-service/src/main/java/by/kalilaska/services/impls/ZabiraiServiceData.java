@@ -236,42 +236,46 @@ public class ZabiraiServiceData implements ServiceOne {
 		}
 
 		// System.out.println("in getSearchedAccounts(), 1 if(): " + roles);
-		if (searchField.equalsIgnoreCase("byLogin")) {
-			if (searchPlace.equalsIgnoreCase("atFirstLetters")) {
-				List<AccountEntityHibernate> accountEntityList = accountsRepository
-						.findByAccountLoginStartingWith(part.trim());
-				// findByAccountLoginLike(part.trim() + "%");
-				List<AccountBean> accountBeanList = entityToBeanConverter.convertToBeanList(accountEntityList,
-						AccountBean.class);
-				return accountBeanList;
-			} else if (searchPlace.equalsIgnoreCase("anywhere")) {
-				List<AccountEntityHibernate> accountEntityList = accountsRepository
-						.findByAccountLoginContaining(part.trim());
-				List<AccountBean> accountBeanList = entityToBeanConverter.convertToBeanList(accountEntityList,
-						AccountBean.class);
-				return accountBeanList;
-			} else {
-				return null;
-			}
-
-		} else if (searchField.equalsIgnoreCase("byEmail")) {
-			if (searchPlace.equalsIgnoreCase("atFirstLetters")) {
-				List<AccountEntityHibernate> accountEntityList = accountsRepository
-						.findByAccountEmailStartingWith(part.trim());
-				// findByAccountEmailLike(part.trim() + "%");
-				List<AccountBean> accountBeanList = entityToBeanConverter.convertToBeanList(accountEntityList,
-						AccountBean.class);
-				return accountBeanList;
-			} else if (searchPlace.equalsIgnoreCase("anywhere")) {
-				List<AccountEntityHibernate> accountEntityList = accountsRepository
-						.findByAccountEmailContaining(part.trim());
-				List<AccountBean> accountBeanList = entityToBeanConverter.convertToBeanList(accountEntityList,
-						AccountBean.class);
-				return accountBeanList;
-			} else {
-				return null;
-			}
-		}
+		// if (searchField.equalsIgnoreCase("byLogin")) {
+		// if (searchPlace.equalsIgnoreCase("atFirstLetters")) {
+		// List<AccountEntityHibernate> accountEntityList = accountsRepository
+		// .findByAccountLoginStartingWith(part.trim());
+		// // findByAccountLoginLike(part.trim() + "%");
+		// List<AccountBean> accountBeanList =
+		// entityToBeanConverter.convertToBeanList(accountEntityList,
+		// AccountBean.class);
+		// return accountBeanList;
+		// } else if (searchPlace.equalsIgnoreCase("anywhere")) {
+		// List<AccountEntityHibernate> accountEntityList = accountsRepository
+		// .findByAccountLoginContaining(part.trim());
+		// List<AccountBean> accountBeanList =
+		// entityToBeanConverter.convertToBeanList(accountEntityList,
+		// AccountBean.class);
+		// return accountBeanList;
+		// } else {
+		// return null;
+		// }
+		//
+		// } else if (searchField.equalsIgnoreCase("byEmail")) {
+		// if (searchPlace.equalsIgnoreCase("atFirstLetters")) {
+		// List<AccountEntityHibernate> accountEntityList = accountsRepository
+		// .findByAccountEmailStartingWith(part.trim());
+		// // findByAccountEmailLike(part.trim() + "%");
+		// List<AccountBean> accountBeanList =
+		// entityToBeanConverter.convertToBeanList(accountEntityList,
+		// AccountBean.class);
+		// return accountBeanList;
+		// } else if (searchPlace.equalsIgnoreCase("anywhere")) {
+		// List<AccountEntityHibernate> accountEntityList = accountsRepository
+		// .findByAccountEmailContaining(part.trim());
+		// List<AccountBean> accountBeanList =
+		// entityToBeanConverter.convertToBeanList(accountEntityList,
+		// AccountBean.class);
+		// return accountBeanList;
+		// } else {
+		// return null;
+		// }
+		// }
 
 		return null;
 	}

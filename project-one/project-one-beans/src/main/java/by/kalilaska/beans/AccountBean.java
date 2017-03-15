@@ -18,9 +18,11 @@ public class AccountBean {
 
 	private String accountEmail;
 
-	private String accountPassword;
+	// private String accountPassword;
 
 	private List<String> accountRoles;
+
+	private boolean accountEnabled;
 
 	public AccountBean() {
 
@@ -29,7 +31,7 @@ public class AccountBean {
 	@Override
 	public String toString() {
 		return "AccountBean [accountId=" + accountId + ", accountLogin=" + accountLogin + ", accountEmail="
-				+ accountEmail + ", accountPassword=" + accountPassword + ", accountRole=" + accountRoles + "]";
+				+ accountEmail + ", accountRoles=" + accountRoles + ", accountEnabled=" + accountEnabled + "]";
 	}
 
 }

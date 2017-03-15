@@ -15,8 +15,8 @@
                                                     <th>Id</th>
                                                     <th>Login</th>
                                                     <th>Email</th>
-                                                    <th>Password</th>
                                                     <th>Role</th>
+                                                    <th>Enabled</th>
                                                 </tr>
                                             </thead>                                            
                                             <tbody id="accounts-data">

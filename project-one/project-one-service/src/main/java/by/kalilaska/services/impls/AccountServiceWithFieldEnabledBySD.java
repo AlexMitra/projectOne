@@ -13,12 +13,12 @@ import by.kalilaska.beans.AccountBean;
 import by.kalilaska.daoHibernate.repositories.springData.AccountsRepositoryData;
 import by.kalilaska.entities.forHibernate.AccountEntityHibernate;
 import by.kalilaska.entities.forHibernate.RoleEntityHibernate;
-import by.kalilaska.services.AccountService;
+import by.kalilaska.services.AccountWithFieldEnabledService;
 import by.kalilaska.services.RoleService;
 import by.kalilaska.utilities.EntityToBeanConverter;
 
 @Service
-public class AccountServiceData implements AccountService {
+public class AccountServiceWithFieldEnabledBySD implements AccountWithFieldEnabledService {
 
 	@Autowired
 	private AccountsRepositoryData accountRepository;
@@ -29,17 +29,10 @@ public class AccountServiceData implements AccountService {
 	@Autowired
 	private RoleService roleService;
 
-	@Transactional
 	@Override
-	public AccountEntityHibernate findByAccountLogin(String login) {
-		AccountEntityHibernate accountEntity = accountRepository.findByAccountLogin(login);
-		return accountEntity;
-	}
+	public List<AccountBean> getAllAccountsWithFieldEnabled(boolean enabled) {
 
-	@Override
-	public List<AccountBean> getAllAccounts() {
-
-		List<AccountEntityHibernate> accountEntityList = accountRepository.findAll();
+		List<AccountEntityHibernate> accountEntityList = accountRepository.findByAccountEnabled(enabled);
 
 		List<AccountBean> accountBeanList = entityToBeanConverter.convertToBeanList(accountEntityList,
 				AccountBean.class);
@@ -48,7 +41,8 @@ public class AccountServiceData implements AccountService {
 	}
 
 	@Override
-	public List<AccountBean> getSearchedAccounts(String part, String searchField, String searchPlace, String roles) {
+	public List<AccountBean> getSearchedEAccountsWithFieldEnabled(String part, String searchField, String searchPlace,
+			String roles, boolean enabled) {
 		boolean searchFlag = false;
 		boolean loginFlag = false;
 		boolean emailFlag = false;
@@ -83,20 +77,20 @@ public class AccountServiceData implements AccountService {
 		}
 
 		if (rolesFlag == false && searchFlag == false) {
-			return getAllAccounts();
+			return getAllAccountsWithFieldEnabled(enabled);
 		}
 
 		if (rolesFlag == true && searchFlag == false) {
-			return getSelectedRoleAccounts(searchedRolesArr);
+			return getSelectedRoleAccountsWithFieldEnabled(searchedRolesArr, enabled);
 		}
 
 		if (rolesFlag == false && searchFlag == true) {
 
 			if (loginFlag) {
-				return getSelectedLoginAccounts(part);
+				return getSelectedLoginAccountsWithFieldEnabled(part, enabled);
 			}
 			if (emailFlag) {
-				return getSelectedEmailAccounts(part);
+				return getSelectedEmailAccountsWithFieldEnabled(part, enabled);
 			}
 
 			return null;
@@ -110,10 +104,10 @@ public class AccountServiceData implements AccountService {
 				roleList.add(roleEntity);
 			}
 			if (loginFlag) {
-				return getSelectedLoginAndRoleAccounts(part, roleList);
+				return getSelectedLoginAndRoleAccountsWithFieldEnabled(part, roleList, enabled);
 			}
 			if (emailFlag) {
-				return getSelectedEmailAndRoleAccounts(part, roleList);
+				return getSelectedEmailAndRoleAccountsWithFieldEnabled(part, roleList, enabled);
 			}
 
 		}
@@ -123,14 +117,14 @@ public class AccountServiceData implements AccountService {
 
 	@Transactional
 	@Override
-	public List<AccountBean> getSelectedRoleAccounts(String[] roleStatus) {
+	public List<AccountBean> getSelectedRoleAccountsWithFieldEnabled(String[] roleStatus, boolean enabled) {
 		List<RoleEntityHibernate> roleList = new ArrayList<>();
 		for (int i = 1; i < roleStatus.length; i++) {
 			RoleEntityHibernate roleEntity = roleService.findByRoleStatus(roleStatus[i]);
 			roleList.add(roleEntity);
 		}
 		SortedSet<AccountEntityHibernate> accountEntitySet = new TreeSet<>();
-		accountEntitySet.addAll(accountRepository.findByAccountRolesIn(roleList));
+		accountEntitySet.addAll(accountRepository.findByAccountRolesInAndAccountEnabled(roleList, true));
 		System.out.println("SET: " + accountEntitySet);
 
 		// RoleEntityHibernate roleEntity = roleService.findByRoleStatus(s);
@@ -145,9 +139,9 @@ public class AccountServiceData implements AccountService {
 
 	@Transactional
 	@Override
-	public List<AccountBean> getSelectedLoginAccounts(String accountLoginPart) {
+	public List<AccountBean> getSelectedLoginAccountsWithFieldEnabled(String accountLoginPart, boolean enabled) {
 		List<AccountEntityHibernate> accountEntityList = null;
-		accountEntityList = accountRepository.findByAccountLoginLike(accountLoginPart);
+		accountEntityList = accountRepository.findByAccountLoginLikeAndAccountEnabled(accountLoginPart, true);
 		List<AccountBean> accountBeanList = entityToBeanConverter.convertToBeanList(accountEntityList,
 				AccountBean.class);
 
@@ -156,9 +150,9 @@ public class AccountServiceData implements AccountService {
 
 	@Transactional
 	@Override
-	public List<AccountBean> getSelectedEmailAccounts(String accountEmailPart) {
+	public List<AccountBean> getSelectedEmailAccountsWithFieldEnabled(String accountEmailPart, boolean enabled) {
 		List<AccountEntityHibernate> accountEntityList = null;
-		accountEntityList = accountRepository.findByAccountEmailLike(accountEmailPart);
+		accountEntityList = accountRepository.findByAccountEmailLikeAndAccountEnabled(accountEmailPart, true);
 		List<AccountBean> accountBeanList = entityToBeanConverter.convertToBeanList(accountEntityList,
 				AccountBean.class);
 
@@ -167,10 +161,11 @@ public class AccountServiceData implements AccountService {
 
 	@Transactional
 	@Override
-	public List<AccountBean> getSelectedLoginAndRoleAccounts(String accountLoginPart,
-			List<RoleEntityHibernate> roleList) {
+	public List<AccountBean> getSelectedLoginAndRoleAccountsWithFieldEnabled(String accountLoginPart,
+			List<RoleEntityHibernate> roleList, boolean enabled) {
 		SortedSet<AccountEntityHibernate> accountEntitySet = new TreeSet<>();
-		accountEntitySet.addAll(accountRepository.findByAccountLoginLikeAndAccountRolesIn(accountLoginPart, roleList));
+		accountEntitySet.addAll(accountRepository
+				.findByAccountLoginLikeAndAccountRolesInAndAccountEnabled(accountLoginPart, roleList, true));
 		List<AccountBean> accountBeanList = entityToBeanConverter.convertToBeanList(new ArrayList<>(accountEntitySet),
 				AccountBean.class);
 		return accountBeanList;
@@ -178,25 +173,14 @@ public class AccountServiceData implements AccountService {
 
 	@Transactional
 	@Override
-	public List<AccountBean> getSelectedEmailAndRoleAccounts(String accountEmailPArt,
-			List<RoleEntityHibernate> roleList) {
+	public List<AccountBean> getSelectedEmailAndRoleAccountsWithFieldEnabled(String accountEmailPArt,
+			List<RoleEntityHibernate> roleList, boolean enabled) {
 		SortedSet<AccountEntityHibernate> accountEntitySet = new TreeSet<>();
-		accountEntitySet.addAll(accountRepository.findByAccountEmailLikeAndAccountRolesIn(accountEmailPArt, roleList));
+		accountEntitySet.addAll(accountRepository
+				.findByAccountEmailLikeAndAccountRolesInAndAccountEnabled(accountEmailPArt, roleList, true));
 		List<AccountBean> accountBeanList = entityToBeanConverter.convertToBeanList(new ArrayList<>(accountEntitySet),
 				AccountBean.class);
 		return accountBeanList;
-	}
-
-	@Override
-	public void test() {
-		// RoleEntityHibernate role = roleService.findByRoleStatus("Moderator");
-		// RoleEntityHibernate role2 =
-		// roleService.findByRoleStatus("Administrator");
-		// List<RoleEntityHibernate> roleList = new ArrayList<>();
-		// roleList.add(role);
-		// roleList.add(role2);
-		// System.out.println(accountRepository.findByAccountLoginLikeAndAccountRolesIn("%m%",
-		// roleList));
 	}
 
 }
