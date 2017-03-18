@@ -40,6 +40,7 @@ public class RegistrationController {
 	@RequestMapping(value = { "/personalArea/registration.html" }, method = RequestMethod.POST)
 	public ModelAndView registrationOn(@Valid @ModelAttribute(name = "accountPageBean") AccountDetailsPageBean account,
 			BindingResult bindingResult) {
+		System.out.println("in registration on");
 
 		AccountDetailsPageBean registered = null;
 

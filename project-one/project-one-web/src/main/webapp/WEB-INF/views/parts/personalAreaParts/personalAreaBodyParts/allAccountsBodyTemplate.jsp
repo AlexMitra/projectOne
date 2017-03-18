@@ -14,7 +14,9 @@
 
 									<tiles:insertAttribute name="accountsTable"/>
                                     
-									<tiles:insertAttribute name="accountsTableControlButtons"/>
-
+									<tiles:insertAttribute name="accountsTableControlButtons"/>									
                                                                         
                                 </div>
+                                
+                                
+                               

@@ -90,8 +90,8 @@ public class AccountDetailsPageBean implements UserDetails {
 	@Override
 	public String toString() {
 		return "AccountDetailsPageBean [id=" + id + ", accountLogin=" + accountLogin + ", accountEmail=" + accountEmail
-				+ ", accountPassword=" + accountPassword + ", enabled=" + enabled + ", authorities=" + authorities
-				+ "]";
+				+ ", accountPassword=" + accountPassword + ", accountPasswordOnceMore=" + accountPasswordOnceMore
+				+ ", enabled=" + enabled + ", authorities=" + authorities + "]";
 	}
 
 }

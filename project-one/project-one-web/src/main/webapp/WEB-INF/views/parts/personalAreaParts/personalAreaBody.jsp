@@ -5,6 +5,7 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 
+		<tiles:insertDefinition name="accountsTableAddAccountDialog" flush="true"/>
 
         <div class="row">
         	<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
@@ -19,7 +20,7 @@
                         
                     	<div id="personal-info" class="col-lg-12 personalArea-body-element" style="display: ">
                         	<h3 align="center"><spring:message code="personalArea.body.greetings"/>${accountPageBean.getAccountLogin()}!</h3>
-                        </div>                            	
+                        </div>                                                	
 
 						<security:authorize access="hasAuthority('Administrator')">
 						<tiles:insertDefinition name="allAccountsBodyTemplate" flush="true"/>						

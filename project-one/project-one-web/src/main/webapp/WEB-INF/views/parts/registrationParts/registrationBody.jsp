@@ -21,7 +21,7 @@
 
                 <div class="form-login-screen row">   
 
-    				<form:form method="post" modelAttribute="accountPageBean" class="form-horizontal" enctype="utf8">                        
+    				<form:form method="post" action="http://localhost:8080/project-one-web/personalArea/registration.html" modelAttribute="accountPageBean" class="form-horizontal" enctype="utf8">                        
                         
                         <div class="form-group">
                             <label class="col-sm-3 control-label"><p class="label-text"><spring:message code="registration.form.login"/></p></label>

@@ -43,7 +43,7 @@
     	<put-attribute name="searchPanel" value="/WEB-INF/views/parts/personalAreaParts/personalAreaBodyParts/allAccountsBodySearchPanel.jsp"/>
     	<put-attribute name="rolesButton" value="/WEB-INF/views/parts/personalAreaParts/personalAreaBodyParts/allAccountsBodyRolesButton.jsp"/>
     	<put-attribute name="accountsTable" value="/WEB-INF/views/parts/personalAreaParts/personalAreaBodyParts/allAccountsBodyAccountsTable.jsp"/>
-    	<put-attribute name="accountsTableControlButtons" value="/WEB-INF/views/parts/personalAreaParts/personalAreaBodyParts/allAccountsBodyAccountsTableControlButtons.jsp"/>
+    	<put-attribute name="accountsTableControlButtons" value="/WEB-INF/views/parts/personalAreaParts/personalAreaBodyParts/allAccountsBodyAccountsTableControlButtons.jsp"/>    	
     </definition>
     
     <definition name="ads" extends="personalAreaIn">   	
@@ -54,6 +54,9 @@
     </definition>
     
     <definition name="adsBodyAdsArea" template="/WEB-INF/views/parts/adsParts/adsViewBodyParts/adsViewBodyAdsArea.jsp">
+    </definition>
+    
+    <definition name="accountsTableAddAccountDialog" template="/WEB-INF/views/parts/personalAreaParts/personalAreaBodyParts/allAccountsBodyAddAccountDialog.jsp">    
     </definition>
 
 </tiles-definitions>

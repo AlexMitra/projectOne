@@ -24,6 +24,7 @@
 			<intercept-url pattern="/exception.html" access="permitAll"/>
 			<intercept-url pattern="/" access="permitAll"/>
 			
+			<intercept-url pattern="/personalArea/admin/api/**" access="hasAuthority('Administrator')" />
 			<intercept-url pattern="/**" access="isAuthenticated()" />
 <!-- 			<intercept-url pattern="/**" access="permitAll" /> -->
 			
