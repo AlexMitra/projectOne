@@ -4,17 +4,22 @@
       xsi:schemaLocation="http://dozer.sourceforge.net http://dozer.sourceforge.net/schema/beanmapping.xsd">
 
 	<mapping>
-		<class-a>by.kalilaska.entities.forHibernate.RoleEntityHibernate</class-a>
-			<class-b>by.kalilaska.beans.RoleBean</class-b>
+		<class-a>by.kalilaska.entities.forHibernate.AdCategoryEntityHibernate</class-a>
+			<class-b>by.kalilaska.beans.AdCategoryBean</class-b>
 
 			<field>
-				<a>roleId</a>
-				<b>roleId</b>
+				<a>adCategoryId</a>
+				<b>adCategoryId</b>
 			</field>
 			
 			<field>
-				<a>roleStatus</a>
-				<b>roleStatus</b>
+				<a>adCategoryName</a>
+				<b>adCategoryName</b>
+			</field>
+			
+			<field>
+				<a>adCategoryEnabled</a>
+				<b>adCategoryEnabled</b>
 			</field>
 	</mapping>
 </mappings>

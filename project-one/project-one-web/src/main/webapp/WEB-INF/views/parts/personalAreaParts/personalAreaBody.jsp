@@ -5,7 +5,11 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 
-		<tiles:insertDefinition name="accountsTableAddAccountDialog" flush="true"/>
+		<security:authorize access="hasAuthority('Administrator')">
+		<tiles:insertDefinition name="accountsTableAddAccountDialog" flush="true"/>		
+		<tiles:insertDefinition name="accountsTableDisableAccountDialog" flush="true"/>
+		
+		</security:authorize>
 
         <div class="row">
         	<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">

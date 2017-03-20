@@ -10,20 +10,31 @@
                     <li class="sidebar-brand">
                         <p class="categories-list">Categories</p>
                     </li>
-                    <li>
-                        <span>
-                            <label class="category-type" >
-                                <input type="checkbox" value=""> Category 1
-                            </label>
-                        </span>
-                    </li>
-                    <li>
-                        <span>
-                            <label class="category-type" >
-                                <input type="checkbox" value=""> Category 2
-                            </label>    
-                        </span>
-                    </li>                    
+                    <c:set var="allCategories" value="${accountPageBean.getAllAdCategories()}"/>
+                    <c:forEach items="${allCategories}" var="category">
+                    	<li>
+                        	<span>
+                            	<label class="category-type" >
+                            		<input type="checkbox" id="checkbox-category-${category.getAdCategoryId()}"> <c:out value="${category.getAdCategoryName()}"/>
+                                	
+                                </label>
+                            </span>
+                        </li>
+                    </c:forEach>
+<!--                     <li> -->
+<!--                         <span> -->
+<!--                             <label class="category-type" > -->
+<!--                                 <input type="checkbox" value=""> Category 1 -->
+<!--                             </label> -->
+<!--                         </span> -->
+<!--                     </li> -->
+<!--                     <li> -->
+<!--                         <span> -->
+<!--                             <label class="category-type" > -->
+<!--                                 <input type="checkbox" value=""> Category 2 -->
+<!--                             </label>     -->
+<!--                         </span> -->
+<!--                     </li>                     -->
                 </ul>
 
 

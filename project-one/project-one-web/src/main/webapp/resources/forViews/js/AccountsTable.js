@@ -2,7 +2,7 @@ var accountsTable = {
 	createAccountsTable : function(data) {
 		var str = '';
 		// var n;
-		var link = 'getbootstrap.com/';
+
 		for ( var i in data) {
 			// alert("typeof i: " + typeof i);
 			// n = +i + 1;
@@ -14,7 +14,7 @@ var accountsTable = {
 					+ data[i].accountId
 					+ '" onclick = "workWithAccountsTable.selectAccount(this.id)" unchecked></label></div></td>';
 			str += '<td>' + data[i].accountId + '</td>';
-			str += '<td>' + data[i].accountLogin + '</td>';
+			str += '<td id="accountLogin-' + data[i].accountId + '">' + data[i].accountLogin + '</td>';
 			str += '<td>' + data[i].accountEmail + '</td>';
 			//str += '<td>' + data[i].accountRoles + '</td>';
 			str += '<td>' + this.getRoles(data[i].accountRoles) + '</td>';
@@ -60,7 +60,7 @@ var accountsTable = {
 				if (searchOptions.getSearchFiled() === 'byLogin') {
 					str += column.createColumn(data[i].accountLogin, part);
 				} else {
-					str += '<td>' + data[i].accountLogin + '</td>';
+					str += '<td id="accountLogin-' + data[i].accountId + '">' + data[i].accountLogin + '</td>';
 				}
 
 				if (searchOptions.getSearchFiled() === 'byEmail') {
@@ -129,7 +129,9 @@ var workWithAccountsTable = {
 	selectAccount : function(id) {
 		if (id.search("checkbox-") == -1) {
 			id = "checkbox-" + id;
+
 		}
+		//alert("id: " + id);
 		workWithElements.switchCheckbox(id);
 		workWithElements.switchAccountsTableButtons();
 	},

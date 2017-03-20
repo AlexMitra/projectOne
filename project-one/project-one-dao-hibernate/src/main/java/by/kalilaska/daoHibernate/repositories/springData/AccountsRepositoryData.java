@@ -35,4 +35,8 @@ public interface AccountsRepositoryData extends JpaRepository<AccountEntityHiber
 	List<AccountEntityHibernate> findByAccountEmailLikeAndAccountRolesInAndAccountEnabled(String reg,
 			List<RoleEntityHibernate> roles, boolean enabled);
 
+	// @Query("update AccountEntityHibernate a set a.accountEnabled = ?1 where
+	// u.accountId = ?2")
+	// int setFixedFirstnameFor(boolean enabled, long accountId);
+
 }

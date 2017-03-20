@@ -45,7 +45,8 @@ public class PersonalAreaInController {
 		contentService.addContent(account);
 
 		ModelAndView modelAndView = new ModelAndView("personalAreaIn", "accountPageBean", account);
-		modelAndView.addObject("accountBeanForCRUD", new AccountDetailsPageBean());
+		// modelAndView.addObject("accountBeanForCRUD", new
+		// AccountDetailsPageBean());
 		return modelAndView;
 	}
 

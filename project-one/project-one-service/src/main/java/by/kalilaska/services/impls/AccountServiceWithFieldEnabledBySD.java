@@ -183,4 +183,14 @@ public class AccountServiceWithFieldEnabledBySD implements AccountWithFieldEnabl
 		return accountBeanList;
 	}
 
+	@Override
+	public void disableAccount(long id) {
+		AccountEntityHibernate account = accountRepository.findOne(id);
+		System.out.println("before disable: " + account);
+
+		account.setAccountEnabled(false);
+		System.out.println("after disable: " + accountRepository.save(account));
+
+	}
+
 }

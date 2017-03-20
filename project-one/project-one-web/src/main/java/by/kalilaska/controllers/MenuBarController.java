@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import by.kalilaska.BeansPool;
+import by.kalilaska.beans.AccountDetailsPageBean;
+import by.kalilaska.services.AdCategoryService;
 
 @Controller
 public class MenuBarController {
@@ -25,7 +27,10 @@ public class MenuBarController {
 
 	@Autowired
 	@Qualifier(value = "accountDetailsPageBean")
-	UserDetails userDetails;
+	private UserDetails userDetails;
+
+	@Autowired
+	private AdCategoryService adCategoryService;
 
 	@Autowired
 	private BeansPool beansPool;
@@ -77,9 +82,35 @@ public class MenuBarController {
 							 * @ModelAttribute(name="accountPageBean"
 							 * UserAccountPageBean account
 							 */) {
-		ModelAndView modelAndView = new ModelAndView(
-				"ads"/* , "accountPageBean", account */);
+		AccountDetailsPageBean account = getAccountPageBean();
+		ModelAndView modelAndView;
+		if (account != null) {
+			modelAndView = new ModelAndView("ads", "accountPageBean", account);
+			return modelAndView;
+		}
+		account = new AccountDetailsPageBean();
+		account.setAllAdCategories(adCategoryService.findAllCategoryNames());
+
+		modelAndView = new ModelAndView("ads", "accountPageBean", account);
+
 		return modelAndView;
+	}
+
+	private AccountDetailsPageBean getAccountPageBean() {
+
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+		if (authentication != null) {
+			if (authentication.getClass() == UsernamePasswordAuthenticationToken.class) {
+				return (AccountDetailsPageBean) authentication.getPrincipal();
+			}
+			if (authentication.getClass() == RememberMeAuthenticationToken.class) {
+				return (AccountDetailsPageBean) authentication.getPrincipal();
+			}
+
+		}
+
+		return null;
 	}
 
 	/*

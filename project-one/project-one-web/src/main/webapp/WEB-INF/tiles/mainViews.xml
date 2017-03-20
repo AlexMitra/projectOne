@@ -58,5 +58,8 @@
     
     <definition name="accountsTableAddAccountDialog" template="/WEB-INF/views/parts/personalAreaParts/personalAreaBodyParts/allAccountsBodyAddAccountDialog.jsp">    
     </definition>
+    
+    <definition name="accountsTableDisableAccountDialog" template="/WEB-INF/views/parts/personalAreaParts/personalAreaBodyParts/allAccountsBodyDisableAccountDialog.jsp">    
+    </definition>
 
 </tiles-definitions>

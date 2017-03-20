@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import by.kalilaska.beans.AccountDetailsPageBean;
 import by.kalilaska.entities.enums.Authorities;
+import by.kalilaska.services.AdCategoryService;
 import by.kalilaska.services.ContentService;
 import by.kalilaska.services.RoleService;
 
@@ -16,6 +17,9 @@ public class ContentServiceBySD implements ContentService {
 
 	@Autowired
 	private RoleService roleService;
+
+	@Autowired
+	private AdCategoryService adCategoryService;
 
 	@Override
 	public void addContent(AccountDetailsPageBean pageBean) {
@@ -26,6 +30,9 @@ public class ContentServiceBySD implements ContentService {
 		} catch (Exception e) {
 
 		}
+
+		pageBean.setAllAdCategories(adCategoryService.findAllCategoryNames());
+		System.out.println("categories: " + pageBean.getAllAdCategories());
 
 		if (authorities != null) {
 			for (GrantedAuthority authority : authorities) {

@@ -73,4 +73,11 @@ public class PersonalAreaMenuAllAccountCRUDController {
 		return new ResponseEntity<List<AccountBean>>(accountBeanList, HttpStatus.CREATED);
 	}
 
+	@RequestMapping(value = "/personalArea/admin/api/account/disable", method = RequestMethod.PUT)
+	@ResponseBody
+	public ResponseEntity<?> disableAccount(@RequestBody AccountDetailsPageBean account) {
+		accountWithFieldEnabledService.disableAccount(account.getId());
+		return new ResponseEntity<Void>(HttpStatus.ACCEPTED);
+	}
+
 }

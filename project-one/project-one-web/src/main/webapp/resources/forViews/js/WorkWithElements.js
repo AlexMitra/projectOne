@@ -1,5 +1,5 @@
 var workWithElements = {
-	selectedAccountsCounter : 0,
+	//selectedAccountsCounter : 0,
 	selectedAccountsArr : [],
 
 	// logout : function() {
@@ -29,14 +29,19 @@ var workWithElements = {
 	},
 
 	selectCheckbox : function(id) {
+
 		document.getElementById(id).checked = true;
-		this.selectedAccountsCounter++;
-		this.selectedAccountsArr.push(id);
+		var i = this.containCheckboxId(id);
+		if (i == -1) {
+			//this.selectedAccountsCounter++;
+			this.selectedAccountsArr.push(id);
+		}
 	},
 
 	unselectCheckbox : function(id) {
+
 		document.getElementById(id).checked = false;
-		this.selectedAccountsCounter--;
+		//this.selectedAccountsCounter--;
 		var i = this.containCheckboxId(id);
 		if (i >= 0) {
 			this.selectedAccountsArr.splice(i, 1);
@@ -44,6 +49,7 @@ var workWithElements = {
 	},
 
 	switchCheckbox : function(id) {
+
 		if (document.getElementById(id).checked == true) {
 			this.unselectCheckbox(id);
 		} else {
@@ -61,9 +67,10 @@ var workWithElements = {
 	},
 
 	unselectAllCheckboxes : function() {
+
 		for (var i = 0; this.selectedAccountsArr.length > 0;) {
 			document.getElementById(this.selectedAccountsArr[i]).checked = false;
-			this.selectedAccountsCounter--;
+			//this.selectedAccountsCounter--;
 			this.selectedAccountsArr.shift();
 
 		}
@@ -71,14 +78,14 @@ var workWithElements = {
 	},
 
 	switchAccountsTableButtons : function() {
-		if (this.selectedAccountsCounter > 0) {
+		if (this.selectedAccountsArr.length > 0) {
 			document.getElementById("unselect-all-account-button").disabled = false;
 			document.getElementById("update-account-button").disabled = false;
-			document.getElementById("delete-account-button").disabled = false;
+			document.getElementById("disable-account-button").disabled = false;
 		} else {
 			document.getElementById("unselect-all-account-button").disabled = true;
 			document.getElementById("update-account-button").disabled = true;
-			document.getElementById("delete-account-button").disabled = true;
+			document.getElementById("disable-account-button").disabled = true;
 		}
 	}
 }

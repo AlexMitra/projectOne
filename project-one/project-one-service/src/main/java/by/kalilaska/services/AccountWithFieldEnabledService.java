@@ -24,4 +24,6 @@ public interface AccountWithFieldEnabledService {
 	List<AccountBean> getSelectedEmailAndRoleAccountsWithFieldEnabled(String accountEmailPArt,
 			List<RoleEntityHibernate> roleList, boolean enabled);
 
+	void disableAccount(long id);
+
 }

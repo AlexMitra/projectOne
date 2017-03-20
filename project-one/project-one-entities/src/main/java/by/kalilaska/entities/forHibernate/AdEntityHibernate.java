@@ -47,7 +47,7 @@ public class AdEntityHibernate {
 		referencedColumnName = "Ad_Id"), 
 		inverseJoinColumns = @JoinColumn(name = "Ads_to_categories_FK_Category_id", 
 		referencedColumnName = "Category_Id"))
-	private CategoryEntityHibernate adCategory;
+	private AdCategoryEntityHibernate adCategory;
 	
 	@ManyToOne
 	@JoinTable(name = "Ads_to_аccounts", 

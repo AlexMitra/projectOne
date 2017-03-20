@@ -2,7 +2,7 @@ var accountsTableAddButton = {
 
 	showForm: function(){
 
-		$('#add-account-button').on('show.bs.modal', function (event) {
+		$('#add-account-dialog').on('show.bs.modal', function (event) {
 		    var button = $(event.relatedTarget)
 		})
 	},
@@ -20,7 +20,6 @@ var accountsTableAddButton = {
 	addAccount: function () {
 
 		this.addCSRFHeader();
-
 
 		var accountBeanForCRUD = {}
 		accountBeanForCRUD["accountLogin"] = $("#add-account-inputLogin").val();
@@ -70,4 +69,69 @@ var accountsTableAddButton = {
 	cleanForm: function(){
 		document.getElementById("form-for-add-account").reset();
 	}
+}
+
+var accountsTableDisableButton = {
+
+	checkboxId: null,
+
+	accountId: null,
+
+	showDialog: function(){
+		this.showTitle();
+
+		$('#disable-account-dialog').on('show.bs.modal', function (event) {
+			var button = $(event.relatedTarget)
+		})
+
+	},
+
+	showTitle: function(){
+
+		if(workWithElements.selectedAccountsArr.length > 0){
+
+			this.checkboxId = workWithElements.selectedAccountsArr[0];
+			this.accountId = this.checkboxId.replace("checkbox-account-", "");
+
+			var accountLogin = document.getElementById("accountLogin-" + this.accountId).innerHTML;
+
+			var element = document.getElementById("disable-account-dialog-title");
+			element.innerHTML = element.innerHTML + accountLogin;
+		}
+	},
+
+	disableAccount: function(){
+
+		accountsTableAddButton.addCSRFHeader();
+
+		var accountBeanForCRUD = {}
+		accountBeanForCRUD["id"] = this.accountId;
+
+		$.ajax({
+			type : "PUT",
+			contentType : "application/json",
+			url : "http://localhost:8080/project-one-web/personalArea/admin/api/account/disable",
+			data : JSON.stringify(accountBeanForCRUD),
+			dataType : 'json',
+			timeout : 100000,
+			success : function(data, textStatus, xhr) {
+
+				document.getElementById("disable-account-dialog-close").click();
+				workWithElements.unselectAllCheckboxes();
+				workWithElements.switchAccountsTableButtons();
+				workWithData.getAccountsData();
+			},
+			error : function(xhr, ajaxOptions, thrownError) {
+
+				document.getElementById("disable-account-dialog-close").click();
+				workWithElements.unselectAllCheckboxes();
+				workWithElements.switchAccountsTableButtons();
+				workWithData.getAccountsData();
+			}
+
+		});
+
+	},
+
+
 }

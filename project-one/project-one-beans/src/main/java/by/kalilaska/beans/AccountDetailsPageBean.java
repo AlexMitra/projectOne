@@ -41,6 +41,8 @@ public class AccountDetailsPageBean implements UserDetails {
 
 	private List<RoleBean> allAuthorities;
 
+	private List<AdCategoryBean> allAdCategories;
+
 	public AccountDetailsPageBean() {
 		super();
 		this.id = 0;

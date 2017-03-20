@@ -6,7 +6,7 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 
 
-    <div class="modal fade" id="add-account-button" tabindex="-1" role="dialog">
+    <div class="modal fade" id="add-account-dialog" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
