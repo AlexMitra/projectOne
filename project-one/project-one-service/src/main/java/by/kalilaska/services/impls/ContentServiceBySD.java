@@ -31,9 +31,6 @@ public class ContentServiceBySD implements ContentService {
 
 		}
 
-		pageBean.setAllAdCategories(adCategoryService.findAllCategoryNames());
-		System.out.println("categories: " + pageBean.getAllAdCategories());
-
 		if (authorities != null) {
 			for (GrantedAuthority authority : authorities) {
 				if (authority.getAuthority().equals(Authorities.ADMINISTRATOR.getRole())) {

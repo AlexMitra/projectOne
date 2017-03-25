@@ -4,27 +4,32 @@
       xsi:schemaLocation="http://dozer.sourceforge.net http://dozer.sourceforge.net/schema/beanmapping.xsd">
 
 	<mapping>
-		<class-a>by.kalilaska.entities.forHibernate.AdCategoryEntityHibernate</class-a>
-			<class-b>by.kalilaska.beans.AdCategoryBean</class-b>
+		<class-a>by.kalilaska.entities.forHibernate.AdEntityHibernate</class-a>
+			<class-b>by.kalilaska.beans.AdBean</class-b>
 
 			<field>
-				<a>adCategoryId</a>
-				<b>adCategoryId</b>
+				<a>adId</a>
+				<b>adId</b>
 			</field>
 			
 			<field>
-				<a>adCategoryName</a>
-				<b>adCategoryName</b>
+				<a>adName</a>
+				<b>adName</b>
 			</field>
 			
 			<field>
-				<a>adCategoryI18n</a>
-				<b>adCategoryI18n</b>
+				<a>adDescription</a>
+				<b>adDescription</b>
 			</field>
 			
 			<field>
-				<a>adCategoryEnabled</a>
-				<b>adCategoryEnabled</b>
+				<a>adCreationDate</a>
+				<b>adCreationDate</b>
+			</field>
+			
+			<field>
+				<a>adEnabled</a>
+				<b>adEnabled</b>
 			</field>
 	</mapping>
 </mappings>

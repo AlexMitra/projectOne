@@ -45,4 +45,18 @@ public class AdCategoryServiceBySD implements AdCategoryService {
 		return adCategoryBeanList;
 	}
 
+	@Override
+	public List<AdCategoryEntityHibernate> findAllCategoriesWithFieldEnabled(boolean enabled) {
+
+		return adCategoryReposidoty.findByAdCategoryEnabled(enabled);
+	}
+
+	@Override
+	public List<AdCategoryBean> findAllCategoryNamesWithFieldEnabled(boolean enabled) {
+		List<AdCategoryEntityHibernate> adCategoryEntityList = findAllCategoriesWithFieldEnabled(enabled);
+		List<AdCategoryBean> adCategoryBeanList = entityToBeanConverter.convertToBeanList(adCategoryEntityList,
+				AdCategoryBean.class);
+		return adCategoryBeanList;
+	}
+
 }

@@ -15,7 +15,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import by.kalilaska.BeansPool;
 import by.kalilaska.beans.AccountDetailsPageBean;
+import by.kalilaska.beans.AdsPageBean;
 import by.kalilaska.services.AdCategoryService;
+import by.kalilaska.services.AdService;
 
 @Controller
 public class MenuBarController {
@@ -31,6 +33,9 @@ public class MenuBarController {
 
 	@Autowired
 	private AdCategoryService adCategoryService;
+
+	@Autowired
+	private AdService adService;
 
 	@Autowired
 	private BeansPool beansPool;
@@ -82,16 +87,17 @@ public class MenuBarController {
 							 * @ModelAttribute(name="accountPageBean"
 							 * UserAccountPageBean account
 							 */) {
-		AccountDetailsPageBean account = getAccountPageBean();
+		// AccountDetailsPageBean account = getAccountPageBean();
 		ModelAndView modelAndView;
-		if (account != null) {
-			modelAndView = new ModelAndView("ads", "accountPageBean", account);
-			return modelAndView;
-		}
-		account = new AccountDetailsPageBean();
-		account.setAllAdCategories(adCategoryService.findAllCategoryNames());
+		// if (account != null) {
+		// modelAndView = new ModelAndView("ads", "accountPageBean", account);
+		// return modelAndView;
+		// }
+		AdsPageBean adsPageBean = new AdsPageBean();
+		adsPageBean.setAllAdCategories(adCategoryService.findAllCategoryNamesWithFieldEnabled(true));
+		adsPageBean.setAllAds(adService.getAllAdsWithFieldEnabled(true));
 
-		modelAndView = new ModelAndView("ads", "accountPageBean", account);
+		modelAndView = new ModelAndView("ads", "adsPageBean", adsPageBean);
 
 		return modelAndView;
 	}

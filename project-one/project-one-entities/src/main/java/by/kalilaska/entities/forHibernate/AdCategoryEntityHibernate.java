@@ -28,6 +28,9 @@ public class AdCategoryEntityHibernate {
 	@Column(name = "Category_name")
 	private String adCategoryName;
 
+	@Column(name = "Category_i18n")
+	private String adCategoryI18n;
+
 	@Column(name = "Category_description")
 	private String adCategoryDescription;
 

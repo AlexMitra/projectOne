@@ -12,4 +12,8 @@ public interface AdCategoryService {
 	List<AdCategoryEntityHibernate> findAllCategories();
 
 	List<AdCategoryBean> findAllCategoryNames();
+
+	List<AdCategoryEntityHibernate> findAllCategoriesWithFieldEnabled(boolean enabled);
+
+	List<AdCategoryBean> findAllCategoryNamesWithFieldEnabled(boolean enabled);
 }

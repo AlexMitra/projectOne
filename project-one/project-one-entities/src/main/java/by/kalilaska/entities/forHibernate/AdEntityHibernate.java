@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,49 +23,41 @@ import lombok.Setter;
 @Getter
 @Setter
 public class AdEntityHibernate {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "Ad_Id")
-	private long id;
-	
+	private long adId;
+
 	@Column(name = "Ad_name")
-	private String name;
-	
+	private String adName;
+
 	@Column(name = "Ad_description")
-	private String description;
-	
+	private String adDescription;
+
 	@Column(name = "Ad_creation_date", columnDefinition = "DATETIME")
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date creattionDate;
-	
+	private Date adCreationDate;
+
 	@Column(name = "Ad_enabled")
-	private boolean enabled;
-	
-	@ManyToOne
-	@JoinTable(name = "Ads_to_categories",
-		joinColumns = @JoinColumn(name = "Ads_to_categories_FK_Ad_id", 
-		referencedColumnName = "Ad_Id"), 
-		inverseJoinColumns = @JoinColumn(name = "Ads_to_categories_FK_Category_id", 
-		referencedColumnName = "Category_Id"))
+	private boolean adEnabled;
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinTable(name = "Ads_to_categories", joinColumns = @JoinColumn(name = "Ads_to_categories_FK_Ad_id", referencedColumnName = "Ad_Id"), inverseJoinColumns = @JoinColumn(name = "Ads_to_categories_FK_Category_id", referencedColumnName = "Category_Id"))
 	private AdCategoryEntityHibernate adCategory;
-	
-	@ManyToOne
-	@JoinTable(name = "Ads_to_аccounts", 
-		joinColumns = @JoinColumn(name = "Ads_to_аccounts_FK_Ad_id", 
-		referencedColumnName = "Ad_Id"), 
-		inverseJoinColumns = @JoinColumn(name = "Ads_to_аccounts_FK_Account_id", 
-		referencedColumnName = "Account_Id"))
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinTable(name = "Ads_to_аccounts", joinColumns = @JoinColumn(name = "Ads_to_аccounts_FK_Ad_id", referencedColumnName = "Ad_Id"), inverseJoinColumns = @JoinColumn(name = "Ads_to_аccounts_FK_Account_id", referencedColumnName = "Account_Id"))
 	private AccountEntityHibernate adMaker;
 
 	public AdEntityHibernate() {
-		super();		
+		super();
 	}
 
 	@Override
 	public String toString() {
-		return "AdEntityHibernate [id=" + id + ", name=" + name + ", description=" + description + ", creattionDate="
-				+ creattionDate + ", enabled=" + enabled + "]";
+		return "AdEntityHibernate [adId=" + adId + ", adName=" + adName + ", adDescription=" + adDescription
+				+ ", adCreationDate=" + adCreationDate + ", adEnabled=" + adEnabled + "]";
 	}
 
 }

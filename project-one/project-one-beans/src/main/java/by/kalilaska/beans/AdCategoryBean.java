@@ -13,6 +13,8 @@ public class AdCategoryBean {
 
 	private String adCategoryName;
 
+	private String adCategoryI18n;
+
 	private boolean adCategoryEnabled;
 
 	public AdCategoryBean() {
