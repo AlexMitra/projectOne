@@ -6,7 +6,10 @@
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 
                                 <div id="accounts" class="col-lg-12 personalArea-body-element" style = "display: none;">
-                                    <h2>Accounts</h2>
+                                    <h2>Accounts <label class="switch">
+                                    <input id="accounts-enabled-disabled-toggle" type="checkbox" checked onclick="if(this.checked){accountEnabledDisabledToggle.toggleEnabled()} else {accountEnabledDisabledToggle.toggleDisabled()}">
+                                    <div class="slider round"></div></label>
+                                    </h2>
                                     
                                     <tiles:insertAttribute name="searchPanel"/>
 
