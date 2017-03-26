@@ -13,4 +13,6 @@ public interface AdService {
 			int page, int size);
 
 	Long getAdEnabledCount(boolean enabled);
+
+	AdBean getAdById(long id);
 }

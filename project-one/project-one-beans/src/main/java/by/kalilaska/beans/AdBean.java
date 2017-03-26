@@ -1,5 +1,6 @@
 package by.kalilaska.beans;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.springframework.stereotype.Component;
@@ -21,6 +22,11 @@ public class AdBean {
 	private Date adCreationDate;
 
 	private boolean adEnabled;
+
+	public String getFormatDate() {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
+		return dateFormat.format(adCreationDate);
+	}
 
 	@Override
 	public String toString() {

@@ -44,8 +44,17 @@ public class AdServiceBySD implements AdService {
 	}
 
 	@Override
+	@Transactional
 	public Long getAdEnabledCount(boolean enabled) {
 		return adRepositoryData.countByAdEnabled(enabled);
+	}
+
+	@Override
+	@Transactional
+	public AdBean getAdById(long id) {
+		AdEntityHibernate adEntity = adRepositoryData.findOne(id);
+		AdBean adBean = entityToBeanConverter.convertToBean(adEntity, AdBean.class);
+		return adBean;
 	}
 
 }

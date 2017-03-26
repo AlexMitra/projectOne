@@ -1,5 +1,7 @@
 package by.kalilaska.controllers;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.RememberMeAuthenticationToken;
@@ -83,7 +85,7 @@ public class MenuBarController {
 	}
 
 	@RequestMapping(value = { "/ads.html" }, method = RequestMethod.GET)
-	public ModelAndView ads() {
+	public ModelAndView ads(HttpSession session) {
 
 		// AccountDetailsPageBean account = getAccountPageBean();
 		ModelAndView modelAndView;
@@ -91,8 +93,18 @@ public class MenuBarController {
 		// modelAndView = new ModelAndView("ads", "accountPageBean", account);
 		// return modelAndView;
 		// }
+		AdsPageBean adsPageBean = null;
 
-		AdsPageBean adsPageBean = new AdsPageBean();
+		if (session.getAttribute("adsPageBean") != null) {
+			adsPageBean = (AdsPageBean) session.getAttribute("adsPageBean");
+		} else {
+			adsPageBean = new AdsPageBean();
+		}
+
+		if (adsPageBean.getAllAdCategories() == null || adsPageBean.getAllAdCategories().size() == 0) {
+			adsPageBean.setAllAdCategories(adCategoryService.findAllCategoryNamesWithFieldEnabled(true));
+		}
+
 		adsPageBean.setPageNumber(0);
 		long allAdsNumber = adService.getAdEnabledCount(true);
 		long allShowedPagesNumber = adsPageBean.getPageNumber() + 1;
@@ -104,10 +116,12 @@ public class MenuBarController {
 			adsPageBean.setLastPage(true);
 		}
 
-		adsPageBean.setAllAdCategories(adCategoryService.findAllCategoryNamesWithFieldEnabled(true));
 		adsPageBean.setAllAds(adService.getAllAdsWithFieldEnabled(true, adsPageBean.getPageNumber(),
 				adsPageBean.getAdsNumberOnPage()));
 
+		System.out.println("ads: " + adsPageBean.getAllAds());
+
+		session.setAttribute("adsPageBean", adsPageBean);
 		modelAndView = new ModelAndView("ads", "adsPageBean", adsPageBean);
 
 		return modelAndView;

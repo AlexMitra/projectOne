@@ -9,9 +9,10 @@
         	<c:forEach items="${allAds }" var="ad">  
             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 one-ad-area">             
                 <div class="one-ad-block">
-                    <a id="ad-${ad.getAdId()}" class="one-ad-name" href="#">
+                    <a id="ad-${ad.getAdId()}" class="one-ad-name" href="/project-one-web/ads/ad_${ad.getAdId()}.html">
                     	<p>${ad.getAdName()}</p>
-                        <img class="one-ad-image" src="<c:url value="resources/forViews/images/Dino.png"/>" alt="">
+                        <img class="one-ad-image" src="${pageContext.servletContext.contextPath}/resources/forViews/images/Dino.png" alt="">
+<%--                         <img class="one-ad-image" src="<c:url value="resources/forViews/images/Dino.png"/>" alt=""> --%>
                     </a>
                     <font>${ad.getAdId()}</font>
 <!--                     <a class="like-counter" href="#2"> -->

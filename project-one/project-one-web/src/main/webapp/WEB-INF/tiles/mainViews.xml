@@ -27,7 +27,7 @@
     
     <definition name="registration" extends="login">    	
     	<put-attribute name="body" value="/WEB-INF/views/parts/registrationParts/registrationBody.jsp"/>    	
-    </definition>    
+    </definition> 
         
     <definition name="personalAreaIn" extends="home">
     	<put-attribute name="head" value="/WEB-INF/views/parts/personalAreaParts/personalAreaHead.jsp"/>
@@ -54,6 +54,10 @@
     </definition>
     
     <definition name="adsBodyAdsArea" template="/WEB-INF/views/parts/adsParts/adsViewBodyParts/adsViewBodyAdsArea.jsp">
+    </definition>
+    
+    <definition name="ad" extends="login">   	
+    	<put-attribute name="body" value="/WEB-INF/views/parts/adParts/adViewBody.jsp"/>
     </definition>
     
     <definition name="accountsTableAddAccountDialog" template="/WEB-INF/views/parts/personalAreaParts/personalAreaBodyParts/allAccountsBodyAddAccountDialog.jsp">    

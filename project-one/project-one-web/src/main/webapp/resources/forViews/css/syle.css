@@ -296,3 +296,60 @@
     cursor: default;  
     color: #999;
 }
+
+.ad-page-area {
+    margin-left: 90px;
+    height: 80vh;
+    border: 0px;
+}
+
+.ad-page-ad-area {
+    position: static;
+}
+
+.ad-path {
+    color: darkgray;
+    font-size: 150%;
+    border-bottom: 0px;
+}
+
+.ad-path-link {
+    color: darkgray;
+}
+
+.ad-path-link:hover {
+    color: black;
+    text-decoration: none;
+}
+
+.ad-path-link:focus {
+    color: darkgray;
+    text-decoration: none;
+}
+
+.ad-page-image {
+    padding: 0px;
+    width: 600px;
+    max-width: 600px;
+    height: 350px;
+    max-height: 400px;
+}
+.ad-date-creation {
+    color: dimgray;
+    font-size: 90%;
+    border-bottom: 0px;
+}
+
+.ad-page-image-area {
+      height: 375px;
+  display: block;
+  padding: 4px;
+  margin-bottom: 20px;
+  line-height: 1.42857143;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  -webkit-transition: border .2s ease-in-out;
+       -o-transition: border .2s ease-in-out;
+          transition: border .2s ease-in-out;
+}
