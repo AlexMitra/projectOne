@@ -83,19 +83,30 @@ public class MenuBarController {
 	}
 
 	@RequestMapping(value = { "/ads.html" }, method = RequestMethod.GET)
-	public ModelAndView ads(/*
-							 * @ModelAttribute(name="accountPageBean"
-							 * UserAccountPageBean account
-							 */) {
+	public ModelAndView ads() {
+
 		// AccountDetailsPageBean account = getAccountPageBean();
 		ModelAndView modelAndView;
 		// if (account != null) {
 		// modelAndView = new ModelAndView("ads", "accountPageBean", account);
 		// return modelAndView;
 		// }
+
 		AdsPageBean adsPageBean = new AdsPageBean();
+		adsPageBean.setPageNumber(0);
+		long allAdsNumber = adService.getAdEnabledCount(true);
+		long allShowedPagesNumber = adsPageBean.getPageNumber() + 1;
+		long adsNumberOnPage = adsPageBean.getAdsNumberOnPage();
+
+		if ((allAdsNumber - allShowedPagesNumber * adsNumberOnPage) > 0) {
+			adsPageBean.setLastPage(false);
+		} else {
+			adsPageBean.setLastPage(true);
+		}
+
 		adsPageBean.setAllAdCategories(adCategoryService.findAllCategoryNamesWithFieldEnabled(true));
-		adsPageBean.setAllAds(adService.getAllAdsWithFieldEnabled(true));
+		adsPageBean.setAllAds(adService.getAllAdsWithFieldEnabled(true, adsPageBean.getPageNumber(),
+				adsPageBean.getAdsNumberOnPage()));
 
 		modelAndView = new ModelAndView("ads", "adsPageBean", adsPageBean);
 

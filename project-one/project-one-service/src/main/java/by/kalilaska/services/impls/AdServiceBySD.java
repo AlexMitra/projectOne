@@ -3,6 +3,7 @@ package by.kalilaska.services.impls;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,8 +25,9 @@ public class AdServiceBySD implements AdService {
 
 	@Override
 	@Transactional
-	public List<AdBean> getAllAdsWithFieldEnabled(boolean enabled) {
-		List<AdEntityHibernate> adEntityList = adRepositoryData.findByAdEnabledOrderByAdCreationDateDesc(enabled);
+	public List<AdBean> getAllAdsWithFieldEnabled(boolean enabled, int page, int size) {
+		List<AdEntityHibernate> adEntityList = adRepositoryData.findByAdEnabledOrderByAdCreationDateDesc(enabled,
+				new PageRequest(page, size));
 		List<AdBean> adBeanList = entityToBeanConverter.convertToBeanList(adEntityList, AdBean.class);
 		return adBeanList;
 	}
@@ -33,12 +35,17 @@ public class AdServiceBySD implements AdService {
 	@Override
 	@Transactional
 	public List<AdBean> getAdsByAdCategoryWithFieldEnabled(List<AdCategoryEntityHibernate> adCategoryList,
-			boolean enabled) {
-		List<AdEntityHibernate> adEntityList = adRepositoryData
-				.findByAdEnabledAndAdCategoryInOrderByAdCreationDateDesc(enabled, adCategoryList);
+			boolean enabled, int page, int size) {
+		List<AdEntityHibernate> adEntityList = adRepositoryData.findByAdEnabledAndAdCategoryInOrderByAdCreationDateDesc(
+				enabled, adCategoryList, new PageRequest(page, size));
 		List<AdBean> adBeanList = entityToBeanConverter.convertToBeanList(adEntityList, AdBean.class);
 
 		return adBeanList;
+	}
+
+	@Override
+	public Long getAdEnabledCount(boolean enabled) {
+		return adRepositoryData.countByAdEnabled(enabled);
 	}
 
 }

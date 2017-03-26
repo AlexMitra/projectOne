@@ -9,11 +9,11 @@
         	<c:forEach items="${allAds }" var="ad">  
             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 one-ad-area">             
                 <div class="one-ad-block">
-                    <a class="one-ad-name" href="#">
+                    <a id="ad-${ad.getAdId()}" class="one-ad-name" href="#">
                     	<p>${ad.getAdName()}</p>
                         <img class="one-ad-image" src="<c:url value="resources/forViews/images/Dino.png"/>" alt="">
                     </a>
-                    <font>${ad.getAdCreationDate()}</font>
+                    <font>${ad.getAdId()}</font>
 <!--                     <a class="like-counter" href="#2"> -->
 <!--                         <i class="fa fa-heart like fa-lg" aria-hidden="true"></i> 77 -->
 <!--                     </a> -->
@@ -23,5 +23,32 @@
                 </div>
             </div>
             </c:forEach>
+            
+        </div>
+        
+        <div class="next-previous-buttons-area">
+        
+        <!-- Previous page -->
+        	<c:if test="${adsPageBean.getPageNumber() eq 0 }">
+        		<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 next-previous-button"> <a class="button-name button-disabled" href="#"><font><spring:message code="adsPage.buttons.previousPage"/></font> </a> </div>
+        	</c:if>
+        	<c:if test="${adsPageBean.getPageNumber() gt 0 }">
+        		<c:if test="${adsPageBean.getPageNumber()-1 eq 0}">
+        			<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 next-previous-button"> <a class="button-name" href="/project-one-web/ads.html"><font><spring:message code="adsPage.buttons.previousPage"/>(1)</font> </a> </div>
+        		</c:if>
+        		<c:if test="${adsPageBean.getPageNumber()-1 gt 0}">
+        			<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 next-previous-button"> <a class="button-name" href="/project-one-web/ads/page${adsPageBean.getPageNumber() - 1}.html"><font><spring:message code="adsPage.buttons.previousPage"/>(<c:out value="${adsPageBean.getPageNumber()}"/>)</font> </a> </div>
+        		</c:if>
+        	</c:if>
+        	
+        	 <!-- Next page -->
+        	<c:if test="${adsPageBean.isLastPage() eq true }">
+        		<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 next-previous-button"> <a class="button-name button-disabled" href="#"><font><spring:message code="adsPage.buttons.nextPage"/></font> </a> </div>
+        	</c:if>
+        	
+        	<c:if test="${adsPageBean.isLastPage() eq false }">
+        		<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 next-previous-button"> <a class="button-name" href="/project-one-web/ads/page${adsPageBean.getPageNumber() + 1}.html"><font><spring:message code="adsPage.buttons.nextPage"/>(<c:out value="${adsPageBean.getPageNumber()+2}"/>)</font> </a> </div>
+        	</c:if>
+            
             
         </div>

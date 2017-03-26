@@ -12,6 +12,12 @@ import lombok.Setter;
 @Component
 public class AdsPageBean {
 
+	private int pageNumber = 0;
+
+	private int adsNumberOnPage = 18;
+
+	private boolean lastPage = false;
+
 	private List<AdCategoryBean> allAdCategories;
 
 	private List<AdBean> allAds;

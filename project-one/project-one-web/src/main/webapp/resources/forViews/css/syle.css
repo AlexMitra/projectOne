@@ -93,8 +93,8 @@
 }
 
 .all-ads-area{
-	overflow: scroll; /*как дела?*/
-    height: 235vh;   
+	overflow: auto;
+    height: 228vh;   
     border: 0px;
     margin-top: 5%;
     margin-left: 250px;
@@ -255,4 +255,44 @@
 
 .logout-button {
 	background: #222;
+}
+
+.next-previous-buttons-area {
+    height: 7vh;
+    border: 0px;
+    margin-left: 270px;    
+    text-align: center;
+    padding: 2vh 0;    
+}
+
+.next-previous-button {
+    position: static;
+    border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.button-name {
+    color: dimgray;
+    font-size: 110%;
+    border-bottom: 0px;
+}
+
+.button-name:hover {
+    font-weight: bold;
+    color: brown;
+    font-size: 110%;
+    border-bottom: 0px;
+    text-decoration: none;
+}
+
+.button-name:focus {
+    color: dimgray;
+    font-size: 110%;
+    border-bottom: 0px;
+    text-decoration: none;
+}
+.button-disabled {
+    pointer-events: none;
+    cursor: default;  
+    color: #999;
 }

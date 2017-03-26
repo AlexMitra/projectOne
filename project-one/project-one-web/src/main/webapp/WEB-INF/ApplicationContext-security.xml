@@ -14,6 +14,7 @@
 <!-- 			<access-denied-handler error-page="/accessDenied"/> -->			
 			<intercept-url pattern="/home.html" access="permitAll"/>	
 			<intercept-url pattern="/ads.html" access="permitAll"/>
+			<intercept-url pattern="/ads/**" access="permitAll"/>
 			<intercept-url pattern="/personalArea.html" access="permitAll"/>
 			<intercept-url pattern="/personalArea/login.html" access="permitAll"/>
 			<intercept-url pattern="/personalArea/registration.html" access="permitAll"/>
