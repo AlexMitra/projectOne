@@ -21,10 +21,11 @@ public class PersonalAreaMenuAllEnabledAccountsController {
 	@Autowired
 	private AccountWithFieldEnabledService accountWithFieldEnabledService;
 
+	// ENABLED
 	@RequestMapping(value = "/personalArea/admin/api/allEnabledAccounts", method = RequestMethod.GET, headers = "Accept=application/json", produces = {
 			"application/json" })
 	@ResponseBody
-	public ResponseEntity<List<AccountBean>> getAllAccounts() {
+	public ResponseEntity<List<AccountBean>> getAllEnabledAccounts() {
 		List<AccountBean> accountBeanList = accountWithFieldEnabledService.getAllAccountsWithFieldEnabled(true);
 		return new ResponseEntity<List<AccountBean>>(accountBeanList, HttpStatus.ACCEPTED);
 	}
@@ -32,7 +33,7 @@ public class PersonalAreaMenuAllEnabledAccountsController {
 	@RequestMapping(value = "/personalArea/admin/api/matchedEnabledAccounts", method = RequestMethod.GET, headers = "Accept=application/json", produces = {
 			"application/json" })
 	@ResponseBody
-	public ResponseEntity<List<AccountBean>> getMatchedAccounts(@RequestParam String part, String searchField,
+	public ResponseEntity<List<AccountBean>> getMatchedEnabledAccounts(@RequestParam String part, String searchField,
 			String searchPlace, String roles) {
 
 		List<AccountBean> accountBeanList = accountWithFieldEnabledService.getSearchedEAccountsWithFieldEnabled(part,
@@ -44,11 +45,45 @@ public class PersonalAreaMenuAllEnabledAccountsController {
 	@RequestMapping(value = "/personalArea/admin/api/selectedRolesEnabledAccounts", method = RequestMethod.GET, headers = "Accept=application/json", produces = {
 			"application/json" })
 	@ResponseBody
-	public ResponseEntity<List<AccountBean>> getSelectedRolesAccounts(@RequestParam String roles) {
+	public ResponseEntity<List<AccountBean>> getSelectedRolesEnabledAccounts(@RequestParam String roles) {
 
 		String[] rolesArr = roles.split("checkbox-");
 		List<AccountBean> accountBeanList = new ArrayList<>();
 		accountBeanList.addAll(accountWithFieldEnabledService.getSelectedRoleAccountsWithFieldEnabled(rolesArr, true));
+
+		return new ResponseEntity<List<AccountBean>>(accountBeanList, HttpStatus.ACCEPTED);
+	}
+
+	// DISABLED
+	@RequestMapping(value = "/personalArea/admin/api/allDisabledAccounts", method = RequestMethod.GET, headers = "Accept=application/json", produces = {
+			"application/json" })
+	@ResponseBody
+	public ResponseEntity<List<AccountBean>> getAllDisabledAccounts() {
+		List<AccountBean> accountBeanList = accountWithFieldEnabledService.getAllAccountsWithFieldEnabled(false);
+		return new ResponseEntity<List<AccountBean>>(accountBeanList, HttpStatus.ACCEPTED);
+	}
+
+	@RequestMapping(value = "/personalArea/admin/api/matchedDisabledAccounts", method = RequestMethod.GET, headers = "Accept=application/json", produces = {
+			"application/json" })
+	@ResponseBody
+	public ResponseEntity<List<AccountBean>> getMatchedDisabledAccounts(@RequestParam String part, String searchField,
+			String searchPlace, String roles) {
+
+		List<AccountBean> accountBeanList = accountWithFieldEnabledService.getSearchedEAccountsWithFieldEnabled(part,
+				searchField, searchPlace, roles, false);
+
+		return new ResponseEntity<List<AccountBean>>(accountBeanList, HttpStatus.ACCEPTED);
+
+	}
+
+	@RequestMapping(value = "/personalArea/admin/api/selectedRolesDisabledAccounts", method = RequestMethod.GET, headers = "Accept=application/json", produces = {
+			"application/json" })
+	@ResponseBody
+	public ResponseEntity<List<AccountBean>> getSelectedRolesDisabledAccounts(@RequestParam String roles) {
+
+		String[] rolesArr = roles.split("checkbox-");
+		List<AccountBean> accountBeanList = new ArrayList<>();
+		accountBeanList.addAll(accountWithFieldEnabledService.getSelectedRoleAccountsWithFieldEnabled(rolesArr, false));
 
 		return new ResponseEntity<List<AccountBean>>(accountBeanList, HttpStatus.ACCEPTED);
 	}

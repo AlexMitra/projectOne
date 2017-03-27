@@ -142,16 +142,6 @@ var workWithAccountsTable = {
 	}
 }
 
-var accountEnabledDisabledToggle = {
-		toggleEnabled: function(){
-			alert('enabled');
-		},
-
-		toggleDisabled: function(){
-			alert('disabled');
-		}
-}
-
 //$('#add-account-button').on('show.bs.modal', function (event) {
 //    var button = $(event.relatedTarget) // Button that triggered the modal
 //})

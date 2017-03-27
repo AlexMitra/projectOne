@@ -23,6 +23,7 @@ var searchOptions = {
 	addRole : function (role) {
 		document.getElementById(role).checked = true;
 		this.roles.push(role);
+
 		workWithData.getSearchedData();
 		// workWithData.getSelectedRolesData();
 	},

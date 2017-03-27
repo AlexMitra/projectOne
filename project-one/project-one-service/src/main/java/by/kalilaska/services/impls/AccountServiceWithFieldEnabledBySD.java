@@ -87,6 +87,7 @@ public class AccountServiceWithFieldEnabledBySD implements AccountWithFieldEnabl
 		if (rolesFlag == false && searchFlag == true) {
 
 			if (loginFlag) {
+
 				return getSelectedLoginAccountsWithFieldEnabled(part, enabled);
 			}
 			if (emailFlag) {
@@ -124,7 +125,7 @@ public class AccountServiceWithFieldEnabledBySD implements AccountWithFieldEnabl
 			roleList.add(roleEntity);
 		}
 		SortedSet<AccountEntityHibernate> accountEntitySet = new TreeSet<>();
-		accountEntitySet.addAll(accountRepository.findByAccountRolesInAndAccountEnabled(roleList, true));
+		accountEntitySet.addAll(accountRepository.findByAccountRolesInAndAccountEnabled(roleList, enabled));
 		System.out.println("SET: " + accountEntitySet);
 
 		// RoleEntityHibernate roleEntity = roleService.findByRoleStatus(s);
@@ -141,7 +142,7 @@ public class AccountServiceWithFieldEnabledBySD implements AccountWithFieldEnabl
 	@Override
 	public List<AccountBean> getSelectedLoginAccountsWithFieldEnabled(String accountLoginPart, boolean enabled) {
 		List<AccountEntityHibernate> accountEntityList = null;
-		accountEntityList = accountRepository.findByAccountLoginLikeAndAccountEnabled(accountLoginPart, true);
+		accountEntityList = accountRepository.findByAccountLoginLikeAndAccountEnabled(accountLoginPart, enabled);
 		List<AccountBean> accountBeanList = entityToBeanConverter.convertToBeanList(accountEntityList,
 				AccountBean.class);
 
@@ -152,7 +153,7 @@ public class AccountServiceWithFieldEnabledBySD implements AccountWithFieldEnabl
 	@Override
 	public List<AccountBean> getSelectedEmailAccountsWithFieldEnabled(String accountEmailPart, boolean enabled) {
 		List<AccountEntityHibernate> accountEntityList = null;
-		accountEntityList = accountRepository.findByAccountEmailLikeAndAccountEnabled(accountEmailPart, true);
+		accountEntityList = accountRepository.findByAccountEmailLikeAndAccountEnabled(accountEmailPart, enabled);
 		List<AccountBean> accountBeanList = entityToBeanConverter.convertToBeanList(accountEntityList,
 				AccountBean.class);
 
@@ -165,7 +166,7 @@ public class AccountServiceWithFieldEnabledBySD implements AccountWithFieldEnabl
 			List<RoleEntityHibernate> roleList, boolean enabled) {
 		SortedSet<AccountEntityHibernate> accountEntitySet = new TreeSet<>();
 		accountEntitySet.addAll(accountRepository
-				.findByAccountLoginLikeAndAccountRolesInAndAccountEnabled(accountLoginPart, roleList, true));
+				.findByAccountLoginLikeAndAccountRolesInAndAccountEnabled(accountLoginPart, roleList, enabled));
 		List<AccountBean> accountBeanList = entityToBeanConverter.convertToBeanList(new ArrayList<>(accountEntitySet),
 				AccountBean.class);
 		return accountBeanList;
@@ -177,7 +178,7 @@ public class AccountServiceWithFieldEnabledBySD implements AccountWithFieldEnabl
 			List<RoleEntityHibernate> roleList, boolean enabled) {
 		SortedSet<AccountEntityHibernate> accountEntitySet = new TreeSet<>();
 		accountEntitySet.addAll(accountRepository
-				.findByAccountEmailLikeAndAccountRolesInAndAccountEnabled(accountEmailPArt, roleList, true));
+				.findByAccountEmailLikeAndAccountRolesInAndAccountEnabled(accountEmailPArt, roleList, enabled));
 		List<AccountBean> accountBeanList = entityToBeanConverter.convertToBeanList(new ArrayList<>(accountEntitySet),
 				AccountBean.class);
 		return accountBeanList;

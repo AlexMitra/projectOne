@@ -1,8 +1,15 @@
 var workWithData = {
 	getAccountsData : function () {
+		//if($('#accounts-enabled-disabled-toggle').val() == 'on'){
+		if(document.getElementById("accounts-enabled-disabled-toggle").checked == true){
+			var url = "http://localhost:8080/project-one-web/personalArea/admin/api/allEnabledAccounts";
+		}else{
+			var url = "http://localhost:8080/project-one-web/personalArea/admin/api/allDisabledAccounts";
+		}
+
 		$.ajax({
 					type : "GET",
-					url : "http://localhost:8080/project-one-web/personalArea/admin/api/allEnabledAccounts",
+					url : url,
 					dataType : "json",
 					success : function (data) {
 						workWithElements.hideElement("personal-info");
@@ -28,9 +35,16 @@ var workWithData = {
 		if ($('#search-accounts').val().length == 0) {
 			this.getSelectedRolesData();
 		} else {
+
+			if(document.getElementById("accounts-enabled-disabled-toggle").checked == true){
+				var url = "http://localhost:8080/project-one-web/personalArea/admin/api/matchedEnabledAccounts";
+			}else{
+				var url = "http://localhost:8080/project-one-web/personalArea/admin/api/matchedDisabledAccounts";
+			}
+
 			$.ajax({
 						type : "GET",
-						url : "http://localhost:8080/project-one-web/personalArea/admin/api/matchedEnabledAccounts",
+						url : url,
 						data : {
 							part : $('#search-accounts').val(),
 							searchField : searchOptions.getSearchFiled(),
@@ -39,6 +53,7 @@ var workWithData = {
 						},
 						dataType : "json",
 						success : function (data) {
+
 							workWithElements.hideElement("personal-info");
 							workWithElements.showElement("accounts");
 							accountsTable.createAccountsTableWithEmphasize($('#search-accounts').val(), data);
@@ -54,9 +69,16 @@ var workWithData = {
 		if (searchOptions.getRoles().length == 0) {
 			this.getAccountsData();
 		} else {
+
+			if(document.getElementById("accounts-enabled-disabled-toggle").checked == true){
+				var url = "http://localhost:8080/project-one-web/personalArea/admin/api/selectedRolesEnabledAccounts";
+			}else{
+				var url = "http://localhost:8080/project-one-web/personalArea/admin/api/selectedRolesDisabledAccounts";
+			}
+
 			$.ajax({
 						type : "GET",
-						url : "http://localhost:8080/project-one-web/personalArea/admin/api/selectedRolesEnabledAccounts",
+						url : url,
 						data : {
 							roles : searchOptions.getRoles()
 						},

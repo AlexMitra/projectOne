@@ -4,7 +4,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>   
 
-                                    <div class="btn-group btn-group-justified" role="group">
+                                    <!-- For Enabled -->
+                                    <div  id="enabled-accounts-control-buttons" class="btn-group btn-group-justified" role="group">
+                                    	
                                     	<div class="btn-group" role="group">
     										<button id="unselect-all-account-button" type="button" class="btn btn-default" aria-label="Unselect All" disabled onclick="workWithElements.unselectAllCheckboxes()"><spring:message code="personalArea.accountsTable.controlButtons.unselectAll"/></button>
   										</div>
@@ -16,5 +18,17 @@
   										</div>
   										<div class="btn-group" role="group">
     										<button id="disable-account-button" type="button" class="btn btn-danger" data-toggle="modal" data-target="#disable-account-dialog" onclick="accountsTableDisableButton.showDialog()" disabled ><spring:message code="personalArea.accountsTable.controlButtons.disable"/></button>
+  										</div>  										
+  										
+									</div>
+									
+									<!-- For Disabled -->
+									<div id="disabled-accounts-control-buttons" class="btn-group btn-group-justified" role="group" style = "display: none;">
+										
+										<div class="btn-group" role="group">
+    										<button id="enable-account-button" type="button" class="btn btn-primary" data-toggle="modal" data-target="#enable-account-dialog" onclick="" disabled >Enable</button>
+  										</div>
+  										<div class="btn-group" role="group">
+    										<button id="delete-account-button" type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete-account-dialog" onclick="" disabled >Delete</button>
   										</div>
 									</div>
