@@ -9,6 +9,7 @@ import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -76,8 +77,31 @@ public class PersonalAreaMenuAllAccountCRUDController {
 	@RequestMapping(value = "/personalArea/admin/api/account/disable", method = RequestMethod.PUT)
 	@ResponseBody
 	public ResponseEntity<?> disableAccount(@RequestBody AccountDetailsPageBean account) {
-		accountWithFieldEnabledService.disableAccount(account.getId());
-		return new ResponseEntity<Void>(HttpStatus.ACCEPTED);
+
+		if (accountWithFieldEnabledService.disableAccount(account.getId())) {
+			return new ResponseEntity<Void>(HttpStatus.ACCEPTED);
+		}
+		return new ResponseEntity<Void>(HttpStatus.EXPECTATION_FAILED);
+	}
+
+	@RequestMapping(value = "/personalArea/admin/api/account/{accountId}/enable", method = RequestMethod.PUT)
+	@ResponseBody
+	public ResponseEntity<?> enableAccount(@PathVariable String accountId) {
+		if (accountWithFieldEnabledService.enableAccount(Long.valueOf(accountId))) {
+			return new ResponseEntity<Void>(HttpStatus.ACCEPTED);
+		}
+		return new ResponseEntity<Void>(HttpStatus.EXPECTATION_FAILED);
+	}
+
+	@RequestMapping(value = "/personalArea/admin/api/account/{accountId}/delete", method = RequestMethod.DELETE)
+	@ResponseBody
+	public ResponseEntity<?> deleteAccount(@PathVariable String accountId) {
+
+		if (accountWithFieldEnabledService.deleteAccount(Long.valueOf(accountId))) {
+			System.out.println("delete method controller success");
+			return new ResponseEntity<Void>(HttpStatus.ACCEPTED);
+		}
+		return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
 	}
 
 }

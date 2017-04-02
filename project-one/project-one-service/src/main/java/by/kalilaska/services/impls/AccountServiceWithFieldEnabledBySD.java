@@ -184,14 +184,54 @@ public class AccountServiceWithFieldEnabledBySD implements AccountWithFieldEnabl
 		return accountBeanList;
 	}
 
+	@Transactional
 	@Override
-	public void disableAccount(long id) {
+	public boolean disableAccount(long id) {
 		AccountEntityHibernate account = accountRepository.findOne(id);
-		System.out.println("before disable: " + account);
 
-		account.setAccountEnabled(false);
-		System.out.println("after disable: " + accountRepository.save(account));
+		if (account != null) {
+			account.setAccountEnabled(false);
+			accountRepository.save(account);
+			if (accountRepository.findOne(id).isAccountEnabled() == false) {
+				return true;
+			}
+		}
 
+		return false;
+
+	}
+
+	@Transactional
+	@Override
+	public boolean enableAccount(long id) {
+		AccountEntityHibernate account = accountRepository.findOne(id);
+
+		if (account != null) {
+			account.setAccountEnabled(true);
+			accountRepository.save(account);
+			if (accountRepository.findOne(id).isAccountEnabled() == true) {
+				return true;
+			}
+		}
+
+		return false;
+
+	}
+
+	@Transactional
+	@Override
+	public boolean deleteAccount(long id) {
+		AccountEntityHibernate account = accountRepository.findOne(id);
+
+		if (account != null) {
+			accountRepository.delete(account);
+			if (accountRepository.findOne(id) == null) {
+
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 }

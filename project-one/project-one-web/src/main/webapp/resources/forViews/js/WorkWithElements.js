@@ -78,14 +78,19 @@ var workWithElements = {
 	},
 
 	switchAccountsTableButtons : function() {
-		if (this.selectedAccountsArr.length > 0) {
+		if (this.selectedAccountsArr.length > 0 && accountEnabledDisabledToggle.accountsToggle) {
 			document.getElementById("unselect-all-account-button").disabled = false;
 			document.getElementById("update-account-button").disabled = false;
 			document.getElementById("disable-account-button").disabled = false;
-		} else {
+		} else if (this.selectedAccountsArr.length <= 0){
 			document.getElementById("unselect-all-account-button").disabled = true;
 			document.getElementById("update-account-button").disabled = true;
 			document.getElementById("disable-account-button").disabled = true;
+			document.getElementById("enable-account-button").disabled = true;
+			document.getElementById("delete-account-button").disabled = true;
+		} else if (this.selectedAccountsArr.length > 0 && accountEnabledDisabledToggle.accountsToggle== false){
+			document.getElementById("enable-account-button").disabled = false;
+			document.getElementById("delete-account-button").disabled = false;
 		}
 	}
 }

@@ -135,3 +135,121 @@ var accountsTableDisableButton = {
 
 
 }
+
+
+var accountsTableEnableButton = {
+
+		checkboxId: null,
+
+		accountId: null,
+
+		showDialog: function(){
+			this.showTitle();
+
+			$('#enable-account-dialog').on('show.bs.modal', function (event) {
+				var button = $(event.relatedTarget)
+			})
+
+		},
+
+		showTitle: function(){
+
+			if(workWithElements.selectedAccountsArr.length > 0){
+
+				this.checkboxId = workWithElements.selectedAccountsArr[0];
+				this.accountId = this.checkboxId.replace("checkbox-account-", "");
+
+				var accountLogin = document.getElementById("accountLogin-" + this.accountId).innerHTML;
+
+				var element = document.getElementById("enable-account-dialog-title");
+				element.innerHTML = element.innerHTML + accountLogin;
+			}
+		},
+
+		enableAccount: function(){
+
+			$.ajax({
+				type : "PUT",
+				contentType : "application/json",
+				url : "http://localhost:8080/project-one-web/personalArea/admin/api/account/" + this.accountId + "/enable",
+				dataType : 'json',
+				timeout : 100000,
+				success : function(data, textStatus, xhr) {
+
+					document.getElementById("enable-account-dialog-close").click();
+					workWithElements.unselectAllCheckboxes();
+					workWithElements.switchAccountsTableButtons();
+					workWithData.getAccountsData();
+				},
+				error : function(xhr, ajaxOptions, thrownError) {
+
+					document.getElementById("enable-account-dialog-close").click();
+					workWithElements.unselectAllCheckboxes();
+					workWithElements.switchAccountsTableButtons();
+					workWithData.getAccountsData();
+				}
+
+			});
+
+		},
+
+}
+
+
+var accountsTableDeleteButton = {
+
+		checkboxId: null,
+
+		accountId: null,
+
+		showDialog: function(){
+			this.showTitle();
+
+			$('#delete-account-dialog').on('show.bs.modal', function (event) {
+				var button = $(event.relatedTarget)
+			})
+
+		},
+
+		showTitle: function(){
+
+			if(workWithElements.selectedAccountsArr.length > 0){
+
+				this.checkboxId = workWithElements.selectedAccountsArr[0];
+				this.accountId = this.checkboxId.replace("checkbox-account-", "");
+
+				var accountLogin = document.getElementById("accountLogin-" + this.accountId).innerHTML;
+
+				var element = document.getElementById("delete-account-dialog-title");
+				element.innerHTML = element.innerHTML + accountLogin;
+			}
+		},
+
+		deleteAccount: function(){
+
+			$.ajax({
+				type : "DELETE",
+				contentType : "application/json",
+				url : "http://localhost:8080/project-one-web/personalArea/admin/api/account/" + this.accountId + "/delete",
+				dataType : 'json',
+				timeout : 100000,
+				success : function(data, textStatus, xhr) {
+
+					document.getElementById("delete-account-dialog-close").click();
+					workWithElements.unselectAllCheckboxes();
+					workWithElements.switchAccountsTableButtons();
+					workWithData.getAccountsData();
+				},
+				error : function(xhr, ajaxOptions, thrownError) {
+
+					document.getElementById("delete-account-dialog-close").click();
+					workWithElements.unselectAllCheckboxes();
+					workWithElements.switchAccountsTableButtons();
+					workWithData.getAccountsData();
+				}
+
+			});
+
+		},
+
+}

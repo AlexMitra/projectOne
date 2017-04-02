@@ -26,9 +26,9 @@
 									<div id="disabled-accounts-control-buttons" class="btn-group btn-group-justified" role="group" style = "display: none;">
 										
 										<div class="btn-group" role="group">
-    										<button id="enable-account-button" type="button" class="btn btn-primary" data-toggle="modal" data-target="#enable-account-dialog" onclick="" disabled >Enable</button>
+    										<button id="enable-account-button" type="button" class="btn btn-primary" data-toggle="modal" data-target="#enable-account-dialog" onclick="accountsTableEnableButton.showDialog()" disabled ><spring:message code="personalArea.accountsTable.controlButtons.enable"/></button>
   										</div>
   										<div class="btn-group" role="group">
-    										<button id="delete-account-button" type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete-account-dialog" onclick="" disabled >Delete</button>
+    										<button id="delete-account-button" type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete-account-dialog" onclick="accountsTableDeleteButton.showDialog()" disabled ><spring:message code="personalArea.accountsTable.controlButtons.delete"/></button>
   										</div>
 									</div>
