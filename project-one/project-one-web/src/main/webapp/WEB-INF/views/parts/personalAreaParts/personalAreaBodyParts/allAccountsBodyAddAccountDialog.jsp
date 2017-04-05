@@ -20,22 +20,19 @@
                         <div class="form-group">
                             <label class="control-label"><spring:message code="registration.form.login"/></label>
                             <input type="text" class="form-control" id="add-account-inputLogin" name="accountLogin"/>
-                            <div class="col-sm-offset-3 col-sm-9">
-                            </div>
+                            
                         </div>
                         
                         <div class="form-group">
                             <label class="control-label"><spring:message code="registration.form.email"/></label>
                             <input type="email" class="form-control" id="add-account-inputEmail" name="accountEmail"/>                            
-                            <div class="col-sm-offset-3 col-sm-9">
-                            </div>
+                            
                         </div>
                         
                         <div class="form-group">
                             <label class="control-label"><spring:message code="registration.form.password"/></label>
                             <input type="password" class="form-control" id="add-account-inputPassword" name="accountPassword"/>
-                            <div class="col-sm-offset-3 col-sm-9">
-                            </div>
+                            
                         </div>
                         
                         <div id="form-for-add-account-valid-message" class="error-text-color" style = "display: none;">                               

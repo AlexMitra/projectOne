@@ -3,7 +3,10 @@ package by.kalilaska.services;
 import java.util.List;
 
 import by.kalilaska.beans.AccountBean;
+import by.kalilaska.beans.EditAccountBean;
 import by.kalilaska.entities.forHibernate.RoleEntityHibernate;
+import by.kalilaska.services.exceptions.EmailExistsException;
+import by.kalilaska.services.exceptions.LoginExistsException;
 
 public interface AccountWithFieldEnabledService {
 
@@ -23,6 +26,8 @@ public interface AccountWithFieldEnabledService {
 
 	List<AccountBean> getSelectedEmailAndRoleAccountsWithFieldEnabled(String accountEmailPArt,
 			List<RoleEntityHibernate> roleList, boolean enabled);
+
+	void editAccount(EditAccountBean account) throws LoginExistsException, EmailExistsException;
 
 	boolean disableAccount(long id);
 

@@ -6,7 +6,7 @@
 
                                     <div id="select-roles">
                                 		<a class="btn btn-primary-my" role="button" data-toggle="collapse" href="#role-variants" aria-expanded="false">
-                                    		Roles
+                                    		<spring:message code="personalArea.accountsTable.RolesButton"/>
                                 		</a>
 
                                 		<div class="collapse" id="role-variants">

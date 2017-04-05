@@ -14,7 +14,7 @@
     										<button id="add-account-button" type="button" class="btn btn-default" data-toggle="modal" data-target="#add-account-dialog" onclick="accountsTableAddButton.showForm()"><spring:message code="personalArea.accountsTable.controlButtons.add"/></button>
   										</div>
   										<div class="btn-group" role="group">
-    										<button id="update-account-button" type="button" class="btn btn-default" aria-label="Edit" disabled><spring:message code="personalArea.accountsTable.controlButtons.edit"/></button>
+    										<button id="update-account-button" type="button" class="btn btn-default" data-toggle="modal" data-target="#edit-account-dialog" onclick="accountsTableEditButton.showForm()" disabled><spring:message code="personalArea.accountsTable.controlButtons.edit"/></button>
   										</div>
   										<div class="btn-group" role="group">
     										<button id="disable-account-button" type="button" class="btn btn-danger" data-toggle="modal" data-target="#disable-account-dialog" onclick="accountsTableDisableButton.showDialog()" disabled ><spring:message code="personalArea.accountsTable.controlButtons.disable"/></button>

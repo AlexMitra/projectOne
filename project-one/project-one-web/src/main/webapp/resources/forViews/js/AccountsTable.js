@@ -15,9 +15,9 @@ var accountsTable = {
 					+ '" onclick = "workWithAccountsTable.selectAccount(this.id)" unchecked></label></div></td>';
 			str += '<td>' + data[i].accountId + '</td>';
 			str += '<td id="accountLogin-' + data[i].accountId + '">' + data[i].accountLogin + '</td>';
-			str += '<td>' + data[i].accountEmail + '</td>';
+			str += '<td id="accountEmail-' + data[i].accountId + '">' + data[i].accountEmail + '</td>';
 			//str += '<td>' + data[i].accountRoles + '</td>';
-			str += '<td>' + this.getRoles(data[i].accountRoles) + '</td>';
+			str += '<td id="accountRoles-' + data[i].accountId + '">' + this.getRoles(data[i].accountRoles) + '</td>';
 			str += '<td>' + data[i].accountEnabled + '</td>';
 			str += '</tr>';
 		}
@@ -66,11 +66,11 @@ var accountsTable = {
 				if (searchOptions.getSearchFiled() === 'byEmail') {
 					str += column.createColumn(data[i].accountEmail, part);
 				} else {
-					str += '<td>' + data[i].accountEmail + '</td>';
+					str += '<td id="accountEmail-' + data[i].accountId + '">' + data[i].accountEmail + '</td>';
 				}
 
 				//str += '<td>' + data[i].accountRole + '</td>';
-				str += '<td>' + this.getRoles(data[i].accountRoles) + '</td>';
+				str += '<td id="accountRoles-' + data[i].accountId + '">' + this.getRoles(data[i].accountRoles) + '</td>';
 				str += '<td>' + data[i].accountEnabled + '</td>';
 				str += '</tr>';
 			}

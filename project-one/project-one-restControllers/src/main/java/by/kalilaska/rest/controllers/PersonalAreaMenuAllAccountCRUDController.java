@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import by.kalilaska.beans.AccountBean;
 import by.kalilaska.beans.AccountDetailsPageBean;
+import by.kalilaska.beans.EditAccountBean;
 import by.kalilaska.services.AccountRegistrationService;
 import by.kalilaska.services.AccountService;
 import by.kalilaska.services.AccountWithFieldEnabledService;
@@ -74,6 +75,43 @@ public class PersonalAreaMenuAllAccountCRUDController {
 		return new ResponseEntity<List<AccountBean>>(accountBeanList, HttpStatus.CREATED);
 	}
 
+	@RequestMapping(value = "/personalArea/admin/api/account/{accountId}/edit", method = RequestMethod.PUT)
+	@ResponseBody
+	public ResponseEntity<?> editAccount(@PathVariable String accountId, @Valid @RequestBody EditAccountBean account,
+			BindingResult bindingResult) {
+		System.out.println("account: " + account);
+		if (account == null) {
+			return new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);// 500
+		}
+		account.setAccountId(Long.valueOf(accountId));
+
+		if (bindingResult.hasErrors()) {
+
+			if ((bindingResult.getErrorCount() > 1)) {
+				System.out.println("not valid");
+				return new ResponseEntity<String>(HttpStatus.NO_CONTENT);// 204
+			}
+
+			if ((bindingResult.getErrorCount() == 1) && (account.getAccountPassword().length() > 0)) {
+				System.out.println("not valid");
+				return new ResponseEntity<String>(HttpStatus.PARTIAL_CONTENT);// 206
+			}
+		}
+
+		try {
+			accountWithFieldEnabledService.editAccount(account);
+		} catch (LoginExistsException e) {
+
+			return new ResponseEntity<Void>(HttpStatus.CONFLICT);
+		} catch (EmailExistsException e) {
+
+			return new ResponseEntity<Void>(HttpStatus.CONFLICT);
+		}
+
+		List<AccountBean> accountBeanList = accountWithFieldEnabledService.getAllAccountsWithFieldEnabled(true);
+		return new ResponseEntity<List<AccountBean>>(accountBeanList, HttpStatus.CREATED);
+	}
+
 	@RequestMapping(value = "/personalArea/admin/api/account/disable", method = RequestMethod.PUT)
 	@ResponseBody
 	public ResponseEntity<?> disableAccount(@RequestBody AccountDetailsPageBean account) {
@@ -96,6 +134,7 @@ public class PersonalAreaMenuAllAccountCRUDController {
 	@RequestMapping(value = "/personalArea/admin/api/account/{accountId}/delete", method = RequestMethod.DELETE)
 	@ResponseBody
 	public ResponseEntity<?> deleteAccount(@PathVariable String accountId) {
+		System.out.println("deleteAccount, accountId: " + accountId);
 
 		if (accountWithFieldEnabledService.deleteAccount(Long.valueOf(accountId))) {
 			System.out.println("delete method controller success");

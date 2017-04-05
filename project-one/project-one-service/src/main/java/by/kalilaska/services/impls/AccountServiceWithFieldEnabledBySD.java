@@ -6,19 +6,26 @@ import java.util.SortedSet;
 import java.util.TreeSet;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import by.kalilaska.beans.AccountBean;
+import by.kalilaska.beans.EditAccountBean;
 import by.kalilaska.daoHibernate.repositories.springData.AccountsRepositoryData;
 import by.kalilaska.entities.forHibernate.AccountEntityHibernate;
 import by.kalilaska.entities.forHibernate.RoleEntityHibernate;
 import by.kalilaska.services.AccountWithFieldEnabledService;
 import by.kalilaska.services.RoleService;
+import by.kalilaska.services.exceptions.EmailExistsException;
+import by.kalilaska.services.exceptions.LoginExistsException;
 import by.kalilaska.utilities.EntityToBeanConverter;
 
 @Service
 public class AccountServiceWithFieldEnabledBySD implements AccountWithFieldEnabledService {
+
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	@Autowired
 	private AccountsRepositoryData accountRepository;
@@ -232,6 +239,46 @@ public class AccountServiceWithFieldEnabledBySD implements AccountWithFieldEnabl
 		}
 
 		return false;
+	}
+
+	@Override
+	public void editAccount(EditAccountBean account) throws LoginExistsException, EmailExistsException {
+		AccountEntityHibernate entityByLogin = null;
+		try {
+			entityByLogin = accountRepository.findByAccountLogin(account.getAccountLogin());
+			if (account.getAccountId() != entityByLogin.getAccountId()) {
+				throw new LoginExistsException("this login already exist");
+			}
+		} catch (NullPointerException e) {
+
+		}
+
+		AccountEntityHibernate entityByEmail = null;
+		try {
+			entityByEmail = accountRepository.findByAccountEmail(account.getAccountEmail());
+			if (account.getAccountId() != entityByEmail.getAccountId()) {
+				throw new EmailExistsException("this email already exist");
+			}
+		} catch (NullPointerException e) {
+
+		}
+
+		AccountEntityHibernate accountEntity = accountRepository.findOne(account.getAccountId());
+		accountEntity.setAccountLogin(account.getAccountLogin());
+		accountEntity.setAccountEmail(account.getAccountEmail());
+
+		if (account.getAccountPassword().length() > 0) {
+			accountEntity.setAccountPassword(passwordEncoder.encode(account.getAccountPassword()));
+		}
+
+		List<RoleEntityHibernate> roleList = new ArrayList<>();
+		for (String authority : account.getAuthorities()) {
+			roleList.add(roleService.findByRoleStatus(authority));
+		}
+
+		accountEntity.setAccountRoles(roleList);
+
+		accountEntity = accountRepository.save(accountEntity);
 	}
 
 }
