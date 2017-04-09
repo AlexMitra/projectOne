@@ -148,7 +148,7 @@ var accountsTableEditButton = {
 			var position = this.accountRoles.indexOf(roleId);
 			if(position < 0){
 				this.accountRoles.push(roleId);
-				this.refrashRoleMarkers();
+				this.refreshRoleMarkers();
 			}
 
 		},
@@ -160,10 +160,10 @@ var accountsTableEditButton = {
 			if(position >= 0){
 				this.accountRoles.splice(position, 1);
 			}
-			this.refrashRoleMarkers();
+			this.refreshRoleMarkers();
 		},
 
-		refrashRoleMarkers: function(){
+		refreshRoleMarkers: function(){
 			document.getElementById("edit-account-form-role-list").innerHTML = "";
 			this.addRoleMarkers(this.accountRoles);
 		},

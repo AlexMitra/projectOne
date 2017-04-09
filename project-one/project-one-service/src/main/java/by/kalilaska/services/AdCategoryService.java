@@ -7,7 +7,9 @@ import by.kalilaska.entities.forHibernate.AdCategoryEntityHibernate;
 
 public interface AdCategoryService {
 
-	AdCategoryEntityHibernate findByCategoryName(String name);
+	AdCategoryBean findByCategoryId(Long id);
+
+	AdCategoryBean findByCategoryName(String name);
 
 	List<AdCategoryEntityHibernate> findAllCategories();
 

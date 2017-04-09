@@ -1,5 +1,9 @@
 package by.kalilaska.controllers;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import by.kalilaska.beans.AdBean;
+import by.kalilaska.beans.AdCategoryBean;
 import by.kalilaska.beans.AdsPageBean;
 import by.kalilaska.services.AdCategoryService;
 import by.kalilaska.services.AdService;
@@ -26,39 +31,98 @@ public class AdsPageController {
 
 	@RequestMapping(value = "/ads/page{pageNumber}.html", method = RequestMethod.GET)
 	public ModelAndView getAdsPage(@PathVariable String pageNumber,
-			@ModelAttribute(name = "adsPageBean") AdsPageBean adsPageBean, HttpSession session) {
+			@ModelAttribute(name = "adsPageBean") AdsPageBean adsPageBean, HttpSession session,
+			HttpServletRequest request) {
 
+		ModelAndView modelAndView;
+		adsPageBean = getAdsPageBeanFromSession(adsPageBean, session);
+
+		int currentPage = Integer.valueOf(pageNumber) - 1;
+		adsPageBean.setPageNumber(currentPage);
+
+		long adsNumber = 0;
+		long showedPagesNumber = 0;
+		long adsNumberOnPage = 0;
+
+		if (adsPageBean.getSelectedCategorues().size() > 0) {
+
+			setSelectedCategories(adsPageBean, request);
+
+			List<AdCategoryBean> adCategoryBeanList = new ArrayList<>();
+			for (Long category : adsPageBean.getSelectedCategorues()) {
+				adCategoryBeanList.add(adCategoryService.findByCategoryId(category));
+			}
+
+			adsNumber = adService.getSelectedCategoriesAdEnabledCount(adCategoryBeanList, true);
+
+			showedPagesNumber = adsPageBean.getPageNumber() + 1;
+			adsNumberOnPage = adsPageBean.getAdsNumberOnPage();
+
+			if ((adsNumber - showedPagesNumber * adsNumberOnPage) > 0) {
+				adsPageBean.setLastPage(false);
+			} else {
+				adsPageBean.setLastPage(true);
+			}
+
+			adsPageBean.setAllAds(adService.getAdsByAdCategoryWithFieldEnabled(adCategoryBeanList, true,
+					adsPageBean.getPageNumber(), adsPageBean.getAdsNumberOnPage()));
+
+			session.setAttribute("adsPageBean", adsPageBean);
+
+			modelAndView = new ModelAndView("ads", "adsPageBean", adsPageBean);
+			return modelAndView;
+		}
+		adsPageBean.getSelectedCategorues().clear();
+
+		adsNumber = adService.getAdEnabledCount(true);
+		showedPagesNumber = adsPageBean.getPageNumber() + 1;
+		adsNumberOnPage = adsPageBean.getAdsNumberOnPage();
+
+		if ((adsNumber - showedPagesNumber * adsNumberOnPage) > 0) {
+			adsPageBean.setLastPage(false);
+		} else {
+			adsPageBean.setLastPage(true);
+		}
+
+		adsPageBean.setAllAds(adService.getAllAdsWithFieldEnabled(true, adsPageBean.getPageNumber(),
+				adsPageBean.getAdsNumberOnPage()));
+
+		System.out.println("ads: " + adsPageBean.getAllAds());
+		session.setAttribute("adsPageBean", adsPageBean);
+		modelAndView = new ModelAndView("ads", "adsPageBean", adsPageBean);
+
+		return modelAndView;
+
+	}
+
+	private AdsPageBean getAdsPageBeanFromSession(AdsPageBean adsPageBean, HttpSession session) {
 		if (session.getAttribute("adsPageBean") != null) {
 			adsPageBean = (AdsPageBean) session.getAttribute("adsPageBean");
+		} else {
+			adsPageBean = new AdsPageBean();
 		}
 
 		if (adsPageBean.getAllAdCategories() == null || adsPageBean.getAllAdCategories().size() == 0) {
 			adsPageBean.setAllAdCategories(adCategoryService.findAllCategoryNamesWithFieldEnabled(true));
 		}
 
-		ModelAndView modelAndView;
+		return adsPageBean;
+	}
 
-		adsPageBean.setPageNumber(Integer.valueOf(pageNumber));
-
-		long allAdsNumber = adService.getAdEnabledCount(true);
-		long allShowedPagesNumber = adsPageBean.getPageNumber() + 1;
-		long adsNumberOnPage = adsPageBean.getAdsNumberOnPage();
-
-		if ((allAdsNumber - allShowedPagesNumber * adsNumberOnPage) > 0) {
-			adsPageBean.setLastPage(false);
-		} else {
-			adsPageBean.setLastPage(true);
+	private void setSelectedCategories(AdsPageBean adsPageBean, HttpServletRequest request) {
+		String selectedCategory = "";
+		if (request.getParameter("selected") != null) {
+			adsPageBean.getSelectedCategorues().clear();
 		}
+		for (AdCategoryBean categoryBean : adsPageBean.getAllAdCategories()) {
+			if (request.getParameter("category-" + categoryBean.getAdCategoryId()) != null) {
+				selectedCategory = request.getParameter("category-" + categoryBean.getAdCategoryId());
 
-		// adsPageBean.setAllAdCategories(adCategoryService.findAllCategoryNamesWithFieldEnabled(true));
-		adsPageBean.setAllAds(adService.getAllAdsWithFieldEnabled(true, adsPageBean.getPageNumber(),
-				adsPageBean.getAdsNumberOnPage()));
-
-		session.setAttribute("adsPageBean", adsPageBean);
-		modelAndView = new ModelAndView("ads", "adsPageBean", adsPageBean);
-
-		return modelAndView;
-
+				if (!adsPageBean.getSelectedCategorues().contains(Long.valueOf(selectedCategory))) {
+					adsPageBean.addCategoryToSelectedCategories(Long.valueOf(selectedCategory));
+				}
+			}
+		}
 	}
 
 	@RequestMapping(value = "/ads/ad_{adNumber}.html", method = RequestMethod.GET)

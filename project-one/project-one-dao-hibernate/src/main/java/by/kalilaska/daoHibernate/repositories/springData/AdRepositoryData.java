@@ -19,4 +19,6 @@ public interface AdRepositoryData extends JpaRepository<AdEntityHibernate, Long>
 
 	Long countByAdEnabled(boolean enabled);
 
+	Long countByAdEnabledAndAdCategoryIn(boolean enabled, List<AdCategoryEntityHibernate> adCategoryEntityList);
+
 }

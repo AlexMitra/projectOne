@@ -1,5 +1,6 @@
 package by.kalilaska.beans;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
@@ -20,11 +21,41 @@ public class AdsPageBean {
 
 	private List<AdCategoryBean> allAdCategories;
 
+	private List<Long> selectedCategorues;
+
 	private List<AdBean> allAds;
 
 	public AdsPageBean() {
 		super();
-		// TODO Auto-generated constructor stub
+		selectedCategorues = new ArrayList<>();
+	}
+
+	public boolean isCategorySelected(long categoryId) {
+
+		if (selectedCategorues == null) {
+			return false;
+		}
+
+		if (selectedCategorues.contains(categoryId)) {
+			return true;
+		}
+		return false;
+	}
+
+	public void addCategoryToSelectedCategories(long categoryId) {
+		selectedCategorues.add(categoryId);
+		System.out.println(selectedCategorues);
+	}
+
+	public void removeCategoryFromSelectedCategories(long categoryId) {
+		selectedCategorues.remove(categoryId);
+	}
+
+	@Override
+	public String toString() {
+		return "AdsPageBean [pageNumber=" + pageNumber + ", adsNumberOnPage=" + adsNumberOnPage + ", lastPage="
+				+ lastPage + ", allAdCategories=" + allAdCategories + ", selectedCategorues=" + selectedCategorues
+				+ "]";
 	}
 
 }

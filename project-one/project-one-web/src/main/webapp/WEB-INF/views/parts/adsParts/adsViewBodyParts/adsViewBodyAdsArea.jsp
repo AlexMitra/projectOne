@@ -48,7 +48,7 @@
         	</c:if>
         	
         	<c:if test="${adsPageBean.isLastPage() eq false }">
-        		<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 next-previous-button"> <a class="button-name" href="/project-one-web/ads/page${adsPageBean.getPageNumber() + 1}.html"><font><spring:message code="adsPage.buttons.nextPage"/>(<c:out value="${adsPageBean.getPageNumber()+2}"/>)</font> </a> </div>
+        		<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 next-previous-button"> <a class="button-name" href="/project-one-web/ads/page${adsPageBean.getPageNumber() + 2}.html"><font><spring:message code="adsPage.buttons.nextPage"/>(<c:out value="${adsPageBean.getPageNumber()+2}"/>)</font> </a> </div>
         	</c:if>
             
             

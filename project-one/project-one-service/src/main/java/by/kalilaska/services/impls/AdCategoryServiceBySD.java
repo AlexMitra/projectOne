@@ -19,7 +19,7 @@ public class AdCategoryServiceBySD implements AdCategoryService {
 	private EntityToBeanConverter entityToBeanConverter;
 
 	@Autowired
-	private AdCategoryRepositoryData adCategoryReposidoty;
+	private AdCategoryRepositoryData adCategoryRepository;
 
 	public AdCategoryServiceBySD() {
 		super();
@@ -27,16 +27,29 @@ public class AdCategoryServiceBySD implements AdCategoryService {
 
 	@Transactional
 	@Override
-	public AdCategoryEntityHibernate findByCategoryName(String name) {
-		return adCategoryReposidoty.findByAdCategoryName(name);
+	public AdCategoryBean findByCategoryId(Long id) {
+		AdCategoryEntityHibernate adCategoryEntity = adCategoryRepository.findOne(id);
+
+		AdCategoryBean adCategoryBean = entityToBeanConverter.convertToBean(adCategoryEntity, AdCategoryBean.class);
+		return adCategoryBean;
+	}
+
+	@Transactional
+	@Override
+	public AdCategoryBean findByCategoryName(String name) {
+		AdCategoryEntityHibernate adCategoryEntity = adCategoryRepository.findByAdCategoryName(name);
+
+		AdCategoryBean adCategoryBean = entityToBeanConverter.convertToBean(adCategoryEntity, AdCategoryBean.class);
+		return adCategoryBean;
 	}
 
 	@Transactional
 	@Override
 	public List<AdCategoryEntityHibernate> findAllCategories() {
-		return adCategoryReposidoty.findAll();
+		return adCategoryRepository.findAll();
 	}
 
+	@Transactional
 	@Override
 	public List<AdCategoryBean> findAllCategoryNames() {
 		List<AdCategoryEntityHibernate> adCategoryEntityList = findAllCategories();
@@ -45,12 +58,14 @@ public class AdCategoryServiceBySD implements AdCategoryService {
 		return adCategoryBeanList;
 	}
 
+	@Transactional
 	@Override
 	public List<AdCategoryEntityHibernate> findAllCategoriesWithFieldEnabled(boolean enabled) {
 
-		return adCategoryReposidoty.findByAdCategoryEnabled(enabled);
+		return adCategoryRepository.findByAdCategoryEnabled(enabled);
 	}
 
+	@Transactional
 	@Override
 	public List<AdCategoryBean> findAllCategoryNamesWithFieldEnabled(boolean enabled) {
 		List<AdCategoryEntityHibernate> adCategoryEntityList = findAllCategoriesWithFieldEnabled(enabled);
