@@ -1,6 +1,13 @@
 var workWithData = {
+
+	hideAdminAreaElements : function(){
+		workWithElements.hideElement("personal-info");
+		workWithElements.hideElement("accounts");
+		workWithElements.hideElement("adCategories");
+	},
+
 	getAccountsData : function () {
-		//if($('#accounts-enabled-disabled-toggle').val() == 'on'){
+
 		if(document.getElementById("accounts-enabled-disabled-toggle").checked == true){
 			var url = "http://localhost:8080/project-one-web/personalArea/admin/api/allEnabledAccounts";
 		}else{
@@ -12,24 +19,33 @@ var workWithData = {
 					url : url,
 					dataType : "json",
 					success : function (data) {
-						workWithElements.hideElement("personal-info");
+						workWithData.hideAdminAreaElements();
 						workWithElements.showElement("accounts");
 						accountsTable.createAccountsTable(data);
 					}
 				})
 	},
 
-	// getRoles: function(){
-	// $.ajax({
-	// type: "GET",
-	// url:
-	// "http://localhost:8080/project-one-web/personalArea/admin/api/allRoles",
-	// dataType : "json",
-	// success: function(data){
-	// searchOptions.addRoles(data);
-	// }
-	// })
-	// },
+	getAdCategoriesData : function () {
+
+		if(document.getElementById("adCategories-enabled-disabled-toggle").checked == true){
+			var url = "http://localhost:8080/project-one-web/personalArea/admin/api/ad_categories/enabled";
+		}else{
+			var url = "http://localhost:8080/project-one-web/personalArea/admin/api/ad_categories/disabled";
+		}
+
+		$.ajax({
+					type : "GET",
+					url : url,
+					dataType : "json",
+					success : function (data) {
+						workWithData.hideAdminAreaElements();
+						workWithElements.showElement("adCategories");
+						adCategoriesTable.createAdCategoriesTable(data);
+					}
+				})
+	},
+
 
 	getSearchedData : function () {
 		if ($('#search-accounts').val().length == 0) {
@@ -53,8 +69,7 @@ var workWithData = {
 						},
 						dataType : "json",
 						success : function (data) {
-
-							workWithElements.hideElement("personal-info");
+							workWithData.hideAdminAreaElements();
 							workWithElements.showElement("accounts");
 							accountsTable.createAccountsTableWithEmphasize($('#search-accounts').val(), data);
 						}
@@ -65,7 +80,6 @@ var workWithData = {
 	},
 
 	getSelectedRolesData : function () {
-		// alert("selectedRoles: " + searchOptions.getRoles());
 		if (searchOptions.getRoles().length == 0) {
 			this.getAccountsData();
 		} else {
@@ -84,9 +98,7 @@ var workWithData = {
 						},
 						dataType : "json",
 						success : function (data) {
-							// alert("in success selectedRoles: "
-							// + searchOptions.getRoles());
-							workWithElements.hideElement("personal-info");
+							workWithData.hideAdminAreaElements();
 							workWithElements.showElement("accounts");
 							accountsTable.createAccountsTable(data);
 						}

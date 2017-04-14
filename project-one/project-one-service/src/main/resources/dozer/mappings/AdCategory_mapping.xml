@@ -18,6 +18,11 @@
 			</field>
 			
 			<field>
+				<a>adCategoryDescription</a>
+				<b>adCategoryDescription</b>
+			</field>
+			
+			<field>
 				<a>adCategoryI18n</a>
 				<b>adCategoryI18n</b>
 			</field>

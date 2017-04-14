@@ -20,6 +20,16 @@
     margin: 0 auto;
 }
 
+.form-add-adCategory-screen {
+    max-width: 95%;
+    margin: 0 auto;
+}
+
+.form-edit-adCategory-screen {
+    max-width: 95%;
+    margin: 0 auto;
+}
+
 .navbar-fixed-bottom {
     position: fixed;
     left: 0;

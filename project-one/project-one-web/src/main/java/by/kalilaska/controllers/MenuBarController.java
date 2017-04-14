@@ -161,9 +161,7 @@ public class MenuBarController {
 			adsPageBean = new AdsPageBean();
 		}
 
-		if (adsPageBean.getAllAdCategories() == null || adsPageBean.getAllAdCategories().size() == 0) {
-			adsPageBean.setAllAdCategories(adCategoryService.findAllCategoryNamesWithFieldEnabled(true));
-		}
+		adsPageBean.setAllAdCategories(adCategoryService.findAllCategoryNamesWithFieldEnabled(true));
 
 		return adsPageBean;
 	}

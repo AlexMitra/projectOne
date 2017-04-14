@@ -18,8 +18,9 @@
                     	<li>
                         	<span>
                             	<label class="category-type" >
+                            		
                             		<c:if test="${adsPageBean.isCategorySelected(category.getAdCategoryId()) eq true}">
-                            			<input type="checkbox" id="checkbox-category-${category.getAdCategoryId()}" name="category-${category.getAdCategoryId()}" value="${category.getAdCategoryId()}" onclick="if(this.checked){AdsCategories.addCheckboxToList(this.id)} else {AdsCategories.removeCheckboxFromList(this.id)}" checked="checked"> <spring:message code="${category.getAdCategoryI18n()}"/>
+                            			<input type="checkbox" id="checkbox-category-${category.getAdCategoryId()}" name="category-${category.getAdCategoryId()}" value="${category.getAdCategoryId()}" onclick="if(this.checked){AdsCategories.addCheckboxToList(this.id)} else {AdsCategories.removeCheckboxFromList(this.id)}" checked="checked"> <spring:message code="${category.getAdCategoryI18n()}" text="${category.getAdCategoryName()}"/>
                             			<c:set var="testvar" value="${category.getAdCategoryId()}"/>
                             			<script>
     										var id = '${testvar}';
@@ -28,7 +29,7 @@
 										</script>
                             		</c:if>
                             		<c:if test="${adsPageBean.isCategorySelected(category.getAdCategoryId()) eq false}">
-                            			<input type="checkbox" id="checkbox-category-${category.getAdCategoryId()}" name="category-${category.getAdCategoryId()}" value="${category.getAdCategoryId()}" onclick="if(this.checked){AdsCategories.addCheckboxToList(this.id)} else {AdsCategories.removeCheckboxFromList(this.id)}"> <spring:message code="${category.getAdCategoryI18n()}"/>
+                            			<input type="checkbox" id="checkbox-category-${category.getAdCategoryId()}" name="category-${category.getAdCategoryId()}" value="${category.getAdCategoryId()}" onclick="if(this.checked){AdsCategories.addCheckboxToList(this.id)} else {AdsCategories.removeCheckboxFromList(this.id)}"> <spring:message code="${category.getAdCategoryI18n()}"  text="${category.getAdCategoryName()}"/>
                             		</c:if>
                             		
 								<%-- <input type="checkbox" id="checkbox-category-${category.getAdCategoryId()}" value="category" name="${category.getAdCategoryId()}" onclick="if(this.checked){AdsCategories.addCategoryToList(this.id)} else {AdsCategories.removeCategoryFromList(this.id)}"> <spring:message code="${category.getAdCategoryI18n()}"/> --%>

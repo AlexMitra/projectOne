@@ -10,19 +10,25 @@
                             <li class="sidebar-brand">
                                 <p class="personal-area-name"><spring:message code="personalArea.sideMenu.personalArea"/>(${accountPageBean.getUsername()})</p>
                             </li>
-                            <li>
-                                <a href="#"><spring:message code="personalArea.sideMenu.myMessages" /></a>
-                            </li>
+<!--                             <li> -->
+<%--                                 <a href="#"><spring:message code="personalArea.sideMenu.myMessages" /></a> --%>
+<!--                             </li> -->
                             
-                            <security:authorize access="hasAuthority('Administrator')">
-                            <li>
-                                <a href="#"><spring:message code="personalArea.sideMenu.messages"/></a>
-                            </li>
-                            </security:authorize>
+<%--                             <security:authorize access="hasAuthority('Administrator')"> --%>
+<!--                             <li> -->
+<%--                                 <a href="#"><spring:message code="personalArea.sideMenu.messages"/></a> --%>
+<!--                             </li> -->
+<%--                             </security:authorize> --%>
                             
                             <security:authorize access="hasAuthority('Administrator')">
                             <li>
                                 <a id = "allAccounts" href="#allAccounts" onclick="workWithData.getAccountsData()"><spring:message code="personalArea.sideMenu.allAccounts"/></a>
+                            </li>
+                            </security:authorize>
+                            
+                            <security:authorize access="hasAnyAuthority('Administrator', 'Moderator')">
+                            <li>
+                                <a id="allAdCategories" href="#allAdCategories" onclick="workWithData.getAdCategoriesData()"><spring:message code="personalArea.sideMenu.allAdCategories"/></a>
                             </li>
                             </security:authorize>
                             
@@ -36,15 +42,15 @@
                             </li>
                             </security:authorize>
                             
-                            <li>
-                                <a href="#"><spring:message code="personalArea.sideMenu.myActions"/></a>
-                            </li>
+<!--                             <li> -->
+<%--                                 <a href="#"><spring:message code="personalArea.sideMenu.myActions"/></a> --%>
+<!--                             </li> -->
                             
-                            <security:authorize access="hasAuthority('Administrator')">
-                            <li>
-                                <a href="#"><spring:message code="personalArea.sideMenu.allActions"/></a>
-                            </li>
-                            </security:authorize>
+<%--                             <security:authorize access="hasAuthority('Administrator')"> --%>
+<!--                             <li> -->
+<%--                                 <a href="#"><spring:message code="personalArea.sideMenu.allActions"/></a> --%>
+<!--                             </li> -->
+<%--                             </security:authorize> --%>
                             
                             <li>                                
                                 <c:url var="logoutUrl" value="/personalArea/logout.html"/>

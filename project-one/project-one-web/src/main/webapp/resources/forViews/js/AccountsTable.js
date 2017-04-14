@@ -137,7 +137,7 @@ var workWithAccountsTable = {
 	},
 
 	unselectAll : function() {
-		workWithElements.selectedAccountsCounter = 0;
+		//workWithElements.selectedAccountsCounter = 0;
 		workWithElements.switchAccountsTableButtons();
 	}
 }

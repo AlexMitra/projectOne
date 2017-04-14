@@ -21,3 +21,28 @@ var accountEnabledDisabledToggle = {
 			workWithElements.unselectAllCheckboxes();
 		}
 }
+
+
+var adCategoriesEnabledDisabledToggle = {
+		categoriesToggle: true,
+
+		toggleEnabled: function(){
+			this.categoriesToggle = true;
+			workWithData.getAdCategoriesData();
+
+			workWithElements.hideElement("disabled-adCategories-control-buttons");
+			workWithElements.showElement("enabled-adCategories-control-buttons");
+
+			WorkWithAdCategoriesTableElements.unselectAllCheckboxes();
+		},
+
+		toggleDisabled: function(){
+			this.categoriesToggle = false;
+			workWithData.getAdCategoriesData();
+
+			workWithElements.showElement("disabled-adCategories-control-buttons");
+			workWithElements.hideElement("enabled-adCategories-control-buttons");
+
+			WorkWithAdCategoriesTableElements.unselectAllCheckboxes();
+		}
+}

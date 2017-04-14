@@ -4,6 +4,9 @@ import java.util.List;
 
 import by.kalilaska.beans.AdCategoryBean;
 import by.kalilaska.entities.forHibernate.AdCategoryEntityHibernate;
+import by.kalilaska.services.exceptions.AdCategoryExistsException;
+import by.kalilaska.services.exceptions.AdCategoryNameExistsException;
+import by.kalilaska.services.exceptions.AdCategoryTranslationExistsException;
 
 public interface AdCategoryService {
 
@@ -15,7 +18,18 @@ public interface AdCategoryService {
 
 	List<AdCategoryBean> findAllCategoryNames();
 
-	List<AdCategoryEntityHibernate> findAllCategoriesWithFieldEnabled(boolean enabled);
+	List<AdCategoryBean> findAllCategoriesWithFieldEnabled(boolean enabled);
 
 	List<AdCategoryBean> findAllCategoryNamesWithFieldEnabled(boolean enabled);
+
+	AdCategoryBean createNewAdCategory(AdCategoryBean adCategoryBean) throws AdCategoryExistsException;
+
+	void editAdCategory(AdCategoryBean adCategoryBean)
+			throws AdCategoryNameExistsException, AdCategoryTranslationExistsException;
+
+	boolean disableAdCategory(AdCategoryBean adCategoryBean);
+
+	boolean enableAdCategory(AdCategoryBean adCategoryBean);
+
+	boolean deleteAdCategory(long adCategoryId);
 }

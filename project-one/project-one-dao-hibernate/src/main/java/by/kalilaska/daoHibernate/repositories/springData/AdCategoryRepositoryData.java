@@ -10,6 +10,8 @@ public interface AdCategoryRepositoryData extends JpaRepository<AdCategoryEntity
 
 	AdCategoryEntityHibernate findByAdCategoryName(String name);
 
+	AdCategoryEntityHibernate findByAdCategoryI18n(String i18n);
+
 	List<AdCategoryEntityHibernate> findByAdCategoryEnabled(boolean enabled);
 
 	AdCategoryEntityHibernate findByAdCategoryNameAndAdCategoryEnabled(String name, boolean enabled);
