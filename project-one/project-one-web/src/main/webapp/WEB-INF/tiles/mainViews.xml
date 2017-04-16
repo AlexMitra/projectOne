@@ -33,6 +33,9 @@
     <definition name="adsBodyAdsArea" template="/WEB-INF/views/parts/adsParts/adsViewBodyParts/adsViewBodyAdsArea.jsp">
     </definition>
     
+    <definition name="adsViewBodyDisableAdDialog" template="/WEB-INF/views/parts/adsParts/adsViewBodyDisableAdDialog.jsp">    
+    </definition>
+    
     <definition name="ad" extends="login">   	
     	<put-attribute name="body" value="/WEB-INF/views/parts/adParts/adViewBody.jsp"/>
     </definition>
@@ -101,5 +104,21 @@
     
     <definition name="adCategoriesTableDeleteAdCategoryDialog" template="/WEB-INF/views/parts/personalAreaParts/personalAreaBodyParts/allAdCategoriesBodyDeleteAdCategoryDialog.jsp">    
     </definition>
+    
+    
+    <definition name="allAdsBodyTemplate" template="/WEB-INF/views/parts/personalAreaParts/personalAreaBodyParts/allAdsBodyTemplate.jsp">
+    	<put-attribute name="adsSearchPanel" value="/WEB-INF/views/parts/personalAreaParts/personalAreaBodyParts/allAdsBodySearchPanel.jsp"/>
+    	<put-attribute name="adsTable" value="/WEB-INF/views/parts/personalAreaParts/personalAreaBodyParts/allAdsBodyAdsTable.jsp"/>
+    	<put-attribute name="adsTableControlButtons" value="/WEB-INF/views/parts/personalAreaParts/personalAreaBodyParts/allAdsBodyAdsTableControlButtons.jsp"/>    	
+    </definition>
+    
+    <definition name="adsTableDisableAdDialog" template="/WEB-INF/views/parts/personalAreaParts/personalAreaBodyParts/allAdsBodyDisableAdDialog.jsp">    
+    </definition>
+    
+<!--     <definition name="adCategoriesTableEnableAdCategoryDialog" template="/WEB-INF/views/parts/personalAreaParts/personalAreaBodyParts/allAdsBodyEnableAdDialog.jsp">     -->
+<!--     </definition> -->
+    
+<!--     <definition name="adCategoriesTableDeleteAdCategoryDialog" template="/WEB-INF/views/parts/personalAreaParts/personalAreaBodyParts/allAdsBodyDeleteAdDialog.jsp">     -->
+<!--     </definition> -->
 
 </tiles-definitions>

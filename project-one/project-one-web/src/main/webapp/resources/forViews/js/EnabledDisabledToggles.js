@@ -46,3 +46,28 @@ var adCategoriesEnabledDisabledToggle = {
 			WorkWithAdCategoriesTableElements.unselectAllCheckboxes();
 		}
 }
+
+
+var adsEnabledDisabledToggle = {
+		adsToggle: true,
+
+		toggleEnabled: function(){
+			this.adsToggle = true;
+			workWithData.getAdsData();
+
+			workWithElements.hideElement("disabled-ads-control-buttons");
+			workWithElements.showElement("enabled-ads-control-buttons");
+
+			WorkWithAdsTableElements.unselectAllCheckboxes();
+		},
+
+		toggleDisabled: function(){
+			this.adsToggle = false;
+			workWithData.getAdsData();
+
+			workWithElements.showElement("disabled-ads-control-buttons");
+			workWithElements.hideElement("enabled-ads-control-buttons");
+
+			WorkWithAdsTableElements.unselectAllCheckboxes();
+		}
+}

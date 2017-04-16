@@ -4,6 +4,7 @@ var workWithData = {
 		workWithElements.hideElement("personal-info");
 		workWithElements.hideElement("accounts");
 		workWithElements.hideElement("adCategories");
+		workWithElements.hideElement("ads");
 	},
 
 	getAccountsData : function () {
@@ -42,6 +43,27 @@ var workWithData = {
 						workWithData.hideAdminAreaElements();
 						workWithElements.showElement("adCategories");
 						adCategoriesTable.createAdCategoriesTable(data);
+					}
+				})
+	},
+
+	getAdsData : function () {
+
+		if(document.getElementById("ads-enabled-disabled-toggle").checked == true){
+			var url = "http://localhost:8080/project-one-web/personalArea/admin/api/ads/enabled";
+		}else{
+			var url = "http://localhost:8080/project-one-web/personalArea/admin/api/ads/disabled";
+		}
+
+		$.ajax({
+					type : "GET",
+					url : url,
+					dataType : "json",
+					success : function (data) {
+
+						workWithData.hideAdminAreaElements();
+						workWithElements.showElement("ads");
+						adsTable.createAdsTable(data);
 					}
 				})
 	},

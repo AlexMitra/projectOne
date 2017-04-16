@@ -36,9 +36,9 @@
                                 <a href="#"><spring:message code="personalArea.sideMenu.myAds"/></a>
                             </li>
                             
-                            <security:authorize access="hasAuthority('Administrator')">
+                            <security:authorize access="hasAnyAuthority('Administrator', 'Moderator')">
                             <li>
-                                <a href="#"><spring:message code="personalArea.sideMenu.allAds"/></a>
+                                <a id="allAds" href="#allAds" onclick="workWithData.getAdsData()"><spring:message code="personalArea.sideMenu.allAds"/></a>
                             </li>
                             </security:authorize>
                             

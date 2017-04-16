@@ -3,6 +3,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 
         <div align="center" class="all-ads-area">
         	<c:set var="allAds" value="${adsPageBean.getAllAds()}"/>
@@ -10,7 +11,13 @@
             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 one-ad-area">             
                 <div class="one-ad-block">
                     <a id="ad-${ad.getAdId()}" class="one-ad-name" href="/project-one-web/ads/ad_${ad.getAdId()}.html">
-                    	<p>${ad.getAdName()}</p>
+                    	<div class="ads-page-ad-name-container">
+                    		<p><font id="ads-page-ad-${ad.getAdId()}">${ad.getAdName()} </font>
+                    		<security:authorize access="hasAnyAuthority('Administrator', 'Moderator')">
+                    			<a id="disable-ad-${ad.getAdId()}" class="ads-page-disable-ad" href="#" data-toggle="modal" data-target="#ads-page-disable-ad-dialog" onclick="adsPageDisableAd.showDialog(this.id)"> <i class="fa fa-times" aria-hidden="true"></i> </a>
+                    		</security:authorize>
+                    		</p>
+                    	</div>
                         <img class="one-ad-image" src="${pageContext.servletContext.contextPath}/resources/forViews/images/Dino.png" alt="">
 <%--                         <img class="one-ad-image" src="<c:url value="resources/forViews/images/Dino.png"/>" alt=""> --%>
                     </a>

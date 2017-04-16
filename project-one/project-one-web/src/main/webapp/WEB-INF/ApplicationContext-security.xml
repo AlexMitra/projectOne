@@ -26,6 +26,9 @@
 			<intercept-url pattern="/" access="permitAll"/>
 			
 			<intercept-url pattern="/personalArea/admin/api/ad_categories/**" access="hasAnyAuthority('Administrator', 'Moderator')" />
+			<intercept-url pattern="/personalArea/admin/api/ad_category/**" access="hasAnyAuthority('Administrator', 'Moderator')" />
+			<intercept-url pattern="/personalArea/admin/api/ads/**" access="hasAnyAuthority('Administrator', 'Moderator')" />
+			<intercept-url pattern="/personalArea/admin/api/ad/**" access="hasAnyAuthority('Administrator', 'Moderator')" />
 			<intercept-url pattern="/personalArea/admin/api/accounts/**" access="hasAuthority('Administrator')" />
 			<intercept-url pattern="/**" access="isAuthenticated()" />
 <!-- 			<intercept-url pattern="/**" access="permitAll" /> -->

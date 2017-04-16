@@ -23,6 +23,8 @@ public class AdBean {
 
 	private boolean adEnabled;
 
+	private String adMaker;
+
 	public String getFormatDate() {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
 		return dateFormat.format(adCreationDate);
@@ -31,12 +33,7 @@ public class AdBean {
 	@Override
 	public String toString() {
 		return "AdBean [adId=" + adId + ", adName=" + adName + ", adDescription=" + adDescription + ", adCreationDate="
-				+ adCreationDate + ", adEnabled=" + adEnabled + "]";
+				+ adCreationDate + ", adEnabled=" + adEnabled + ", adMaker=" + adMaker + "]";
 	}
-
-	// private AdCategoryBean adCategory;
-	//
-	//
-	// private AccountBean adMaker;
 
 }

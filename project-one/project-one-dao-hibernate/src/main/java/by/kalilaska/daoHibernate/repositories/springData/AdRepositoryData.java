@@ -14,6 +14,8 @@ public interface AdRepositoryData extends JpaRepository<AdEntityHibernate, Long>
 
 	List<AdEntityHibernate> findByAdEnabledOrderByAdCreationDateDesc(boolean enabled, Pageable pageable);
 
+	List<AdEntityHibernate> findByAdEnabled(boolean enabled);
+
 	List<AdEntityHibernate> findByAdEnabledAndAdCategoryInOrderByAdCreationDateDesc(boolean enabled,
 			List<AdCategoryEntityHibernate> categories, Pageable pageable);
 

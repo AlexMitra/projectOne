@@ -31,5 +31,10 @@
 				<a>adEnabled</a>
 				<b>adEnabled</b>
 			</field>
+			
+			<field custom-converter="by.kalilaska.utilities.impls.dozer.AccountEntityToStringAccountLoginConverter">
+			<a>adMaker</a>
+			<b>adMaker</b>
+		</field>
 	</mapping>
 </mappings>

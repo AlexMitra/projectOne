@@ -9,6 +9,8 @@ public interface AdService {
 
 	List<AdBean> getAllAdsWithFieldEnabled(boolean enabled, int page, int size);
 
+	List<AdBean> getAllAdsWithFieldEnabled(boolean enabled);
+
 	List<AdBean> getAdsByAdCategoryWithFieldEnabled(List<AdCategoryBean> adCategoryBeanList, boolean enabled, int page,
 			int size);
 
@@ -17,4 +19,6 @@ public interface AdService {
 	Long getSelectedCategoriesAdEnabledCount(List<AdCategoryBean> adCategoryList, boolean enabled);
 
 	AdBean getAdById(long id);
+
+	boolean disableAd(AdBean adBean);
 }

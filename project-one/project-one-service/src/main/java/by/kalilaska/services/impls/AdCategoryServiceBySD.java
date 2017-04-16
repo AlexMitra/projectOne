@@ -173,13 +173,12 @@ public class AdCategoryServiceBySD implements AdCategoryService {
 	@Override
 	public void editAdCategory(AdCategoryBean adCategoryBean)
 			throws AdCategoryNameExistsException, AdCategoryTranslationExistsException {
-		// System.out.println("in service, ad category: " + adCategoryBean);
 
 		try {
 			AdCategoryEntityHibernate entityByName = adCategoryRepository
 					.findByAdCategoryName(adCategoryBean.getAdCategoryName());
 			if (entityByName.getAdCategoryId() != adCategoryBean.getAdCategoryId()) {
-				System.out.println("throw new AdCategoryNameExistsException");
+
 				throw new AdCategoryNameExistsException("Ad category with this name already exists");
 			}
 		} catch (NullPointerException e) {
@@ -197,14 +196,12 @@ public class AdCategoryServiceBySD implements AdCategoryService {
 		}
 
 		AdCategoryEntityHibernate adCategoryEntity = adCategoryRepository.findOne(adCategoryBean.getAdCategoryId());
-		System.out.println("in service, before edit: " + adCategoryEntity);
 
 		if (adCategoryEntity != null) {
 			adCategoryEntity.setAdCategoryName(adCategoryBean.getAdCategoryName());
 			adCategoryEntity.setAdCategoryDescription(adCategoryBean.getAdCategoryDescription());
 			adCategoryEntity.setAdCategoryI18n(adCategoryBean.getAdCategoryI18n());
 		}
-		System.out.println("in service, after edit: " + adCategoryEntity);
 
 		adCategoryRepository.save(adCategoryEntity);
 

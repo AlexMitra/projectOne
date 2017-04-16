@@ -81,6 +81,7 @@
 	overflow: scroll;  
     height: 50%;   
     border: 0px;
+    max-height: 220vh;
 }
 
 .btn-primary-my{ 
@@ -454,4 +455,16 @@ input:checked + .slider:before {
 
 .fa-times {
   color: dimgray;
+}
+
+.ads-page-disable-ad {
+    color: dimgray;
+    font-size: 130%;
+    position:absolute;
+    top: 2px;
+    right: 5px;
+}
+
+.ads-page-ad-name-container {
+    position: relative;
 }

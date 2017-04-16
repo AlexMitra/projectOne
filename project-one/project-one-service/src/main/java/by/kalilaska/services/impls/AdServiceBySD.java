@@ -35,6 +35,14 @@ public class AdServiceBySD implements AdService {
 	}
 
 	@Override
+	public List<AdBean> getAllAdsWithFieldEnabled(boolean enabled) {
+		List<AdEntityHibernate> adEntityList = adRepositoryData.findByAdEnabled(enabled);
+		List<AdBean> adBeanList = entityToBeanConverter.convertToBeanList(adEntityList, AdBean.class);
+
+		return adBeanList;
+	}
+
+	@Override
 	@Transactional
 	public List<AdBean> getAdsByAdCategoryWithFieldEnabled(List<AdCategoryBean> adCategoryBeanList, boolean enabled,
 			int page, int size) {
@@ -75,6 +83,21 @@ public class AdServiceBySD implements AdService {
 		}
 
 		return adRepositoryData.countByAdEnabledAndAdCategoryIn(enabled, adCategoryEntityList);
+	}
+
+	@Transactional
+	@Override
+	public boolean disableAd(AdBean adBean) {
+		AdEntityHibernate adEntity = adRepositoryData.findOne(adBean.getAdId());
+
+		if (adEntity != null) {
+			adEntity.setAdEnabled(adBean.isAdEnabled());
+		}
+		adRepositoryData.save(adEntity);
+		if (adRepositoryData.findOne(adBean.getAdId()).isAdEnabled()) {
+			return true;
+		}
+		return false;
 	}
 
 }
