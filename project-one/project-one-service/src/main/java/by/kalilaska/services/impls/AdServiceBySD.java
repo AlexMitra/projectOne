@@ -61,6 +61,18 @@ public class AdServiceBySD implements AdService {
 
 	@Override
 	@Transactional
+	public List<AdBean> getRandomAdsByAdIdWithFieldEnabled(boolean enabled, List<Long> ids) {
+		List<AdEntityHibernate> adEntityList = adRepositoryData.findByAdEnabledAndAdIdIn(enabled, ids);
+		if (adEntityList != null) {
+			List<AdBean> adBeanList = entityToBeanConverter.convertToBeanList(adEntityList, AdBean.class);
+			return adBeanList;
+		}
+
+		return null;
+	}
+
+	@Override
+	@Transactional
 	public Long getAdEnabledCount(boolean enabled) {
 		return adRepositoryData.countByAdEnabled(enabled);
 	}

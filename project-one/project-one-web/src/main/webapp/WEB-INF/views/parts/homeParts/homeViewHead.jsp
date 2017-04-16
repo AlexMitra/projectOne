@@ -14,6 +14,9 @@
     <link href="<c:url value="/resources/forViews/css/bootstrap.css"/>"  rel="stylesheet">
     <link href="<c:url value="/resources/forViews/css/font-awesome.css"/>" rel="stylesheet">
     <link href="<c:url value="/resources/forViews/css/syle.css"/>" rel="stylesheet">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
